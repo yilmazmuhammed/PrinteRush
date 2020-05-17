@@ -1,0 +1,7 @@
+passlib
+werkzeug
+pony
+Flask>=1.1.2
+Flask-WTF>=0.14.3
+WTForms>=2.3.1
+Flask-Login>=0.5.0

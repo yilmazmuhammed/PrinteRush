@@ -1,0 +1,89 @@
+{
+  "auth": {
+    "auth": {
+      "login": {
+        "login_successful": "Giriş yapıldı.",
+        "passive_user": "Kullanıcı aktif değil.",
+        "title": "Giriş Yap",
+        "wrong_password": "Parola veya kullanıcı adı yanlış."
+      },
+      "logout": {
+        "logout_successful": "Üye çıkışı yapıldı."
+      },
+      "register": {
+        "passwords_do_not_match": "Parolalar eşleşmiyor.",
+        "title": "Kayıt ol"
+      }
+    },
+    "db": {
+      "db_add_web_user": {
+        "email_already_exist": "Bu eposta adresi ile daha önce kayıt olunmuş.",
+        "username_already_exist": "Bu kullanıcı adı daha önce alınmış."
+      }
+    },
+    "forms": {
+      "login": {
+        "remember_me": {
+          "label": "Beni hatırla"
+        },
+        "submit": {
+          "label": "Giriş yap"
+        },
+        "title": "Üye Girişi"
+      },
+      "register": {
+        "submit": {
+          "label": "Kayıt ol"
+        },
+        "title": "Üye Ol"
+      },
+      "web_user": {
+        "email": {
+          "label": "Eposta adresi",
+          "length": "Eposta adresi 254 karakterden fazla olamaz.",
+          "required": "Lütfen e-posta adresinizi giriniz."
+        },
+        "first_name": {
+          "label": "İsim",
+          "length": "İsim 40 karakterden fazla olamaz.",
+          "required": "Lütfen isminizi giriniz."
+        },
+        "is_active": {
+          "label": "Aktif mi?"
+        },
+        "is_admin": {
+          "label": "Yönetici mi?"
+        },
+        "last_name": {
+          "label": "Soyisim",
+          "length": "Soyisim 40 karakterden fazla olamaz.",
+          "required": "Lütfen soyisminizi giriniz."
+        },
+        "password": {
+          "label": "Parola",
+          "length": "Parola 40 karakterden fazla olamaz.",
+          "required": "Lütfen parolanızı giriniz."
+        },
+        "password_verification": {
+          "label": "Parola doğrulama",
+          "length": "Parola doğrulama 40 karakterden fazla olamaz.",
+          "password_equal_to": "Parolalar eşleşmiyor.",
+          "required": "Lütfen parola doğrulamayı giriniz."
+        },
+        "phone_number": {
+          "label": "Telefon numarası",
+          "length": "Telefon numarası 20 karakterden fazla olamaz.",
+          "required": "Lütfen telefon numarası giriniz."
+        },
+        "submit": {
+          "label": "Gönder"
+        },
+        "username": {
+          "label": "Kullanıcı Adı",
+          "length": "Kullanıcı adı 20 karakterden fazla olamaz.",
+          "required": "Lütfen kullanıcı adını giriniz."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+  {% block content %}
+  
+  <!-- Bread Crumb STRAT -->
+  <div class="banner inner-banner1 ">
+    <div class="container">
+      <section class="banner-detail center-xs">
+        <h1 class="banner-title">Login</h1>
+        <div class="bread-crumb right-side float-none-xs">
+          <ul>
+            <li><a href="{{ url_for('general_bp.index') }}">Home</a>/</li>
+            <li><span>Login</span></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- Bread Crumb END --> 
+
+  <!-- CONTAIN START -->
+  <section class="checkout-section ptb-70">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8 col-md-8 ">
+              {{ page_info.form.open|safe }}
+                <div class="row">
+                  <div class="col-12 mb-20">
+                    <div class="heading-part heading-bg">
+                      <h2 class="heading">{{ page_info.form.title}}</h2>
+                    </div>
+                  </div>
+                  {% for field in page_info.form %}
+                  {% if field.id == "csrf_token" %}
+                  <div class="col-12">
+                    <div class="input-box">
+                      {{ field }}
+                    </div>
+                  </div>
+                  {% elif field.type in ["BooleanField"] %}
+                  <div class="col-12">
+                    <div class="check-box left-side mb-20">
+                      <span>
+                        {{ field }}
+                        {{ field.label }}
+                      </span>
+                    </div>
+                  </div>
+                  {% elif field.type in ["SubmitField"] %}
+                  <div class="col-12">
+                    {{ field }}
+                  </div>
+                  {% elif field.type in ["StringField", "EmailField", "PasswordField", "TelField"] %}
+                  <div class="col-12">
+                    <div class="input-box">
+                      {{ field.label }} {% if field.flags.required %}*{% endif %}
+                      {{ field }}
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+              {{ page_info.form.close|safe }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTAINER END --> 
+  
+  {% endblock %}
