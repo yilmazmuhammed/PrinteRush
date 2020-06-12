@@ -4617,7 +4617,7 @@ _______________________________________________________*/
 	padding: 0;
 	border: none;
 }
-.Description, .items-Product-Tags, .items-Reviews, .comments-area-main {
+.Description, .Features, .items-Product-Tags, .items-Reviews, .items-Features, .items-Models, .items-Xxx, .comments-area-main {
 	padding: 30px;
 	line-height: 25px;
 	background: #f5f5f5;
@@ -4626,10 +4626,10 @@ _______________________________________________________*/
 	font-weight: 500;
 	color: #222;
 }
-.items-Description, .items-Product-Tags, .items-Reviews {
+.items-Description, .items-Product-Tags, .items-Reviews, .items-Models, .items-Features, .items-Xxx {
 	display: none;
 }
-.items-Description.selected, .items-Product-Tags.selected, .items-Reviews.selected {
+.items-Description.selected, .items-Product-Tags.selected, .items-Models.selected, .items-Reviews.selected, .items-Features.selected, .items-Xxx.selected {
 	display: block;
 }
 /* Product Page Tab CSS End */

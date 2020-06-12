@@ -463,18 +463,19 @@ $(function() {
   }
 
   /* Price-range Js Start */
-  function price_range () {
+    /* DONE_BY_MY
+  function price_range (min=0, max=1000) {
       $( "#slider-range" ).slider({
         range: true,
-        min: 0,
-        max: 800,
-        values: [ 75, 500 ],
+        min: min,
+        max: max,
+        values: [ min, max ],
         slide: function( event, ui ) {
-          $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+          $( "#amount" ).val( ui.values[ 0 ] + "₺"  + " - " + ui.values[ 1 ] + "₺"  );
         }
       });
-      $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-  }
+      $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + "₺" + " - " + $( "#slider-range" ).slider( "values", 1 )+ "₺"  );
+  }*/
   /* Price-range Js End */
 
   /*Video_Popup Js Start*/
@@ -593,7 +594,7 @@ $(function() {
 
 
   $(document).on("ready", function() {
-    owlcarousel_slider(); price_range (); responsive_dropdown(); description_tab (); search_open (); custom_tab (); scrolltop_arrow (); popup_dropdown (); popup_product(); video_popup(); countdown_clock(); slidebar_open(); option_drop(); popup_links(); location_page(); sidebar_margin(); grid_list_view();
+    owlcarousel_slider(); /* DONE_BY_MY price_range ();*/ responsive_dropdown(); description_tab (); search_open (); custom_tab (); scrolltop_arrow (); popup_dropdown (); popup_product(); video_popup(); countdown_clock(); slidebar_open(); option_drop(); popup_links(); location_page(); sidebar_margin(); grid_list_view();
     
   });
 

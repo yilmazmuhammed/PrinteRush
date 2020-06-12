@@ -36,6 +36,10 @@
 <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
 <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='images/apple-touch-icon-72x72.png') }}">
 <link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename='images/apple-touch-icon-114x114.png') }}">
+<!-- block css_block -->
+{% block css_block %}
+{% endblock %}
+<!-- finish -->
 </head>
 <body class="homepage">
 <div class="se-pre-con"></div>
@@ -70,9 +74,12 @@
             <div class="language-currency select-dropdown">
               <fieldset>
                 <select name="speed" class="countr option-drop">
-                  <option selected="selected">English</option>
-                  <option>Frence</option>
-                  <option>German</option>
+                  {% for key, value in g.languages.items() %}
+                  <option>{{ value }}</option>
+                  {% endfor %}
+{#                  <option selected="selected">English</option>#}
+{#                  <option>Frence</option>#}
+{#                  <option>German</option>#}
                 </select>
                 <select name="speed" class="currenc option-drop">
                   <option selected="selected">USD</option>
@@ -128,9 +135,12 @@
                       </li>
                       <li> <span class="dropdown-title">Language :</span>
                         <ul>
-                          <li><a class="active" href="#">English</a></li>
-                          <li><a href="#">French</a></li>
-                          <li><a href="#">German</a></li>
+                          {% for key, value in g.languages.items() %}
+                          <li><a href="#">{{ value }}</a></li>
+                          {% endfor %}
+{#                          <li><a class="active" href="#">English</a></li>#}
+{#                          <li><a href="#">French</a></li>#}
+{#                          <li><a href="#">German</a></li>#}
                         </ul>
                       </li>
                       <li> <span class="dropdown-title">Currency :</span>
@@ -444,9 +454,13 @@
                         <div class="language-currency select-dropdown">
                           <fieldset>
                             <select name="speed" class="country option-drop">
-                              <option selected="selected">English</option>
-                              <option>Frence</option>
-                              <option>German</option>
+
+                              {% for key, value in g.languages.items() %}
+                              <option>{{ value }}</option>
+                              {% endfor %}
+{#                              <option selected="selected">English</option>#}
+{#                              <option>Frence</option>#}
+{#                              <option>German</option>#}
                             </select>
                             <select name="speed" class="currency option-drop">
                               <option selected="selected">USD</option>
@@ -900,13 +914,18 @@
 </div>
 <script src="{{ url_for('static', filename='js/jquery-1.12.3.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/jquery.downCount.js') }}"></script>
 <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/fotorama.js') }}"></script>
 <script src="{{ url_for('static', filename='js/jquery.magnific-popup.js') }}"></script>
 <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+<!-- block js_block -->
+{% block js_block %}
+{% endblock %}
+<!-- finish -->
 
 <script>
   /* ------------ Newslater-popup JS Start ------------- */

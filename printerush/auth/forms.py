@@ -3,7 +3,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields.html5 import EmailField, TelField
 from wtforms.validators import InputRequired, Length, EqualTo
 
-from printerush.assistant_func import get_translation
+from printerush.common.assistant_func import get_translation
 
 
 def form_open(form_name, f_id=None, enctype=None, f_action=""):

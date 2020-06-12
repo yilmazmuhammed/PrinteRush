@@ -1,1 +1,31 @@
-{}
+{
+  "product": {
+    "product": {
+      "view": {
+        "html": {
+          "comments": "Comments",
+          "models": "Models",
+          "share": "Share",
+          "similar_products": "Smilar Products",
+          "stock": {
+            "in_stock": "In stock",
+            "out_of_stock": "Out of stock"
+          }
+        }
+      },
+      "view_category": {
+        "html": {
+          "add_to_cart": "Add to cart",
+          "and_above": "and above",
+          "best_seller": "Best Seller",
+          "compare": "Compare",
+          "manufacture": "Manufacture",
+          "shop_by": "Shop By",
+          "sort_by": "Sort By",
+          "sub_categories": "Sub Categories",
+          "wishlist": "Wishlist"
+        }
+      }
+    }
+  }
+}

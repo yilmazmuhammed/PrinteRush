@@ -10,7 +10,8 @@ from pony.flask import Pony
 from printerush.auth.auth import auth_bp
 from printerush.database.models import WebUser
 from printerush.general.general import general_bp
-from printerush.products.products import products_bp
+from printerush.printable_3d_model.printable_3d_model import models_bp
+from printerush.product.product import products_bp
 
 app = Flask(__name__, instance_relative_config=True)
 Pony(app)
@@ -19,7 +20,8 @@ app.secret_key = os.getenv("SECRET_KEY")
 
 app.register_blueprint(auth_bp, url_prefix="/")
 app.register_blueprint(general_bp, url_prefix="/")
-app.register_blueprint(products_bp, url_prefix="/as/<language_id>")
+app.register_blueprint(products_bp, url_prefix="/products/")
+app.register_blueprint(models_bp, url_prefix="/models/")
 
 lm = LoginManager()
 

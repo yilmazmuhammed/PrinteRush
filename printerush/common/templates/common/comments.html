@@ -1,0 +1,58 @@
+                      <div class="comments-area">
+                        <h3>{{ translation['comments'] }}<span> ({{ comments.count() }})</span></h3>
+                        <ul class="comment-list mt-30">
+{#                        TODO sıralamayı burada değil, sql ile yap, eğer hız varkı oluyorsa#}
+                          {% for comment in comments|sort(attribute='data_status_ref.creation_time') %}
+                          <li>
+                            <div class="comment-user"> <img src="/static/images/comment-user.jpg" alt="Everypick"> </div>
+                            <div class="comment-detail">
+                              <div class="user-name">{{ comment.data_status_ref.creator_ref.name_surname }}</div>
+                              <div class="post-info">
+                                <ul>
+                                  <li>{{ comment.data_status_ref.creation_time.date() }}</li>
+                                  <li>
+                                    <div class="rating-summary-block">
+                                      <div title="{{ comment.point }}" class="rating-result"> <span style="width:{{ comment.point * 20 }}%"></span> </div>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                              <p>
+                                <strong>{{ comment.title }}</strong>
+                                <br>
+                                {{ comment.message }}
+                              </p>
+                            </div>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                      <div class="main-form mt-30">
+                        <h3>{{ translation['leave_comment'] }}</h3>
+                        {% if current_user.is_authenticated %}
+                        {{ form.open|safe }}
+                          <div class="row mt-30">
+                            <div class="col-12 mb-30">
+                              {{ form.csrf_token }}
+                            </div>
+                            <div class="col-md-4 mb-30">
+                              {{ form.title.label }}
+                              {{ form.title }}
+                            </div>
+                            <div class="col-md-2 mb-30">
+                              {{ form.point.label }}
+                              {{ form.point }}
+                            </div>
+                            <div class="col-12 mb-30">
+                              {{ form.message.label }}
+                              {{ form.message }}
+                            </div>
+                            <div class="col-12 mb-30">
+                              {{ form.submit }}
+                            </div>
+                          </div>
+                        {{ form.close|safe }}
+                        {% else %}
+                        <a href="{{ url_for('auth_bp.login') }}"><u>{{ translation['login_for_comment'] }}</u></a>
+                        {% endif %}
+                      </div>

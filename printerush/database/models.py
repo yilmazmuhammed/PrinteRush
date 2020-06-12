@@ -7,6 +7,7 @@ from pony.orm import *
 db = Database()
 
 
+# TODO is_active
 class WebUser(db.Entity, UserMixin):
     id = PrimaryKey(int, auto=True)
     first_name = Optional(str, 40)
@@ -23,33 +24,62 @@ class WebUser(db.Entity, UserMixin):
     deleted_set = Set('DataStatus', reverse='deletor_ref')
     confirmed_set = Set('DataStatus', reverse='confirmer_ref')
     edited_set = Set('DataStatus', reverse='editor_ref')
-    comments_set = Set('Comment')
     addresses_set = Set('Address')
 
     def get_id(self):
-        return self.id\
+        return self.id
 
     @property
     def is_active(self):
         return self._is_active
 
+    @property
+    def name_surname(self):
+        return self.first_name + " " + self.last_name
+
 
 class Product(db.Entity):
     id = PrimaryKey(int, auto=True)
-    name = Optional(str)
-    explanation_html = Optional(str)
+    name = Required(str, 100)
+    short_description_html = Optional(str)
+    description_html = Optional(str)
     photos_set = Set('Photo')
     comments_set = Set('Comment')
     store_ref = Required('Store')
-    printiable3d_models_set = Set('Printiable3dModel')
+    printable_3d_models_set = Set('Printable3dModel')
     product_options_set = Set('ProductOption')
     product_feature_values_set = Set('ProductFeatureValue')
     product_category_ref = Required('ProductCategory')
+    product_labels_set = Set('ProductLabel')
+    data_status_ref = Required('DataStatus')
 
+    @property
+    def point(self):
+        return coalesce(select(c.point for c in self.comments_set).avg(), 0.0)
 
-class ProductBrand(db.Entity):
-    id = PrimaryKey(int, auto=True)
+    @property
+    def min_price(self):
+        return coalesce(select(po.price for po in self.product_options_set).min(), 0.0)
 
+    @property
+    def max_price(self):
+        return coalesce(select(po.price for po in self.product_options_set).max(), 0.0)
+
+    @property
+    def stock(self):
+        return coalesce(select(po.stock for po in self.product_options_set).sum(), 0)
+
+    @property
+    def sold(self):
+        return coalesce(select(po.sold for po in self.product_options_set).sum(), 0)
+
+    @property
+    def product_code(self):
+        return '{:06d}'.format(self.id)
+
+    @property
+    def main_photo(self):
+        return self.photos_set[0] if self.photos_set else Photo[1]
 
 class Address(db.Entity):
     id = PrimaryKey(int, auto=True)
@@ -62,7 +92,7 @@ class Address(db.Entity):
     tax_number = Optional(str)
     tax_office = Optional(str)
     district_ref = Required('District')
-    web_user_ref = Required(WebUser)
+    web_user_ref = Optional(WebUser)
     store_ref = Optional('Store')
 
 
@@ -74,14 +104,23 @@ class Order(db.Entity):
     id = PrimaryKey(int, auto=True)
 
 
-class Printiable3dModel(db.Entity):
+class Printable3dModel(db.Entity):
     id = PrimaryKey(int, auto=True)
     title = Optional(str)
     explanation = Optional(str)
-    model_path = Optional(str)
+    file_path = Optional(str)
     photos_set = Set('Photo')
+    comments_set = Set('Comment')
     data_status_ref = Required('DataStatus')
     product_ref = Required(Product)
+
+    @property
+    def point(self):
+        return coalesce(select(c.point for c in self.comments_set).avg(), 0.0)
+
+    @property
+    def main_photo(self):
+        return self.photos_set[0] if self.photos_set else Photo[1]
 
 
 class OrderedProduct(db.Entity):
@@ -90,19 +129,25 @@ class OrderedProduct(db.Entity):
 
 class ProductCategory(db.Entity):
     id = PrimaryKey(int, auto=True)
-    title = Optional(str)
+    title_key = Required(str)
     products_set = Set(Product)
     sub_categories_set = Set('ProductCategory', reverse='parent_category_ref')
-    parent_category_ref = Required('ProductCategory', reverse='sub_categories_set')
+    parent_category_ref = Optional('ProductCategory', reverse='sub_categories_set')
+
+    def products(self):
+        all_products = self.products_set
+
+        return all_products
 
 
 class Store(db.Entity):
     id = PrimaryKey(int, auto=True)
-    name = Optional(str)
-    explanation = Optional(str)
-    about = Optional(str)
-    phone_number = Optional(str)
-    email = Optional(str)
+    name = Required(str, 100, unique=True)
+    short_name = Required(str, 20, unique=True)
+    explanation_html = Optional(str)
+    about_html = Optional(str)
+    phone_number = Required(str, 20)
+    email = Required(str, 254)
     comments_set = Set('Comment')
     products_set = Set(Product)
     address_ref = Required(Address)
@@ -110,28 +155,31 @@ class Store(db.Entity):
 
 class Comment(db.Entity):
     id = PrimaryKey(int, auto=True)
-    point = Optional(str)
-    title = Optional(str)
-    content = Optional(str)
+    point = Required(int, size=8, unsigned=True)
+    title = Required(str, 100)
+    message = Required(str)
     data_status_ref = Required('DataStatus')
     to_store_ref = Optional(Store)
-    by_web_user_ref = Required(WebUser)
+    to_printable3d_model_ref = Optional(Printable3dModel)
     to_product_ref = Optional(Product)
 
 
 class Country(db.Entity):
     id = PrimaryKey(int, auto=True)
+    country = Required(str, 30, unique=True)
     cities_set = Set('City')
 
 
 class City(db.Entity):
     id = PrimaryKey(int, auto=True)
+    city = Required(str, 30)
     districts_set = Set('District')
     country_ref = Required(Country)
 
 
 class District(db.Entity):
     id = PrimaryKey(int, auto=True)
+    district = Required(str, 40)
     addresses_set = Set(Address)
     city_ref = Required(City)
 
@@ -141,10 +189,11 @@ class ProductOption(db.Entity):
     product_ref = Required(Product)
     color = Optional(str)
     size = Optional(str)
-    price = Optional(str)
-    stock = Optional(str)
-    discount_percent = Optional(str)
-    discount_quantity = Optional(str)
+    price = Required(float)
+    stock = Required(int, unsigned=True)
+    sold = Required(int, default=0, unsigned=True)
+    discount_percent = Optional(int, size=8, unsigned=True)
+    discount_quantity = Optional(int, size=8, unsigned=True)
 
 
 class ProductFeature(db.Entity):
@@ -155,8 +204,8 @@ class ProductFeature(db.Entity):
 
 class Photo(db.Entity):
     id = PrimaryKey(int, auto=True)
-    photo_path = Optional(str)
-    printiable3d_model_ref = Optional(Printiable3dModel)
+    file_path = Optional(str)
+    printable_3d_model_ref = Optional(Printable3dModel)
     product_ref = Optional(Product)
 
 
@@ -170,15 +219,22 @@ class ProductFeatureValue(db.Entity):
 class DataStatus(db.Entity):
     id = PrimaryKey(int, auto=True)
     creator_ref = Required(WebUser, reverse='created_set')
-    creation_time = Optional(str)
-    confirmer_ref = Required(WebUser, reverse='confirmed_set')
-    confirmation_time = Optional(str)
-    editor_ref = Required(WebUser, reverse='edited_set')
-    edit_time = Optional(str)
-    deletor_ref = Required(WebUser, reverse='deleted_set')
-    deletion_time = Optional(str)
-    comments_set = Optional(Comment)
-    printiable3d_models_set = Optional(Printiable3dModel)
+    creation_time = Required(datetime, default=lambda: datetime.now())
+    confirmer_ref = Optional(WebUser, reverse='confirmed_set')
+    confirmation_time = Optional(datetime)
+    editor_ref = Optional(WebUser, reverse='edited_set')
+    edit_time = Optional(datetime)
+    deletor_ref = Optional(WebUser, reverse='deleted_set')
+    deletion_time = Optional(datetime)
+    comment_ref = Optional(Comment)
+    printable_3d_model_ref = Optional(Printable3dModel)
+    product_ref = Optional(Product)
+
+
+class ProductLabel(db.Entity):
+    id = PrimaryKey(int, auto=True)
+    label = Required(str)
+    products_set = Set(Product)
 
 
 # # PostgreSQL
@@ -196,3 +252,28 @@ db.bind(provider='sqlite', filename='database.sqlite', create_db=True)
 set_sql_debug(True)
 
 db.generate_mapping(create_tables=True)
+
+if __name__ == '__main__':
+    with db_session:
+        webuser = WebUser(username="uname", email="user1@user.com", password_hash="asdasd", first_name="İsim", last_name="SOYİSİM")
+        turkiye = Country(country="turkey")
+        izmir = City(city="izmir", country_ref=turkiye)
+        torbali = District(district="torbali", city_ref=izmir)
+        addr = Address(district_ref=torbali)
+        store1 = Store(name="Store 1", short_name="store1", explanation_html="Mağaza 1 açıklaması",
+                       about_html="Store 1 about", phone_number="+905392024175", email="store1@yaani.com",
+                       address_ref=addr)
+        root = ProductCategory(title_key="home_page")
+        category1 = ProductCategory(title_key="category1", parent_category_ref=root)
+        category1_1 = ProductCategory(title_key="category1_1", parent_category_ref=category1)
+        product1 = Product(name="Ürün 1", description_html="Product 1 açıklaması",
+                           short_description_html="<b>Product</b> 1 sort",
+                           store_ref=store1, product_category_ref=category1_1,
+                           data_status_ref=DataStatus(creator_ref=webuser))
+        Comment(point=4, title="comment 1 title of product 1", message="comment 1 of product 1 comment of product 1",
+                to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
+        Comment(point=5, title="comment 2 title of product 1", message="comment 2 of product 1 comment of product 1",
+                to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
+        Comment(point=5, title="comment 3 title of product 1", message="comment 3 of product 1 comment of product 1",
+                to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
+        ProductOption(product_ref=product1, price=10.50, stock=15)

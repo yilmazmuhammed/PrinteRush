@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, url_for, flash, render_template, request
 from flask_login import login_user, login_required, logout_user
 from passlib.hash import pbkdf2_sha256 as hasher
 
-from printerush.assistant_func import flask_form_to_dict, FormPI, get_translation
+from printerush.common.assistant_func import flask_form_to_dict, FormPI, get_translation
 from printerush.auth.db import db_add_web_user
 from printerush.auth.exceptions import RegisterException
 from printerush.auth.forms import RegisterForm, LoginForm
@@ -23,7 +23,7 @@ def register():
             try:
                 json_data = flask_form_to_dict(request_form=request.form, exclude=['password_verification'])
                 db_add_web_user(json_webuser=json_data)
-                return redirect(url_for('home'))
+                return redirect(url_for('auth_bp.login'))
             except RegisterException as ex:
                 flash(u"%s" % ex, 'danger')
 

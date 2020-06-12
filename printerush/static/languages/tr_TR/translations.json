@@ -85,5 +85,98 @@
         }
       }
     }
+  },
+  "printable_3d_model": {
+    "printable_3d_model": {
+      "view_printable_3d_model": {
+        "html": {
+          "comments": "Yorumlar",
+          "download": "İndir",
+          "explanation": "Açıklama",
+          "features": "Özellikler",
+          "leave_comment": "Yorum yap",
+          "login_for_comment": "Yorum yapmak için giriş yapınız...",
+          "share": "Paylaş",
+          "similar_models": "Benzer modeller",
+          "wishlist": "Beğendiklerime ekle"
+        },
+        "title": "Yazdırılabilir 3D Model"
+      }
+    }
+  },
+  "product": {
+    "forms": {
+      "comment": {
+        "message": {
+          "label": "Mesaj",
+          "required": "Lütfen yorumunuzu giriniz."
+        },
+        "point": {
+          "label": "Puan",
+          "required": "Lütfen puanlayınız."
+        },
+        "submit": {
+          "label": "Gönder"
+        },
+        "title": {
+          "label": "Başlık",
+          "length": "Yorum başlığı 100 harften fazla olamaz.",
+          "required": "Lütfen yorum başlığını giriniz."
+        }
+      },
+      "filter": {
+        "submit": {
+          "label": "Filtrele"
+        }
+      }
+    },
+    "product": {
+      "view": {
+        "html": {
+          "add_to_cart": "Sepete ekle",
+          "color": "Renk",
+          "comments": "Yorumlar",
+          "compare": "Karşılaştır",
+          "explanation": "Ürün Açıklaması",
+          "features": "Özellikler",
+          "leave_comment": "Yorum Yap",
+          "login_for_comment": "Yorum yapmak için lütfen giriş yapınız.",
+          "models": "Modeller",
+          "product_code": "Ürün kodu",
+          "quantity": "Adet",
+          "share": "Paylaş",
+          "similar_products": "Benzer Ürünler",
+          "size": "Boyut",
+          "stock": {
+            "in_stock": "Satışta",
+            "out_of_stock": "Tükenmiş",
+            "stock": "Durum"
+          },
+          "wishlist": "Listeme ekle"
+        },
+        "title": "Ürün Görüntüle"
+      },
+      "view_category": {
+        "html": {
+          "add_to_cart": "Sepete ekle",
+          "and_above": "ve üstü",
+          "best_seller": "Çok Satanlar",
+          "color": "Renk",
+          "compare": "Karşılaştır",
+          "discount": "İndirim",
+          "manufacture": "Üretici",
+          "per_page": "Her Sayfada",
+          "price_range": "Fiyat aralığı",
+          "product_point": "Ürün puanı",
+          "refine": "Filtrele",
+          "shop_by": "Filtrele",
+          "show_product": "Ürün",
+          "sort_by": "Sırala",
+          "sub_categories": "Alt Kategoriler",
+          "wishlist": "Beğendiklerime ekle"
+        },
+        "title": "Ürünleri Görüntüle"
+      }
+    }
   }
 }

@@ -1,7 +1,7 @@
 from passlib.hash import pbkdf2_sha256 as hasher
 
-from printerush.assistant_func import get_translation
-from printerush.auth.exceptions import UsernameAlreadyExist, EmailAlreadyExist, ThereIsNotWebUser
+from printerush.common.assistant_func import get_translation
+from printerush.auth.exceptions import UsernameAlreadyExist, EmailAlreadyExist
 from printerush.database.models import WebUser
 
 
@@ -13,11 +13,5 @@ def db_add_web_user(json_webuser):
         raise EmailAlreadyExist(translation['email_already_exist'])
 
     json_webuser['password_hash'] = hasher.hash(json_webuser.pop('password'))
+    # TODO form'u ögeyi incele ile değiştirip üst yetkili webuser olulturma
     return WebUser(**json_webuser)
-
-
-def get_web_user(username) -> WebUser:
-    wu = WebUser.get(username=username)
-    if wu is None:
-        raise ThereIsNotWebUser(get_translation()['istisnalar']['kullanici_yok'])
-    return wu
