@@ -7,9 +7,8 @@ from printerush.database.models import WebUser
 
 def db_add_web_user(json_webuser):
     translation = get_translation()['auth']['db']['db_add_web_user']
-    if WebUser.get(username=json_webuser['username']):
-        raise UsernameAlreadyExist(translation['username_already_exist'])
-    elif WebUser.get(email=json_webuser['email']):
+
+    if WebUser.get(email=json_webuser['email']):
         raise EmailAlreadyExist(translation['email_already_exist'])
 
     json_webuser['password_hash'] = hasher.hash(json_webuser.pop('password'))

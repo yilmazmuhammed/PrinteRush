@@ -12,7 +12,6 @@ class WebUser(db.Entity, UserMixin):
     id = PrimaryKey(int, auto=True)
     first_name = Optional(str, 40)
     last_name = Optional(str, 40)
-    username = Required(str, 20, unique=True)
     email = Required(str, 254, unique=True)
     phone_number = Optional(str, 20)
     password_hash = Required(str)
@@ -24,7 +23,11 @@ class WebUser(db.Entity, UserMixin):
     deleted_set = Set('DataStatus', reverse='deletor_ref')
     confirmed_set = Set('DataStatus', reverse='confirmer_ref')
     edited_set = Set('DataStatus', reverse='editor_ref')
+    cart_products_set = Set('CartProduct')
+    shoppin_lists_set = Set('ShoppinList')
+    orders_set = Set('Order')
     addresses_set = Set('Address')
+
 
     def get_id(self):
         return self.id
@@ -45,13 +48,16 @@ class Product(db.Entity):
     description_html = Optional(str)
     photos_set = Set('Photo')
     comments_set = Set('Comment')
+    data_status_ref = Required('DataStatus')
     store_ref = Required('Store')
     printable_3d_models_set = Set('Printable3dModel')
     product_options_set = Set('ProductOption')
     product_feature_values_set = Set('ProductFeatureValue')
     product_category_ref = Required('ProductCategory')
     product_labels_set = Set('ProductLabel')
-    data_status_ref = Required('DataStatus')
+    shopping_products_set = Set('CartProduct')
+    shoppin_lists_set = Set('ShoppinList')
+    ordered_products_set = Set('OrderedProduct')
 
     @property
     def point(self):
@@ -81,6 +87,12 @@ class Product(db.Entity):
     def main_photo(self):
         return self.photos_set[0] if self.photos_set else Photo[1]
 
+    @property
+    def main_option(self):
+        sql_debug(True)
+        return self.product_options_set.order_by(lambda o: o.id)[:][0]
+
+
 class Address(db.Entity):
     id = PrimaryKey(int, auto=True)
     title = Optional(str)
@@ -92,22 +104,23 @@ class Address(db.Entity):
     tax_number = Optional(str)
     tax_office = Optional(str)
     district_ref = Required('District')
-    web_user_ref = Optional(WebUser)
     store_ref = Optional('Store')
-
-
-class ShoppingCart(db.Entity):
-    id = PrimaryKey(int, auto=True)
+    web_user_ref = Optional(WebUser)
 
 
 class Order(db.Entity):
     id = PrimaryKey(int, auto=True)
+    data_status_ref = Required('DataStatus')
+    web_user_ref = Required(WebUser)
+    ordered_products_set = Set('OrderedProduct')
+    shipping_address = Optional(str)
+    invoice_address = Optional(str)
 
 
 class Printable3dModel(db.Entity):
     id = PrimaryKey(int, auto=True)
     title = Optional(str)
-    explanation = Optional(str)
+    description_html = Optional(str)
     file_path = Optional(str)
     photos_set = Set('Photo')
     comments_set = Set('Comment')
@@ -125,6 +138,11 @@ class Printable3dModel(db.Entity):
 
 class OrderedProduct(db.Entity):
     id = PrimaryKey(int, auto=True)
+    product_ref = Required(Product)
+    product_name = Required(str, 100)
+    quantity = Required(int)
+    unit_price = Required(float)
+    order_ref = Required(Order)
 
 
 class ProductCategory(db.Entity):
@@ -134,10 +152,16 @@ class ProductCategory(db.Entity):
     sub_categories_set = Set('ProductCategory', reverse='parent_category_ref')
     parent_category_ref = Optional('ProductCategory', reverse='sub_categories_set')
 
-    def products(self):
-        all_products = self.products_set
+    def sub_categories(self):
+        ret = [self]
+        for sub_category in self.sub_categories_set:
+            ret += sub_category.sub_categories()
 
-        return all_products
+        return ret
+
+    def products(self):
+        categories = self.sub_categories()
+        return select(p for p in Product if p.product_category_ref in categories)
 
 
 class Store(db.Entity):
@@ -198,7 +222,7 @@ class ProductOption(db.Entity):
 
 class ProductFeature(db.Entity):
     id = PrimaryKey(int, auto=True)
-    title = Optional(str)
+    title = Required(str)
     product_feature_values_set = Set('ProductFeatureValue')
 
 
@@ -213,7 +237,7 @@ class ProductFeatureValue(db.Entity):
     id = PrimaryKey(int, auto=True)
     product_ref = Required(Product)
     product_feature_ref = Required(ProductFeature)
-    value = Optional(str)
+    value = Required(str)
 
 
 class DataStatus(db.Entity):
@@ -229,12 +253,27 @@ class DataStatus(db.Entity):
     comment_ref = Optional(Comment)
     printable_3d_model_ref = Optional(Printable3dModel)
     product_ref = Optional(Product)
+    order_ref = Optional(Order)
 
 
 class ProductLabel(db.Entity):
     id = PrimaryKey(int, auto=True)
     label = Required(str)
     products_set = Set(Product)
+
+
+class ShoppinList(db.Entity):
+    id = PrimaryKey(int, auto=True)
+    title = Required(str)
+    web_user_ref = Required(WebUser)
+    products_set = Set(Product)
+
+
+class CartProduct(db.Entity):
+    product_ref = Required(Product)
+    web_user_ref = Required(WebUser)
+    quantity = Required(int)
+    PrimaryKey(product_ref, web_user_ref)
 
 
 # # PostgreSQL
@@ -255,17 +294,18 @@ db.generate_mapping(create_tables=True)
 
 if __name__ == '__main__':
     with db_session:
-        webuser = WebUser(username="uname", email="user1@user.com", password_hash="asdasd", first_name="İsim", last_name="SOYİSİM")
-        turkiye = Country(country="turkey")
-        izmir = City(city="izmir", country_ref=turkiye)
-        torbali = District(district="torbali", city_ref=izmir)
+        webuser = WebUser(email="admin@printerush.com", password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY", is_admin=True)
+        turkiye = Country(country="Türkiye")
+        izmir = City(city="İzmir", country_ref=turkiye)
+        torbali = District(district="Torbalı", city_ref=izmir)
         addr = Address(district_ref=torbali)
-        store1 = Store(name="Store 1", short_name="store1", explanation_html="Mağaza 1 açıklaması",
-                       about_html="Store 1 about", phone_number="+905392024175", email="store1@yaani.com",
-                       address_ref=addr)
-        root = ProductCategory(title_key="home_page")
-        category1 = ProductCategory(title_key="category1", parent_category_ref=root)
-        category1_1 = ProductCategory(title_key="category1_1", parent_category_ref=category1)
+        store1 = Store(name="PrinteRush", short_name="PrinteRush", phone_number="+905392024175",
+                       email="store@printerush.com", address_ref=addr)
+        root = ProductCategory(title_key="Ana Sayfa")
+        category1 = ProductCategory(title_key="Aydınlatma", parent_category_ref=root)
+        category1_1 = ProductCategory(title_key="Masa Lambası", parent_category_ref=category1)
+        category1_2 = ProductCategory(title_key="Tavan Lambası", parent_category_ref=category1)
+        photo1 = Photo(file_path="/static/images/1.jpg")
         product1 = Product(name="Ürün 1", description_html="Product 1 açıklaması",
                            short_description_html="<b>Product</b> 1 sort",
                            store_ref=store1, product_category_ref=category1_1,
@@ -277,3 +317,10 @@ if __name__ == '__main__':
         Comment(point=5, title="comment 3 title of product 1", message="comment 3 of product 1 comment of product 1",
                 to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
         ProductOption(product_ref=product1, price=10.50, stock=15)
+
+        ProductOption(product_ref=Product(name="Ürün 2", description_html="Product 2 açıklaması",
+                                          short_description_html="<b>Product</b> 2 sort",
+                                          store_ref=store1, product_category_ref=category1_2,
+                                          data_status_ref=DataStatus(creator_ref=webuser)
+                                          ),
+                      price=100, stock=15)

@@ -50,11 +50,11 @@ def view_category(category_id, p):
     print("Sorting:", sorting)
 
     category = ProductCategory.get(id=category_id)
-    # if not category:
-    #     abort(404)
+    if not category:
+        abort(404)
 
     filter_form = FilterForm()
-    products = category.products().select(filtering).sort_by(sorting)
+    products = category.products().filter(filtering).sort_by(sorting)
     g.product_count = products.count()
     g.number_of_page = int(round(g.product_count / pagesize)) + (g.product_count % pagesize > 0)
     # products = products.page(pagenum=g.page, pagesize=pagesize)[:]

@@ -30,9 +30,9 @@ function price_range (min=0, max=1000) {
 
 $("#refine").on("click", function () {
     let price_slider = $("#slider-range");
-    params.set("min_price", price_slider.slider( "values", 0 ));
-    params.set("max_price", price_slider.slider( "values", 1 ));
-    params.set("min_point", (parseInt($('input[name="product_point"]:checked').val())-1).toString());
+    params.set("min_price", price_slider.slider("values", 0));
+    params.set("max_price", price_slider.slider("values", 1));
+    params.set("min_point", ((parseInt($('input[name="product_point"]:checked').val()) || 1)-1).toString());
     window.location.replace(location.pathname+"?"+params.toString());
 });
 

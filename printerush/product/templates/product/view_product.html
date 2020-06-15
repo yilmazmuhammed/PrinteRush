@@ -175,9 +175,7 @@
                         <div class="bottom-detail cart-button">
                           <ul>
                             <li class="pro-cart-icon">
-                              <form>
-                                <button title="{{ translation['add_to_cart'] }}" class="btn-color"><i class="fa fa-shopping-basket"></i> {{ translation['add_to_cart'] }}</button>
-                              </form>
+                              <button id="add-to-cart-p{{ product.id }}" title="{{ translation['add_to_cart'] }}" class="btn-color"><i class="fa fa-shopping-basket"></i> {{ translation['add_to_cart'] }}</button>
                             </li>
                           </ul>
                         </div>
@@ -557,3 +555,7 @@
   <!-- CONTAINER END --> 
   
   {% endblock %}
+
+{% block js_block %}
+<script src="{{ url_for('products_bp.static', filename='add_to_cart.js') }}"></script>
+{% endblock %}

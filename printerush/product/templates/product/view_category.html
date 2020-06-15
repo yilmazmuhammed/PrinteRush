@@ -361,7 +361,7 @@
                     <div class="row">
                       <div class="img-col col-12">
                         <div class="product-image"> 
-                          <a href="{{ url_for('products_bp.view', product_id=product.id) }}">
+                          <a href="{{ url_for('products_bp.view', product_id=product.id, p=product.name) }}">
                             <img src="{{ product.main_photo.file_path }}" alt="Everypick">
                           </a>
                           <div class="product-detail-inner">
@@ -380,7 +380,7 @@
                       <div class="detail-col col-12">
                         <div class="product-item-details">
                           <div class="product-item-name"> 
-                            <a href="{{ url_for('products_bp.view', product_id=product.id) }}">{{ product.name }}</a>
+                            <a href="{{ url_for('products_bp.view', product_id=product.id, p=product.name) }}">{{ product.name }}</a>
                           </div>
                           <div class="rating-summary-block">
                             <div class="rating-result" title="{{ product.point|round(2) }}"> <span style="width:{{ product.point * 20 }}%"></span> </div>

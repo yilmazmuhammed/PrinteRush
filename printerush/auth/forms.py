@@ -44,11 +44,11 @@ class WebUserForm(FlaskForm):
         id='last_name', render_kw={"placeholder": t['last_name']['label']}
     )
 
-    username = StringField(
-        "%s:" % t['username']['label'],
-        validators=[InputRequired(t['username']['required']), Length(max=20, message=t['username']['length'])],
-        id='username', render_kw={"placeholder": t['username']['label']}
-    )
+    # username = StringField(
+    #     "%s:" % t['username']['label'],
+    #     validators=[InputRequired(t['username']['required']), Length(max=20, message=t['username']['length'])],
+    #     id='username', render_kw={"placeholder": t['username']['label']}
+    # )
 
     email = EmailField(
         "%s:" % t['email']['label'],

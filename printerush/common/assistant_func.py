@@ -1,6 +1,7 @@
 import json
 
-from flask import url_for, g
+from flask import url_for, g, session
+from flask_login import current_user
 from werkzeug.datastructures import MultiDict
 from wtforms import SubmitField
 
@@ -10,6 +11,10 @@ class LayoutPI:
         self.title = title + " | PrinteRush"
         self.translation = get_translation()
         g.languages = LANGUAGES
+        if current_user.is_authenticated:
+            g.shopping_cart = current_user.cart_products_set
+        else:
+            g.shopping_cart = session.get("shopping_cart", [])
         # if current_user.is_authenticated:
         #     self.none = None
 
