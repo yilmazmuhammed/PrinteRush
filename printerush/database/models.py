@@ -145,6 +145,7 @@ class OrderedProduct(db.Entity):
     order_ref = Required(Order)
 
 
+
 class ProductCategory(db.Entity):
     id = PrimaryKey(int, auto=True)
     title_key = Required(str)

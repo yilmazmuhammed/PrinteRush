@@ -1,0 +1,222 @@
+{% extends "layout.html" %}
+
+  {% block content %}
+  {% set translation = page_info.translation['cart']['cart']['view_cart']['html'] %}
+  {% set product = page_info.product %}
+  
+  <!-- Bread Crumb STRAT -->
+  <div class="banner inner-banner1 ">
+    <div class="container">
+      <section class="banner-detail center-xs">
+        <h1 class="banner-title">{{ page_info.title.split(' | ')[0] }}</h1>
+        <div class="bread-crumb right-side float-none-xs">
+          <ul>
+            <li><a href="{{ url_for('general_bp.index') }}">Home</a>/</li>
+            <li><span>Women</span></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- Bread Crumb END -->
+  
+  <!-- CONTAIN START -->
+  <section class="ptb-70">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="cart-item-table commun-table">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>{{ translation["product"] }}</th>
+                    <th>{{ translation["product_name"] }}</th>
+                    <th>{{ translation["price"] }}</th>
+                    <th>{{ translation["quantity"] }}</th>
+                    <th>{{ translation["sub_total"] }}</th>
+                    <th>{{ translation["action"] }}</th>
+                  </tr>
+                </thead>
+                <tbody id="cart-body">
+                  {% set products_price = [0] %}
+                  {% for cp in g.shopping_cart %}
+                    {% if products_price.append(cp.product_ref.main_option.price * cp.quantity) %}{% endif %}
+                  <tr>
+                    <td>
+                      <div class="product-image">
+                        <a class="pull-left" href="{{ url_for('products_bp.view', product_id=cp.product_ref.id, p=cp.product_ref.name) }}">
+                          <img alt="Everypick" src="{{ cp.product_ref.main_photo.file_path }}">
+                        </a>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="product-title"> 
+                        <a href="{{ url_for('products_bp.view', product_id=cp.product_ref.id, p=cp.product_ref.name) }}">{{ cp.product_ref.name }}</a>
+                      </div>
+                    </td>
+                    <td>
+                      <ul>
+                        <li>
+                          <div class="base-price price-box"> 
+                            <span class="price">{{ cp.product_ref.main_option.price }} ₺</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      <div class="input-box">
+{#                        <fieldset>#}
+                          <div class="form-group">
+                          <input id="cart-page-quantity-p{{ cp.product_ref.id }}" class="form-control" name="quantity_cart" type="number" style="max-width: 65px;border-radius: .40rem;" value="{{ cp.quantity }}"/>
+                          </div>
+{#                          <select data-id="100" class="quantity_cart option-drop" name="quantity_cart">#}
+{#                            {% for i in range(1,11) %}#}
+{#                            <option {% if i == cp.quantity %}selected=""{% endif %} value="{{ i }}">{{ i }}</option>#}
+{#                            {% endfor %}#}
+{#                          </select>#}
+{#                        </fieldset>#}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="total-price price-box"> 
+                        <span class="price">{{ cp.product_ref.main_option.price * cp.quantity }} ₺</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div id="cart-page-remove-p{{ cp.product_ref.id }}">
+                        <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item"></i>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-30">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mt-30"> 
+              <a href="shop.html" class="btn btn-color">
+                <span><i class="fa fa-angle-left"></i></span>
+                {{ translation["continue_shopping"] }}
+              </a> 
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mt-30 right-side float-none-xs"> 
+              <a class="btn btn-color">{{ translation["update_cart"] }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="mtb-30">
+        <div class="row">
+          <div class="col-md-6 mb-xs-40">
+{#            <div class="estimate">#}
+{#              <div class="heading-part mb-20">#}
+{#                <h3 class="sub-heading">Estimate shipping and tax</h3>#}
+{#              </div>#}
+{#              <form class="full">#}
+{#                <div class="row">#}
+{#                  <div class="col-md-12">#}
+{#                    <div class="input-box select-dropdown mb-20">#}
+{#                      <fieldset>#}
+{#                        <select id="country_id" class="option-drop">#}
+{#                          <option selected="" value="">Select Country</option>#}
+{#                          <option value="1">India</option>#}
+{#                          <option value="2">China</option>#}
+{#                          <option value="3">Pakistan</option>#}
+{#                        </select>#}
+{#                      </fieldset>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <div class="col-md-6">#}
+{#                    <div class="input-box select-dropdown mb-20">#}
+{#                      <fieldset>#}
+{#                        <select id="state_id" class="option-drop">#}
+{#                          <option selected="" value="1">Select State/Province</option>#}
+{#                          <option value="2">---</option>#}
+{#                        </select>#}
+{#                      </fieldset>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <div class="col-md-6">#}
+{#                    <div class="input-box select-dropdown mb-20">#}
+{#                      <fieldset>#}
+{#                        <select id="city_id" class="option-drop">#}
+{#                          <option selected="" value="1">Select City</option>#}
+{#                          <option value="2">---</option>#}
+{#                        </select>#}
+{#                      </fieldset>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </form>#}
+{#            </div>#}
+          </div>
+          <div class="col-md-6">
+            <div class="cart-total-table commun-table">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th colspan="2">{{ translation["cart_summary"] }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ translation["products_price"] }}</td>
+                      <td>
+                        <div class="price-box"> 
+                          <span class="price" id="total-cart-price">{{ products_price|sum }} ₺</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>{{ translation["shipping"] }}</td>
+                      <td>
+                        <div class="price-box"> 
+                          <span class="price">$0.00</span> 
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>{{ translation["amount_payable"] }}</b></td>
+                      <td>
+                        <div class="price-box"> 
+                          <span class="price"><b>$160.00</b></span> 
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="mt-30">
+        <div class="row">
+          <div class="col-12">
+            <div class="right-side float-none-xs"> 
+              <a href="checkout.html" class="btn btn-color">{{ translation["proceed_to_checkout"] }}
+                <span><i class="fa fa-angle-right"></i></span>
+              </a> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTAINER END -->
+
+  {% endblock %}
+
+{% block js_block %}
+{% endblock %}

@@ -10,6 +10,7 @@ from pony.flask import Pony
 
 from printerush.auth.auth import auth_bp
 from printerush.cart.api import cart_api_bp
+from printerush.cart.cart import cart_bp
 from printerush.database.models import WebUser
 from printerush.general.general import general_bp
 from printerush.printable_3d_model.printable_3d_model import models_bp
@@ -23,6 +24,7 @@ app.secret_key = os.getenv("SECRET_KEY")
 
 app.register_blueprint(auth_bp, url_prefix="/")
 app.register_blueprint(general_bp, url_prefix="/")
+app.register_blueprint(cart_bp, url_prefix="/cart/")
 app.register_blueprint(products_bp, url_prefix="/products/")
 app.register_blueprint(models_bp, url_prefix="/models/")
 app.register_blueprint(cart_api_bp, url_prefix="/api/cart")

@@ -88,8 +88,35 @@
   },
   "cart": {
     "api": {
-      "add_product_to_cart": {
+      "add_to_cart": {
+        "quantity_less_than_zero": "Eklenecek ürün adedi sıfırdan büyük olmalıdır.",
         "success_msg": "Ürün sepete eklendi."
+      },
+      "cart_product": {
+        "there_is_no_cart_product": "Bu ürün sepette bulunmamaktadır."
+      },
+      "remove_from_cart": {
+        "success_msg": "Ürün çıkarıldı."
+      }
+    },
+    "cart": {
+      "view_cart": {
+        "html": {
+          "action": "İşlem",
+          "amount_payable": "Ödenecek Tutar",
+          "cart_summary": "Sipariş Özeti",
+          "continue_shopping": "Alışverişe Devam Et",
+          "price": "Fiyat",
+          "proceed_to_checkout": "Alışverişi Tamamla",
+          "product": "Ürün",
+          "product_name": "Ürün İsmi",
+          "products_price": "Ürünlerin fiyatı",
+          "quantity": "Adet",
+          "shipping": "Kargo ücreti",
+          "sub_total": "Alt Toplam",
+          "update_cart": "Sepeti Güncelle"
+        },
+        "title": "Sepetim"
       }
     }
   },
