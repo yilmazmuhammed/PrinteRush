@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+  {% block css_block %}
+  {%  endblock %}
+
+  {% block content %}
+
+
+  <!-- Bread Crumb STRAT -->
+  <div class="banner inner-banner1 ">
+    <div class="container">
+      <section class="banner-detail center-xs">
+        <h1 class="banner-title">Account</h1>
+        <div class="bread-crumb right-side float-none-xs">
+          <ul>
+            <li><a href="index.html">Home</a>/</li>
+            <li><span>Account</span></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- Bread Crumb END -->
+
+  <!-- CONTAIN START -->
+  <div class="container-box rotated">
+    <button type="button" class="btn btn-info btn-lg turned-button" data-toggle="modal" data-target="#form-modal">Contact Us</button>
+  </div>
+
+  {%  with form = page_info.form, errors = page_info.errors  %}
+  {%  include 'parts/modal_form.html' %}
+  {%  endwith %}
+  <!-- CONTAINER END --> 
+  
+  {% endblock %}
+
+  {% block js_block %}
+    <script src="{{ url_for('static', filename='js/modal_form.js') }}"></script>
+    <script src="{{ url_for('address_bp.static', filename='address.js') }}"></script>
+  {% endblock %}

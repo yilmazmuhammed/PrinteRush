@@ -1,4 +1,11 @@
 {
+  "address": {
+    "address": {
+      "new_address": {
+        "title": "New Address"
+      }
+    }
+  },
   "cart": {
     "cart": {
       "view_cart": {

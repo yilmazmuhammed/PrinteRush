@@ -1,7 +1,8 @@
 from flask import Blueprint, redirect, url_for, flash, render_template, request
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from passlib.hash import pbkdf2_sha256 as hasher
 
+from printerush.cart.assistanc_fuct import update_cart
 from printerush.common.assistant_func import flask_form_to_dict, FormPI, get_translation, LayoutPI
 from printerush.auth.db import db_add_web_user
 from printerush.auth.exceptions import RegisterException
@@ -38,8 +39,8 @@ def login():
     if form.validate_on_submit():
         user = WebUser.get(email=form.email.data)
         if user and hasher.verify(form.password.data, user.password_hash) and user.is_active:
-            print("Remember", form.remember_me.data)
             login_user(user, remember=form.remember_me.data)
+            update_cart()
             flash(translation["login_successful"], 'success')
             next_page = request.args.get("next", url_for("general_bp.index"))
             return redirect(next_page)
@@ -58,7 +59,9 @@ def logout():
     return redirect(url_for("general_bp.index"))
 
 
+@auth_bp.route("/account", methods=['GET', 'POST'])
 @login_required
-@auth_bp.route("/account")
 def account():
-    return render_template("auth/account.html", page_info=LayoutPI(title="asdasd"))
+    print(current_user.email)
+    form = LoginForm()
+    return render_template("auth/account.html", page_info=FormPI(title="asdasd", form=form))

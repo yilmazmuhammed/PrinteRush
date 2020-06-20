@@ -1,0 +1,66 @@
+<!-- Modal -->
+<div id="form-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title ">{{ form.form_title}}</h3>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+
+      <div class="modal-body checkout-section">
+        <div class="container">
+          <div class="row">
+              <div id="data-step2" class="account-content" data-temp="tabdata">
+                <div class="m-0">
+            {{ form.open|safe }}
+              {% for field in form %}
+              {% if field.id == "csrf_token" %}
+              <div class="col-12">
+                <div class="input-box">
+                  {{ field }}
+                </div>
+              </div>
+              {% elif field.type in ["BooleanField"] %}
+              <div class="col-12">
+                <div class="check-box left-side mb-20">
+                  <span>
+                    {{ field }}
+                    {{ field.label }}
+                  </span>
+                </div>
+              </div>
+              {% elif field.type in ["SubmitField"] %}
+              <div class="col-12">
+                {{ field }}
+              </div>
+              {% elif field.type in ["StringField", "EmailField", "PasswordField", "TelField", "SelectField", "TextAreaField"] %}
+              <div class="col-12">
+                <div class="input-box">
+                  {{ field.label }} {% if field.flags.required %}*{% endif %}
+                  {{ field }}
+                </div>
+              </div>
+              {% elif field.type in ["RadioField"] %}
+              <div class="col-12">
+                <div class="radio">
+                  {{ field.label }} {% if field.flags.required %}*{% endif %}
+                  {{ field }}
+                </div>
+              </div>
+              {% endif %}
+              {% endfor %}
+            {{ form.close|safe }}
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div id="success_message" style="width:100%; height:100%; display:none; ">
+        </div>
+        <div id="error_message" style="width:100%; height:100%; display:none; ">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
