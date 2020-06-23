@@ -113,10 +113,19 @@ class Address(db.Entity):
 
 
 class Order(db.Entity):
+    """
+    :param stage: Siparişin hangi durumda olduğunu ifade eder, ödeme yapıldı, havale bekleniyor vs...
+                  (1->Müşteri onayladı,
+                  2->Ödeme yapıldı,
+                  3->Site onayladı,
+                  4->Müşteri siparişini adlı ve onayladı,
+                  5->Sipariş tamamlandı)
+    """
     id = PrimaryKey(int, auto=True)
-    sub_orders_set = Set('SubOrder')
     data_status_ref = Required('DataStatus')
     web_user_ref = Required(WebUser)
+    sub_orders_set = Set('SubOrder')
+    stage = Required(int, size=8, default=0)
 
 
 class Printable3dModel(db.Entity):
@@ -176,6 +185,7 @@ class Store(db.Entity):
     email = Required(str, 254)
     comments_set = Set('Comment')
     products_set = Set(Product)
+    sub_orders_set = Set('SubOrder')
     address_ref = Required(Address)
 
 
@@ -255,8 +265,8 @@ class DataStatus(db.Entity):
     comment_ref = Optional(Comment)
     printable_3d_model_ref = Optional(Printable3dModel)
     product_ref = Optional(Product)
-    customer_sub_orders_set = Set('SubOrder', reverse='customer_data_status_ref')
-    store_sub_orders_ref = Set('SubOrder', reverse='store_data_status_ref')
+    customer_sub_order_ref = Optional('SubOrder', reverse='customer_data_status_ref')
+    store_sub_order_ref = Optional('SubOrder', reverse='store_data_status_ref')
     order_ref = Optional(Order)
 
 
@@ -281,12 +291,24 @@ class CartProduct(db.Entity):
 
 
 class SubOrder(db.Entity):
+    """
+    :param stage: Siparişin hangi durumda olduğunu ifade eder, ödeme yapıldı, havale bekleniyor vs...
+                  (1->Müşteri onayı,
+                  2->Ödeme yapıldı,
+                  3->Site onayı,
+                  4->Mağaza onayı,
+                  5->Kargoya verildi,
+                  6->Teslimat tamamlandı
+                  7->Müşteri onayı,
+                  8->Paranın mağazaya teslimi)
+    """
     id = PrimaryKey(int, auto=True)
     order_products_set = Set(OrderProduct)
-    customer_data_status_ref = Required(DataStatus, reverse='customer_sub_orders_set')
-    store_data_status_ref = Required(DataStatus, reverse='store_sub_orders_ref')
+    customer_data_status_ref = Required(DataStatus, reverse='customer_sub_order_ref')
+    store_data_status_ref = Optional(DataStatus, reverse='store_sub_order_ref')
+    store_ref = Required(Store)
     order_ref = Required(Order)
-    shipping_information_for_invoice_ref = Required('ShippingInformation', reverse='sub_order_for_invoice_ref')
+    shipping_information_for_invoice_ref = Optional('ShippingInformation', reverse='sub_order_for_invoice_ref')
     shipping_information_for_products_ref = Optional('ShippingInformation', reverse='sub_order_for_products_ref')
     stage = Required(int, size=8, default=0)
 
@@ -322,7 +344,8 @@ if __name__ == '__main__':
         turkiye = Country(country="Türkiye")
         izmir = City(city="İzmir", country_ref=turkiye)
         torbali = District(district="Torbalı", city_ref=izmir)
-        addr = Address(title="store address", first_name="fn", last_name="ln", address_detail="ad", phone_number="pn", invoice_type=0, district_ref=torbali)
+        addr = Address(title="store address", first_name="fn", last_name="ln", address_detail="ad", phone_number="pn",
+                       invoice_type=0, district_ref=torbali)
         store1 = Store(name="PrinteRush", short_name="PrinteRush", phone_number="+905392024175",
                        email="store@printerush.com", address_ref=addr)
         root = ProductCategory(title_key="Ana Sayfa")
