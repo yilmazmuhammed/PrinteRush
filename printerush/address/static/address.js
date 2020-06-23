@@ -2,20 +2,28 @@ let country_select = $("#country")
   .on('change', function(){
     set_city_options($(this).find(":selected").val());
 });
+
 let city_select = $("#city")
   .on('change', function(){
     set_district_options($(this).find(":selected").val());
 });
+
 let district_select = $("#district")
   .on('change', function(){
     set_visibility_address_detail();
 });
+
 let address_detail_input = $("#address_detail");
+
 let invoice_type_radio = $("#invoice_type")
   .on('change', function(){
     set_visibility_invoice_information();
 });
+
 function   set_city_options(country_id){
+  if(country_id === undefined){
+    return;
+  }
   if(country_id === ''){
     city_select.parent().hide();
   }
@@ -41,6 +49,9 @@ function   set_city_options(country_id){
 }
 
 function set_district_options(city_id){
+  if(city_id === undefined){
+    return;
+  }
   if(city_id === ''){
     district_select.parent().hide();
   }
