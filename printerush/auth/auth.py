@@ -1,8 +1,5 @@
-<<<<<<< HEAD
+
 from flask import Blueprint, redirect, url_for, flash, render_template, request, g
-=======
-from flask import Blueprint, redirect, url_for, flash, render_template, request
->>>>>>> 13809760a46ecd9936d52a9d62383f6f53ebd47a
 from flask_login import login_user, login_required, logout_user, current_user
 from passlib.hash import pbkdf2_sha256 as hasher
 
@@ -66,7 +63,6 @@ def logout():
 @auth_bp.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
-<<<<<<< HEAD
     form_1 = UpdateForm()
     form_2 = ChangePassword()
     g.form_1 = form_1
@@ -108,8 +104,3 @@ def account():
     
 
     return render_template("auth/account.html", page_info=FormPI(title=translation['title'], form=form_1))
-=======
-    print(current_user.email)
-    form = LoginForm()
-    return render_template("auth/account.html", page_info=FormPI(title="asdasd", form=form))
->>>>>>> 13809760a46ecd9936d52a9d62383f6f53ebd47a
