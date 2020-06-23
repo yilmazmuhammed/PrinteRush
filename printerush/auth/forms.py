@@ -119,7 +119,7 @@ class LoginForm(WebUserForm):
     is_active = None
 
     remember_me = BooleanField(
-        label=t['remember_me']['label'], id='remember_me',
+        label=t['remember_me']['label'], id='remember_me', default=True,
         render_kw={"class": "checkbox"}
     )
 

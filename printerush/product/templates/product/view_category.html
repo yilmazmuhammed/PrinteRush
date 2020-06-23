@@ -367,7 +367,7 @@
                           <div class="product-detail-inner">
                             <div class="detail-inner-left align-center">
                               <ul>
-                                <li class="pro-cart-icon"><button title="{{ translation['add_to_cart'] }}" id="add-to-cart-p{{ product.id }}"><i class="fa fa-shopping-basket"></i></button></li>
+                                <li class="pro-cart-icon"><button title="{{ translation['cart'] }}" id="add-to-cart-p{{ product.id }}"><i class="fa fa-shopping-basket"></i></button></li>
 {#                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
                                 <li class="pro-wishlist-icon"><button title="{{ translation['wishlist'] }}"  id="wishlist-p{{ product.id }}"><i class="fa fa-heart"></i></button></li>
                                 <li class="pro-compare-icon"><button title="{{ translation['compare'] }}"  id="compare-p{{ product.id }}"><i class="fa fa-refresh"></i></button></li>
@@ -395,7 +395,7 @@
                           <div class="product-detail-inner">
                             <div class="detail-inner-left">
                               <ul>
-                                <li class="pro-cart-icon"><button title="{{ translation['add_to_cart'] }}" id="add-to-cart-p{{ product.id }}"><i class="fa fa-shopping-basket"></i></button></li>
+                                <li class="pro-cart-icon"><button title="{{ translation['cart'] }}" id="add-to-cart-p{{ product.id }}"><i class="fa fa-shopping-basket"></i></button></li>
 {#                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
                                 <li class="pro-wishlist-icon"><button title="{{ translation['wishlist'] }}"  id="wishlist-p{{ product.id }}"><i class="fa fa-heart"></i></button></li>
                                 <li class="pro-compare-icon"><button title="{{ translation['compare'] }}"  id="compare-p{{ product.id }}"><i class="fa fa-refresh"></i></button></li>
@@ -613,7 +613,6 @@
   {% endblock %}
 
 {% block js_block %}
-<script src="{{ url_for('products_bp.static', filename='add_to_cart.js') }}"></script>
 <script src="{{ url_for('products_bp.static', filename='view_category.js') }}"></script>
 <script>
   $(document).ready(function() {

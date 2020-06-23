@@ -1,4 +1,94 @@
 {
+  "address": {
+    "address": {
+      "new_address": {
+        "success_msg": "Adres eklendi.",
+        "title": "Yeni Adres"
+      }
+    },
+    "db": {
+      "get_city": {
+        "there_is_not_city": "Böyle bir şehir bulunamadı."
+      },
+      "get_country": {
+        "there_is_not_country": "Böyle bir ülke bulunamadı."
+      },
+      "get_district": {
+        "there_is_not_district": "Böyle bir ilçe bulunamadı."
+      }
+    },
+    "forms": {
+      "address": {
+        "address_detail": {
+          "label": "Adres detayı",
+          "length": "Adres detayı 1000 karakterden fazla olamaz.",
+          "required": "Lütfen adres detayını giriniz."
+        },
+        "city": {
+          "label": "Şehir",
+          "please_select": "Şehir seçiniz...",
+          "required": "Lütfen şehri seçiniz."
+        },
+        "company_name": {
+          "label": "Firma adı",
+          "length": "Firma adı 100 karakterden fazla olamaz.",
+          "required": "Lütfen firma adını giriniz."
+        },
+        "country": {
+          "label": "Ülke",
+          "please_select": "Ülke seçiniz...",
+          "required": "Lütfen ülkeyi seçiniz."
+        },
+        "district": {
+          "label": "İlçe",
+          "please_select": "İlçe seçiniz...",
+          "required": "Lütfen ilçeyi seçiniz."
+        },
+        "first_name": {
+          "label": "İsim",
+          "length": "İsim 40 karakterden fazla olamaz.",
+          "required": "Lütfen isminizi giriniz."
+        },
+        "form_title": "Yeni adres",
+        "invoice_type": {
+          "corporate": "Kurumsal",
+          "individual": "Bireysel",
+          "label": "Fatura Tipi"
+        },
+        "is_invoice_address": {
+          "label": "Bu adresi fatura adresi olarak da kullan"
+        },
+        "last_name": {
+          "label": "Soyisim",
+          "length": "Soyisim 40 karakterden fazla olamaz.",
+          "required": "Lütfen soyisminizi giriniz."
+        },
+        "phone_number": {
+          "label": "Telefon numarası",
+          "length": "Telefon numarası 20 karakterden fazla olamaz.",
+          "required": "Lütfen telefon numarası giriniz."
+        },
+        "submit": {
+          "label": "Kaydet"
+        },
+        "tax_number": {
+          "label": "Vergi numarası",
+          "length": "Vergi numarası 20 karakterden fazla olamaz.",
+          "required": "Lütfen vergi numarasını giriniz."
+        },
+        "tax_office": {
+          "label": "Vergi dairesi",
+          "length": "Vergi dairesi 50 karakterden fazla olamaz.",
+          "required": "Lütfen vergi dairesini giriniz."
+        },
+        "title": {
+          "label": "Adres Başlığı",
+          "length": "Adres başlığı 40 karakterden fazla olamaz.",
+          "required": "Lütfen adres başlığını giriniz."
+        }
+      }
+    }
+  },
   "auth": {
     "auth": {
       "login": {
@@ -112,8 +202,35 @@
   },
   "cart": {
     "api": {
-      "add_product_to_cart": {
+      "add_to_cart": {
+        "quantity_less_than_zero": "Eklenecek ürün adedi sıfırdan büyük olmalıdır.",
         "success_msg": "Ürün sepete eklendi."
+      },
+      "cart_product": {
+        "there_is_no_cart_product": "Bu ürün sepette bulunmamaktadır."
+      },
+      "remove_from_cart": {
+        "success_msg": "Ürün çıkarıldı."
+      }
+    },
+    "cart": {
+      "view_cart": {
+        "html": {
+          "action": "İşlem",
+          "amount_payable": "Ödenecek Tutar",
+          "cart_summary": "Sipariş Özeti",
+          "continue_shopping": "Alışverişe Devam Et",
+          "price": "Fiyat",
+          "proceed_to_checkout": "Alışverişi Tamamla",
+          "product": "Ürün",
+          "product_name": "Ürün İsmi",
+          "products_price": "Ürünlerin fiyatı",
+          "quantity": "Adet",
+          "shipping": "Kargo ücreti",
+          "sub_total": "Alt Toplam",
+          "update_cart": "Sepeti Güncelle"
+        },
+        "title": "Sepetim"
       }
     }
   },

@@ -1,7 +1,7 @@
 from passlib.hash import pbkdf2_sha256 as hasher
 
 from printerush.common.assistant_func import get_translation
-from printerush.auth.exceptions import UsernameAlreadyExist, EmailAlreadyExist
+from printerush.auth.exceptions import EmailAlreadyExist
 from printerush.database.models import WebUser
 
 

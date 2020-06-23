@@ -132,7 +132,11 @@
           </div>
           <div id="data-step2" class="account-content" data-temp="tabdata" style="display:none">
             <div class="m-0">
+<<<<<<< HEAD
               {%  with form = g.form_1  %}
+=======
+              {%  with form = page_info.form, errors = page_info.errors  %}
+>>>>>>> 13809760a46ecd9936d52a9d62383f6f53ebd47a
               {%  include 'parts/form.html' %}
               {%  endwith %}
             </div>
@@ -332,9 +336,104 @@
            </div>
           </div>
           <div id="data-step4" class="account-content" data-temp="tabdata" style="display:none">
+<<<<<<< HEAD
             {% for category, message in get_flashed_messages(with_categories=true) %}
             <div class="alert alert-{{ category }}" role="alert">
                 {{ message }}
+=======
+            {%  with form = page_info.form, errors = page_info.errors  %}
+            {%  include 'parts/form.html' %}
+            {%  endwith %}
+          </div>
+          <div id="data-step5" class="account-content" data-temp="tabdata" style="display:none">
+            <div id="form-print" class="admission-form-wrapper">
+              <div class="row">
+                <div class="col-12">
+                  <div class="heading-part heading-bg mb-30">
+                    <h2 class="heading m-0">My Orders</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 mb-xs-30">
+                  <div class="cart-item-table commun-table">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th colspan="4">
+                              <ul>
+                                <li><span>Order placed</span> <span>17 December 2016</span></li>
+                                <li class="price-box"><span>Total</span> <span class="price">$160.00</span></li>
+                                <li><span>Order No.</span> <span>#011052</span></li>
+                              </ul>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <a href="product-page.html">
+                                <div class="product-image">
+                                  <img alt="Everypick" src="images/1.jpg">
+                                </div>
+                              </a>
+                            </td>
+                            <td>
+                              <div class="product-title">
+                                <a href="product-page.html">Cross Colours Camo Print Tank half mengo</a>
+                              </div>
+                              <div class="product-info-stock-sku m-0">
+                                <div>
+                                  <label>Quantity: </label>
+                                  <span class="info-deta">1</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="base-price price-box">
+                                <span class="price">$80.00</span>
+                              </div>
+                            </td>
+                            <td>
+                              <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item"></i>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="product-page.html">
+                                <div class="product-image">
+                                  <img alt="Everypick" src="images/2.jpg">
+                                </div>
+                              </a>
+                            </td>
+                            <td>
+                              <div class="product-title">
+                                <a href="product-page.html">Defyant Reversible Dot Shorts</a>
+                              </div>
+                              <div class="product-info-stock-sku m-0">
+                                <div>
+                                  <label>Quantity: </label>
+                                  <span class="info-deta">1</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="base-price price-box">
+                                <span class="price">$80.00</span>
+                              </div>
+                            </td>
+                            <td>
+                              <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+>>>>>>> 13809760a46ecd9936d52a9d62383f6f53ebd47a
             </div>
             {% endfor %}
             {%  with form = g.form_2  %}
@@ -348,3 +447,6 @@
   <!-- CONTAINER END --> 
   
   {% endblock %}
+{% block js_block %}
+<script src="{{ url_for('address_bp.static', filename='address.js') }}"></script>
+{% endblock %}

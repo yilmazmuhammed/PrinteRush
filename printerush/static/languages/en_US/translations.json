@@ -1,4 +1,33 @@
 {
+  "address": {
+    "address": {
+      "new_address": {
+        "title": "New Address"
+      }
+    }
+  },
+  "cart": {
+    "cart": {
+      "view_cart": {
+        "html": {
+          "action": "Action",
+          "amount_payable": "Amount Payable",
+          "cart_summary": "Cart Summary",
+          "continue_shopping": "Continue Shopping",
+          "price": "Price",
+          "proceed_to_checkout": "Proceed to Checkout",
+          "product": "Product",
+          "product_name": "Product Name",
+          "products_price": "Item(s) Subtotal",
+          "quantity": "Quantity",
+          "shipping": "Shipping",
+          "sub_total": "Sub Total",
+          "update_cart": "Update Cart"
+        },
+        "title": "Cart"
+      }
+    }
+  },
   "product": {
     "product": {
       "view": {

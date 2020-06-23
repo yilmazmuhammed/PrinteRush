@@ -3,7 +3,6 @@
 <html lang="en">
 <!--<![endif]-->
 <head>
-{{ JSGlue.include() }}
 <!-- Basic Page Needs
   ================================================== -->
 <meta charset="utf-8">
@@ -25,8 +24,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- CSS
   ================================================== -->
+{{ JSGlue.include() }}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}"/>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-4.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-4.min.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fotorama.css') }}">
@@ -166,31 +166,31 @@
                 </li>
                 <li class="cart-icon"> 
                   <a href="#"> 
-                    <span class="cart-icon-main"><i class="fa fa-shopping-basket"></i> <small class="cart-notification">2</small> </span>
+                    <span class="cart-icon-main"><i class="fa fa-shopping-basket"></i> <small class="cart-notification" id="number-of-cart-product"></small> </span>
                   </a>
                   <div class="cart-dropdown header-link-dropdown">
                     <ul class="cart-list link-dropdown-list">
-                    {% set totals = [0] %}
                       {% for cp in g.shopping_cart %}
-                      {{ totals.append(cp.product_ref.main_option.price * cp.quantity) }}
-                      <li> <a class="close-cart"><i class="fa fa-times-circle"></i></a>
-                        <div class="media"> <a class="pull-left"> <img alt="Everypick" src="{{ cp.product_ref.main_photo.file_path }}"></a>
-                          <div class="media-body"> <span><a href="{{ url_for('products_bp.view', product_id=cp.product_ref.id, p=cp.product_ref.name) }}">{{ cp.product_ref.name }}</a></span>
-                            <p class="cart-price">{{ cp.product_ref.main_option.price }}</p>
-                            <div class="product-qty">
-                              <label>Qty:</label>
-                              <div class="custom-qty">
-                                {{ cp.quantity }}
-                              </div>
-                            </div>
+                      <li id="up-cart-p{{ cp.product_ref.id }}">
+                        <a id="remove-from-cart-p{{ cp.product_ref.id }}" class="btn btn-sm close-cart"><i class="fa fa-times-circle"></i></a>
+                        <div class="media">
+                          <a class="pull-left" href="{{ url_for('products_bp.view', product_id=cp.product_ref.id, p=cp.product_ref.name) }}">
+                            <img alt="Everypick" src="{{ cp.product_ref.main_photo.file_path }}">
+                          </a>
+                          <div class="media-body">
+                            <span><a href="{{ url_for('products_bp.view', product_id=cp.product_ref.id, p=cp.product_ref.name) }}">{{ cp.product_ref.name }}</a></span>
+                            <div><span class="cart-price">{{ cp.product_ref.main_option.price }}</span> TL</div>
+                            <div class="product-qty"><span>Adet:</span><span class="custom-qty">{{ cp.quantity }}</span></div>
                           </div>
                         </div>
                       </li>
                       {% endfor %}
                     </ul>
-                    <p class="cart-sub-totle"> <span class="pull-left">Cart Subtotal</span> <span class="pull-right">
-                        <strong class="price-box">{{ totals | sum }}</strong>
-                    </span> </p>
+                    <p class="cart-sub-totle">
+                      <span class="pull-left">Cart Subtotal</span>
+                      <span class="pull-right">
+                        <strong class="cart-price-box price-box">Sepet Boş</strong>
+                      </span> </p>
                     <div class="clearfix"></div>
                     <div class="mt-20"> <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>
                   </div>
@@ -616,39 +616,39 @@
             <h2 class="main_title heading"><span>cart</span></h2>
           </div>
           <div class="popup-detail">
-            <div class="cart-dropdown ">
-              <ul class="cart-list link-dropdown-list">
-                <li> <a class="close-cart"><i class="fa fa-times-circle"></i></a>
-                  <div class="media"> <a class="pull-left"> <img alt="Everypick" src="{{ url_for('static', filename='images/1.jpg') }}"></a>
-                    <div class="media-body"> <span><a href="#">Black African Print Skirt</a></span>
-                      <p class="cart-price">$14.99</p>
-                      <div class="product-qty">
-                        <label>Qty:</label>
-                        <div class="custom-qty">
-                          <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li> <a class="close-cart"><i class="fa fa-times-circle"></i></a>
-                  <div class="media"> <a class="pull-left"> <img alt="Everypick" src="{{ url_for('static', filename='images/2.jpg') }}"></a>
-                    <div class="media-body"> <span><a href="#">Black African Print Skirt</a></span>
-                      <p class="cart-price">$14.99</p>
-                      <div class="product-qty">
-                        <label>Qty:</label>
-                        <div class="custom-qty">
-                          <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <p class="cart-sub-totle"> <span class="pull-left">Cart Subtotal</span> <span class="pull-right"><strong class="price-box">$29.98</strong></span> </p>
-              <div class="clearfix"></div>
-              <div class="mt-20"> <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>
-            </div>
+{#            <div class="cart-dropdown ">#}
+{#              <ul class="cart-list link-dropdown-list">#}
+{#                <li> <a class="close-cart"><i class="fa fa-times-circle"></i></a>#}
+{#                  <div class="media"> <a class="pull-left"> <img alt="Everypick" src="{{ url_for('static', filename='images/1.jpg') }}"></a>#}
+{#                    <div class="media-body"> <span><a href="#">Black African Print Skirt</a></span>#}
+{#                      <p class="cart-price">$14.99</p>#}
+{#                      <div class="product-qty">#}
+{#                        <label>Qty:</label>#}
+{#                        <div class="custom-qty">#}
+{#                          <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </li>#}
+{#                <li> <a class="close-cart"><i class="fa fa-times-circle"></i></a>#}
+{#                  <div class="media"> <a class="pull-left"> <img alt="Everypick" src="{{ url_for('static', filename='images/2.jpg') }}"></a>#}
+{#                    <div class="media-body"> <span><a href="#">Black African Print Skirt</a></span>#}
+{#                      <p class="cart-price">$14.99</p>#}
+{#                      <div class="product-qty">#}
+{#                        <label>Qty:</label>#}
+{#                        <div class="custom-qty">#}
+{#                          <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </li>#}
+{#              </ul>#}
+{#              <p class="cart-sub-totle"> <span class="pull-left">Cart Subtotal</span> <span class="pull-right"><strong class="price-box">$29.98</strong></span> </p>#}
+{#              <div class="clearfix"></div>#}
+{#              <div class="mt-20"> <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>#}
+{#            </div>#}
           </div>
         </div>
         <div id="account_popup" class="white-popup-block mfp-hide popup-position">
@@ -925,6 +925,7 @@
 <script src="{{ url_for('static', filename='js/jquery.magnific-popup.js') }}"></script>
 <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+<script src="{{ url_for('cart_bp.static', filename='cart.js') }}"></script>
 
 <!-- block js_block -->
 {% block js_block %}

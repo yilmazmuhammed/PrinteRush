@@ -57,7 +57,7 @@ class Product(db.Entity):
     product_labels_set = Set('ProductLabel')
     shopping_products_set = Set('CartProduct')
     shoppin_lists_set = Set('ShoppinList')
-    ordered_products_set = Set('OrderedProduct')
+    ordered_products_set = Set('OrderProduct')
 
     @property
     def point(self):
@@ -95,26 +95,28 @@ class Product(db.Entity):
 
 class Address(db.Entity):
     id = PrimaryKey(int, auto=True)
-    title = Optional(str)
-    name = Optional(str)
-    surname = Optional(str)
-    phone_number = Optional(str)
-    invoice_type = Optional(str)
-    company_name = Optional(str)
-    tax_number = Optional(str)
-    tax_office = Optional(str)
+    title = Required(str, 40)
+    first_name = Required(str, 40)
+    last_name = Required(str, 40)
+    address_detail = Required(str, 1000)
+    phone_number = Required(str, 20)
+    invoice_type = Required(int, size=8)
+    company_name = Optional(str, 100)
+    tax_number = Optional(str, 20)
+    tax_office = Optional(str, 50)
     district_ref = Required('District')
-    store_ref = Optional('Store')
     web_user_ref = Optional(WebUser)
+    store_ref = Optional('Store')
+    is_constant = Required(bool, default=False)
+    shipping_informations_set = Set('ShippingInformation')
+    constant_address_ref = Optional('Address', reverse='constant_address_ref')
 
 
 class Order(db.Entity):
     id = PrimaryKey(int, auto=True)
+    sub_orders_set = Set('SubOrder')
     data_status_ref = Required('DataStatus')
     web_user_ref = Required(WebUser)
-    ordered_products_set = Set('OrderedProduct')
-    shipping_address = Optional(str)
-    invoice_address = Optional(str)
 
 
 class Printable3dModel(db.Entity):
@@ -136,13 +138,13 @@ class Printable3dModel(db.Entity):
         return self.photos_set[0] if self.photos_set else Photo[1]
 
 
-class OrderedProduct(db.Entity):
+class OrderProduct(db.Entity):
     id = PrimaryKey(int, auto=True)
-    product_ref = Required(Product)
     product_name = Required(str, 100)
     quantity = Required(int)
     unit_price = Required(float)
-    order_ref = Required(Order)
+    product_ref = Required(Product)
+    sub_order_ref = Required('SubOrder')
 
 
 class ProductCategory(db.Entity):
@@ -253,6 +255,8 @@ class DataStatus(db.Entity):
     comment_ref = Optional(Comment)
     printable_3d_model_ref = Optional(Printable3dModel)
     product_ref = Optional(Product)
+    customer_sub_orders_set = Set('SubOrder', reverse='customer_data_status_ref')
+    store_sub_orders_ref = Set('SubOrder', reverse='store_data_status_ref')
     order_ref = Optional(Order)
 
 
@@ -271,9 +275,29 @@ class ShoppinList(db.Entity):
 
 class CartProduct(db.Entity):
     product_ref = Required(Product)
-    web_user_ref = Required(WebUser)
     quantity = Required(int)
+    web_user_ref = Required(WebUser)
     PrimaryKey(product_ref, web_user_ref)
+
+
+class SubOrder(db.Entity):
+    id = PrimaryKey(int, auto=True)
+    order_products_set = Set(OrderProduct)
+    customer_data_status_ref = Required(DataStatus, reverse='customer_sub_orders_set')
+    store_data_status_ref = Required(DataStatus, reverse='store_sub_orders_ref')
+    order_ref = Required(Order)
+    shipping_information_for_invoice_ref = Required('ShippingInformation', reverse='sub_order_for_invoice_ref')
+    shipping_information_for_products_ref = Optional('ShippingInformation', reverse='sub_order_for_products_ref')
+    stage = Required(int, size=8, default=0)
+
+
+class ShippingInformation(db.Entity):
+    id = PrimaryKey(int, auto=True)
+    delivery_time = Optional(datetime)
+    shipping_tracking_number = Required(str)
+    address_ref = Required(Address)
+    sub_order_for_products_ref = Optional(SubOrder, reverse='shipping_information_for_products_ref')
+    sub_order_for_invoice_ref = Optional(SubOrder, reverse='shipping_information_for_invoice_ref')
 
 
 # # PostgreSQL
@@ -298,7 +322,7 @@ if __name__ == '__main__':
         turkiye = Country(country="Türkiye")
         izmir = City(city="İzmir", country_ref=turkiye)
         torbali = District(district="Torbalı", city_ref=izmir)
-        addr = Address(district_ref=torbali)
+        addr = Address(title="store address", first_name="fn", last_name="ln", address_detail="ad", phone_number="pn", invoice_type=0, district_ref=torbali)
         store1 = Store(name="PrinteRush", short_name="PrinteRush", phone_number="+905392024175",
                        email="store@printerush.com", address_ref=addr)
         root = ProductCategory(title_key="Ana Sayfa")
