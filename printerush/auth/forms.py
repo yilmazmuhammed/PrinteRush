@@ -1,8 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields.html5 import EmailField, TelField
-from wtforms.validators import InputRequired, Length, EqualTo
-from flask_login import current_user
+from wtforms.validators import InputRequired, Length, EqualTo, Email
 
 from printerush.common.assistant_func import get_translation
 
@@ -45,15 +44,13 @@ class WebUserForm(FlaskForm):
         id='last_name', render_kw={"placeholder": t['last_name']['label']}
     )
 
-    # username = StringField(
-    #     "%s:" % t['username']['label'],
-    #     validators=[InputRequired(t['username']['required']), Length(max=20, message=t['username']['length'])],
-    #     id='username', render_kw={"placeholder": t['username']['label']}
-    # )
-
     email = EmailField(
         "%s:" % t['email']['label'],
-        validators=[InputRequired(t['email']['required']), Length(max=254, message=t['email']['length'])],
+        validators=[
+            InputRequired(t['email']['required']),
+            Length(max=254, message=t['email']['length']),
+            Email(t['email']['required'])
+        ],
         id='username', render_kw={"placeholder": t['email']['label']}
     )
 
@@ -95,7 +92,7 @@ class RegisterForm(WebUserForm):
 
     open = form_open(form_name='form-register')
     close = form_close()
-    title = t['title']
+    form_title = t['form_title']
 
     is_admin = None
     is_active = None
@@ -108,7 +105,7 @@ class LoginForm(WebUserForm):
 
     open = form_open(form_name='form-login')
     close = form_close()
-    title = t['title']
+    form_title = t['form_title']
 
     first_name = None
     last_name = None

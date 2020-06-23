@@ -91,6 +91,13 @@
   },
   "auth": {
     "auth": {
+      "account": {
+        "password_update_successful": "Parola başarıyla değiştirildi",
+        "passwords_do_not_match": "Parolalar eşleşmiyor.",
+        "title": "Hesap Güncelle",
+        "update_successful": "Bilgiler başarıyla değiştirildi",
+        "wrong_password": "Parola yanlış."
+      },
       "login": {
         "login_successful": "Giriş yapıldı.",
         "passive_user": "Kullanıcı aktif değil.",
@@ -103,13 +110,6 @@
       "register": {
         "passwords_do_not_match": "Parolalar eşleşmiyor.",
         "title": "Kayıt ol"
-      },
-      "account": {
-        "wrong_password": "Parola yanlış.",
-        "passwords_do_not_match": "Parolalar eşleşmiyor.",
-        "title": "Hesap Güncelle",
-        "password_update_successful": "Parola başarıyla değiştirildi",
-        "update_successful": "Bilgiler başarıyla değiştirildi"
       }
     },
     "db": {
@@ -119,26 +119,26 @@
       }
     },
     "forms": {
-      "login": {
-        "remember_me": {
-          "label": "Beni hatırla"
-        },
-        "submit": {
-          "label": "Giriş yap"
-        },
-        "title": "Üye Girişi"
-      },
-      "register": {
-        "submit": {
-          "label": "Kayıt ol"
-        },
-        "title": "Üye Ol"
-      },
       "account": {
         "submit": {
           "label": "Güncelle"
         },
         "title": "Üye Bilgileri"
+      },
+      "login": {
+        "form_title": "Üye Girişi",
+        "remember_me": {
+          "label": "Beni hatırla"
+        },
+        "submit": {
+          "label": "Giriş yap"
+        }
+      },
+      "register": {
+        "form_title": "Üye Ol",
+        "submit": {
+          "label": "Kayıt ol"
+        }
       },
       "web_user": {
         "email": {
@@ -162,11 +162,6 @@
           "length": "Soyisim 40 karakterden fazla olamaz.",
           "required": "Lütfen soyisminizi giriniz."
         },
-        "password": {
-          "label": "Parola",
-          "length": "Parola 40 karakterden fazla olamaz.",
-          "required": "Lütfen parolanızı giriniz."
-        },
         "new_password": {
           "label": "Yeni Parola",
           "length": "Parola 40 karakterden fazla olamaz.",
@@ -177,6 +172,11 @@
           "length": "Parola doğrulama 40 karakterden fazla olamaz.",
           "password_equal_to": "Parolalar eşleşmiyor.",
           "required": "Lütfen parola doğrulamayı giriniz."
+        },
+        "password": {
+          "label": "Parola",
+          "length": "Parola 40 karakterden fazla olamaz.",
+          "required": "Lütfen parolanızı giriniz."
         },
         "password_verification": {
           "label": "Parola doğrulama",
