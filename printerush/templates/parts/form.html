@@ -1,0 +1,56 @@
+{{ form.open|safe }}
+  <div class="row">
+    {% if form.errors %}
+    <div class="col-12 alert alert-danger" role="alert">
+      <ul>
+        {% for key in form.errors %}
+        {% for error in form.errors[key] %}
+        <li>{{ error }}</li>
+        {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    <div class="col-12 mb-20">
+      <div class="heading-part heading-bg">
+        <h2 class="heading">{{ form.form_title}}</h2>
+      </div>
+    </div>
+    {% for field in form %}
+    {% if field.id == "csrf_token" %}
+    <div class="col-12">
+      <div class="input-box">
+        {{ field }}
+      </div>
+    </div>
+    {% elif field.type in ["BooleanField"] %}
+    <div class="col-12">
+      <div class="check-box left-side mb-20">
+        <span>
+          {{ field }}
+          {{ field.label }}
+        </span>
+      </div>
+    </div>
+    {% elif field.type in ["SubmitField"] %}
+    <div class="col-12">
+      {{ field }}
+    </div>
+    {% elif field.type in ["StringField", "EmailField", "PasswordField", "TelField", "SelectField", "TextAreaField"] %}
+    <div class="col-12">
+      <div class="input-box">
+        {{ field.label }} {% if field.flags.required %}*{% endif %}
+        {{ field }}
+      </div>
+    </div>
+    {% elif field.type in ["RadioField"] %}
+    <div class="col-12">
+      <div class="radio">
+        {{ field.label }} {% if field.flags.required %}*{% endif %}
+        {{ field }}
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+{{ form.close|safe }}

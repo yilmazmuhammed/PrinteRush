@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields.html5 import EmailField, TelField
 from wtforms.validators import InputRequired, Length, EqualTo
+from flask_login import current_user
 
 from printerush.common.assistant_func import get_translation
 
@@ -123,3 +124,52 @@ class LoginForm(WebUserForm):
     )
 
     submit = SubmitField(label=t['submit']['label'], render_kw={"class": "btn-color right-side"})
+
+
+class UpdateForm(WebUserForm):
+    t = get_translation()['auth']['forms']['account']
+
+    open = form_open(form_name='form-update')
+    close = form_close()
+    title = t['title']
+    #current_user.is_authenticated
+    #first_name = current_user.first_name
+    #last_name = None
+    #phone_number = None
+    password_verification = None
+    is_admin = None
+    is_active = None
+    password_hash = None
+
+    submit = SubmitField(label=t['submit']['label'], render_kw={"class": "btn-color right-side"})
+
+
+class ChangePassword(WebUserForm):
+    t = get_translation()['auth']['forms']['web_user']
+    translation = get_translation()['auth']['forms']['account']
+
+    open = form_open(form_name='form-update')
+    close = form_close()
+    title = translation['title']
+    #current_user.is_authenticated
+    first_name = None
+    last_name = None
+    phone_number = None
+    email = None
+    password_verification = None
+    new_password = PasswordField(
+        "%s:" % t['new_password']['label'],
+        validators=[InputRequired(t['new_password']['required']), Length(max=30, message=t['password']['length'])],
+        id='password', render_kw={"placeholder": t['new_password']['label']}
+    )
+    new_password_verification = PasswordField(
+        "%s:" % t['new_password_verification']['label'],
+        validators=[InputRequired(t['new_password_verification']['required']), Length(max=30, message=t['new_password_verification']['length'])],
+        id='password', render_kw={"placeholder": t['new_password_verification']['label']}
+    )
+    #password_verification = None
+    is_admin = None
+    is_active = None
+    #password_hash = None
+
+    submit = SubmitField(label=translation['submit']['label'], render_kw={"class": "btn-color right-side"})

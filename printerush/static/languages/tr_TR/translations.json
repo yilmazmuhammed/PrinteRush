@@ -13,6 +13,13 @@
       "register": {
         "passwords_do_not_match": "Parolalar eşleşmiyor.",
         "title": "Kayıt ol"
+      },
+      "account": {
+        "wrong_password": "Parola yanlış.",
+        "passwords_do_not_match": "Parolalar eşleşmiyor.",
+        "title": "Hesap Güncelle",
+        "password_update_successful": "Parola başarıyla değiştirildi",
+        "update_successful": "Bilgiler başarıyla değiştirildi"
       }
     },
     "db": {
@@ -36,6 +43,12 @@
           "label": "Kayıt ol"
         },
         "title": "Üye Ol"
+      },
+      "account": {
+        "submit": {
+          "label": "Güncelle"
+        },
+        "title": "Üye Bilgileri"
       },
       "web_user": {
         "email": {
@@ -63,6 +76,17 @@
           "label": "Parola",
           "length": "Parola 40 karakterden fazla olamaz.",
           "required": "Lütfen parolanızı giriniz."
+        },
+        "new_password": {
+          "label": "Yeni Parola",
+          "length": "Parola 40 karakterden fazla olamaz.",
+          "required": "Lütfen parolanızı giriniz."
+        },
+        "new_password_verification": {
+          "label": "Yen Parola doğrulama",
+          "length": "Parola doğrulama 40 karakterden fazla olamaz.",
+          "password_equal_to": "Parolalar eşleşmiyor.",
+          "required": "Lütfen parola doğrulamayı giriniz."
         },
         "password_verification": {
           "label": "Parola doğrulama",
