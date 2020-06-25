@@ -1,3 +1,4 @@
+iyzipay
 passlib
 werkzeug
 pony

@@ -36,4 +36,7 @@
   {% block js_block %}
     <script src="{{ url_for('static', filename='js/modal_form.js') }}"></script>
     <script src="{{ url_for('address_bp.static', filename='address.js') }}"></script>
+    <script>
+      modal_form_submit();
+    </script>
   {% endblock %}
