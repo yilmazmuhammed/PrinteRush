@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+  {% block css_block %}
+  {%  endblock %}
+
+  {% block content %}
+{#  {% set translation = page_info.translation["order"]["templates"]["order"]["payment_html"] %}#}
+  
+  {# Bread Crumb STRAT #}
+  {% from 'parts/bread_crumb.html' import bread_crumb %}
+  {{ bread_crumb(banner_title=page_info.title.split("|")[0], layout_translation=page_info.layout_translation) }}
+  {# Bread Crumb END #}
+
+  <!-- CONTAIN START -->
+  <section class="checkout-section ptb-70">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          {% from 'order/parts.html' import steps %}
+          {{ steps(step=3, translation=page_info.translation["order"]["templates"]["order"]["parts"]) }}
+          <div class="checkout-content">
+            <div class="row">
+              <div class="col-12">
+                <div class="heading-part align-center">
+                  <h2 class="heading">Select a payment method</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-xl-6 col-lg-8 col-md-8 ">
+                <div id="iyzipay-checkout-form" class="responsive"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTAINER END --> 
+  
+  {% endblock %}
+
+  {% block js_block %}
+  {{ g.iyziko_js|safe }}
+  {% endblock %}

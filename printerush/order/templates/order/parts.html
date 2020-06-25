@@ -1,0 +1,48 @@
+{% macro steps(step, translation) -%}
+          <div class="checkout-step mb-40">
+            <ul>
+              <li{% if step==1 %} class="active"{% endif %}>
+                <a>
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">1</div>
+                  </div>
+                  <span>{{ translation["shipping"] }}</span>
+                </a>
+              </li>
+              <li{% if step==2 %} class="active"{% endif %}>
+                <a>
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">2</div>
+                  </div>
+                  <span>{{ translation["order_overview"] }}</span>
+                </a>
+              </li>
+              <li{% if step==3 %} class="active"{% endif %}>
+                <a>
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">3</div>
+                  </div>
+                  <span>{{ translation["payment"] }}</span>
+                </a>
+              </li>
+              <li{% if step==4 %} class="active"{% endif %}>
+                <a>
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">4</div>
+                  </div>
+                  <span>{{ translation["order_complete"] }}</span>
+                </a>
+              </li>
+              <li>
+                <div class="step">
+                  <div class="line"></div>
+                </div>
+              </li>
+            </ul>
+            <hr>
+          </div>
+{%- endmacro %}
