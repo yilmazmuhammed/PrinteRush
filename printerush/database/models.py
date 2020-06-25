@@ -89,7 +89,6 @@ class Product(db.Entity):
 
     @property
     def main_option(self):
-        sql_debug(True)
         return self.product_options_set.order_by(lambda o: o.id)[:][0]
 
 
@@ -108,8 +107,8 @@ class Address(db.Entity):
     web_user_ref = Optional(WebUser)
     store_ref = Optional('Store')
     is_constant = Required(bool, default=False)
-    shipping_informations_set = Set('ShippingInformation')
-    constant_address_ref = Optional('Address', reverse='constant_address_ref')
+    shipped_orders_set = Set('Order', reverse='shipping_address_ref')
+    invoiced_orders_set = Set('Order', reverse='invoicing_address_ref')
 
 
 class Order(db.Entity):
@@ -126,6 +125,24 @@ class Order(db.Entity):
     web_user_ref = Required(WebUser)
     sub_orders_set = Set('SubOrder')
     stage = Required(int, size=8, default=0)
+    shipping_address_ref = Required(Address, reverse='shipped_orders_set')
+    invoicing_address_ref = Required(Address, reverse='invoiced_orders_set')
+
+    @property
+    def products_price(self):
+        return coalesce(select(op.unit_price*op.quantity for op in OrderProduct if op.sub_order_ref.order_ref == self).sum(), 0)
+
+    @property
+    def shipping_price(self):
+        return 0
+
+    @property
+    def is_free_shipping(self):
+        return False
+
+    @property
+    def total_price(self):
+        return self.shipping_price + self.products_price
 
 
 class Printable3dModel(db.Entity):
@@ -308,16 +325,15 @@ class SubOrder(db.Entity):
     store_data_status_ref = Optional(DataStatus, reverse='store_sub_order_ref')
     store_ref = Required(Store)
     order_ref = Required(Order)
-    shipping_information_for_invoice_ref = Optional('ShippingInformation', reverse='sub_order_for_invoice_ref')
-    shipping_information_for_products_ref = Optional('ShippingInformation', reverse='sub_order_for_products_ref')
+    shipping_information_for_invoice_ref = Optional('ShippingTracking', reverse='sub_order_for_invoice_ref')
+    shipping_information_for_products_ref = Optional('ShippingTracking', reverse='sub_order_for_products_ref')
     stage = Required(int, size=8, default=0)
 
 
-class ShippingInformation(db.Entity):
+class ShippingTracking(db.Entity):
     id = PrimaryKey(int, auto=True)
     delivery_time = Optional(datetime)
     shipping_tracking_number = Required(str)
-    address_ref = Required(Address)
     sub_order_for_products_ref = Optional(SubOrder, reverse='shipping_information_for_products_ref')
     sub_order_for_invoice_ref = Optional(SubOrder, reverse='shipping_information_for_invoice_ref')
 
@@ -333,8 +349,6 @@ class ShippingInformation(db.Entity):
 
 # SQLite
 db.bind(provider='sqlite', filename='database.sqlite', create_db=True)
-
-set_sql_debug(True)
 
 db.generate_mapping(create_tables=True)
 
