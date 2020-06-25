@@ -15,6 +15,7 @@ class LayoutPI:
             g.shopping_cart = current_user.cart_products_set
         else:
             g.shopping_cart = session.get("shopping_cart", [])
+        self.layout_translation = get_translation()["layout"]
         # if current_user.is_authenticated:
         #     self.none = None
 

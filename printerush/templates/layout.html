@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--[if (gte IE 9)|!(IE)]><!-->
-<html lang="en">
+<html lang="tr">
 <!--<![endif]-->
 <head>
 <!-- Basic Page Needs
@@ -165,7 +165,7 @@
                   </div>
                 </li>
                 <li class="cart-icon"> 
-                  <a href="#"> 
+                  <a href="{{ url_for("cart_bp.view_cart") }}">
                     <span class="cart-icon-main"><i class="fa fa-shopping-basket"></i> <small class="cart-notification" id="number-of-cart-product"></small> </span>
                   </a>
                   <div class="cart-dropdown header-link-dropdown">
@@ -192,7 +192,7 @@
                         <strong class="cart-price-box price-box">Sepet Boş</strong>
                       </span> </p>
                     <div class="clearfix"></div>
-                    <div class="mt-20"> <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>
+                    <div class="mt-20"> <a href="{{ url_for("cart_bp.view_cart") }}" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>
                   </div>
                 </li>
                 <li class="side-toggle">
@@ -647,7 +647,7 @@
 {#              </ul>#}
 {#              <p class="cart-sub-totle"> <span class="pull-left">Cart Subtotal</span> <span class="pull-right"><strong class="price-box">$29.98</strong></span> </p>#}
 {#              <div class="clearfix"></div>#}
-{#              <div class="mt-20"> <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>#}
+{#              <div class="mt-20"> <a href="{{ url_for("cart_bp.view_cart") }}" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>#}
 {#            </div>#}
           </div>
         </div>
@@ -674,7 +674,7 @@
                 </a>
               </div>
               <div class="col-lg-4">
-                <a href="cart.html">
+                <a href="{{ url_for("cart_bp.view_cart") }}">
                   <div class="account-inner mb-30">
                     <i class="fa fa-shopping-bag"></i><br/>
                     <span>Shopping</span>

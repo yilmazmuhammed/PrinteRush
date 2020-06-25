@@ -1,10 +1,11 @@
 from flask import Blueprint, render_template, abort, request, g, redirect, url_for
 from flask_login import current_user
-from pony.orm import desc, sql_debug
+from pony.orm import desc
 
 from printerush.common.assistant_func import get_translation, flask_form_to_dict
 from printerush.common.db import db_add_comment
 from printerush.database.models import Product, ProductCategory
+from printerush.general.requirement import url_reformative
 from printerush.product.assistant_func import ProductPI, detect_sorting_and_filtering, ProductCategoryPI
 from printerush.product.forms import CommentForm, FilterForm
 
@@ -14,6 +15,7 @@ products_bp = Blueprint('products_bp', __name__, template_folder='templates', st
 
 @products_bp.route('/<int:product_id>', defaults={'p': None}, methods=['GET', 'POST'])
 @products_bp.route('/<int:product_id>/<p>', methods=['GET', 'POST'])
+@url_reformative
 def view(product_id, p):
     product = Product.get(id=product_id)
     if not product:
@@ -38,16 +40,12 @@ def view(product_id, p):
 
 @products_bp.route('/c<category_id>', defaults={'p': None}, methods=['GET', 'POST'])
 @products_bp.route('/<p>-c<category_id>', methods=['GET', 'POST'])
+@url_reformative
 def view_category(category_id, p):
     g.page = 1 if not request.args.get('page', None) else int(request.args['page'])
     pagesize = 24 if not request.args.get('pagesize', None) else int(request.args['pagesize'])
 
     sorting, filtering = detect_sorting_and_filtering(**dict(request.args))
-
-    print(request.args.getlist('p'))
-    print("Page:", g.page, "\tPagesize:", pagesize)
-    print("Filtering:", filtering)
-    print("Sorting:", sorting)
 
     category = ProductCategory.get(id=category_id)
     if not category:
@@ -55,9 +53,9 @@ def view_category(category_id, p):
 
     filter_form = FilterForm()
     products = category.products().filter(filtering).sort_by(sorting)
+
     g.product_count = products.count()
     g.number_of_page = int(round(g.product_count / pagesize)) + (g.product_count % pagesize > 0)
-    # products = products.page(pagenum=g.page, pagesize=pagesize)[:]
     title = get_translation()['product']['product']['view_category']['title']
     return render_template('product/view_category.html',
                            page_info=ProductCategoryPI(category=category, products=products, title=title, form=filter_form))

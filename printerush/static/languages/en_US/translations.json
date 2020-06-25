@@ -28,6 +28,15 @@
       }
     }
   },
+  "order": {
+    "templates": {
+      "order": {
+        "order_overview_html": {
+          "invoicing_address": "Billing Address"
+        }
+      }
+    }
+  },
   "product": {
     "product": {
       "view": {

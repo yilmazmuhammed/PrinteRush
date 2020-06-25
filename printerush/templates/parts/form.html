@@ -11,13 +11,15 @@
       </ul>
     </div>
     {% endif %}
+    {% if form.form_title %}
     <div class="col-12 mb-20">
       <div class="heading-part heading-bg">
-        <h2 class="heading">{{ form.form_title}}</h2>
+        <h2 class="heading">{{ form.form_title }}</h2>
       </div>
     </div>
+    {% endif %}
     {% for field in form %}
-    {% if field.id == "csrf_token" %}
+    {% if field.id == "csrf_token" or field.type in ["HiddenField"] %}
     <div class="col-12">
       <div class="input-box">
         {{ field }}
