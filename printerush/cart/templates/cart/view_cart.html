@@ -181,7 +181,7 @@
                       <td>{{ translation["shipping"] }}</td>
                       <td>
                         <div class="price-box"> 
-                          <span class="price">$0.00</span> 
+                          <span class="price">Hesaplanmadı...</span>
                         </div>
                       </td>
                     </tr>
@@ -189,7 +189,7 @@
                       <td><b>{{ translation["amount_payable"] }}</b></td>
                       <td>
                         <div class="price-box"> 
-                          <span class="price"><b>$160.00</b></span> 
+                          <span class="price"><b>{{ products_price|sum }}₺</b></span>
                         </div>
                       </td>
                     </tr>
@@ -205,7 +205,7 @@
         <div class="row">
           <div class="col-12">
             <div class="right-side float-none-xs"> 
-              <a href="checkout.html" class="btn btn-color">{{ translation["proceed_to_checkout"] }}
+              <a href="{{ url_for("order_bp.shipping_page") }}" class="btn btn-color">{{ translation["proceed_to_checkout"] }}
                 <span><i class="fa fa-angle-right"></i></span>
               </a> 
             </div>

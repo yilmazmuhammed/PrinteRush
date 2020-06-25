@@ -12,7 +12,7 @@ def add_to_db_cart(quantity, product_id=None, product=None):
     if cart_product:
         cart_product.quantity += quantity
     else:
-        cart_product = CartProduct(product_ref=product_id, quantity=quantity, web_user_ref=current_user)
+        cart_product = CartProduct(product_ref=product, quantity=quantity, web_user_ref=current_user)
 
     return cart_product
 
