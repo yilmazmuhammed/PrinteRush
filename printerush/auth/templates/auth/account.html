@@ -32,16 +32,21 @@
             </div>
             <div class="account-tab-inner">
               <ul class="account-tab-stap">
-                <li id="step1" class="active"> <a href="javascript:void(0)">My Dashboard<i class="fa fa-angle-right"></i> </a> </li>
-                <li id="step2"> <a href="javascript:void(0)">Account Details<i class="fa fa-angle-right"></i> </a> </li>
-                <li id="step3"> <a href="javascript:void(0)">My Order List<i class="fa fa-angle-right"></i> </a> </li>
-                <li id="step4"> <a href="javascript:void(0)">Change Password<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="step1" {%if g.step==1%}class="active"{%endif%}> <a href="javascript:void(0)">My Dashboard<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="step2" {%if g.step==2%}class="active"{%endif%}> <a href="javascript:void(0)">Account Details<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="step3" {%if g.step==3%}class="active"{%endif%}> <a href="javascript:void(0)">My Order List<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="step4" {%if g.step==4%}class="active"{%endif%}> <a href="javascript:void(0)">Change Password<i class="fa fa-angle-right"></i> </a> </li>
               </ul>
             </div>
           </div>
         </div>
         <div class="col-lg-9">
-          <div id="data-step1" class="account-content" data-temp="tabdata">
+          {% for category, message in get_flashed_messages(with_categories=true) %}
+            <div class="alert alert-{{ category }}" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+          <div id="data-step1" class="account-content" data-temp="tabdata" {%if g.step!=1%} style="display:none" {%endif%}>
             <div class="row">
               <div class="col-12">
                 <div class="heading-part heading-bg mb-30">
@@ -130,14 +135,14 @@
               </div>
             </div>
           </div>
-          <div id="data-step2" class="account-content" data-temp="tabdata" style="display:none">
+          <div id="data-step2" class="account-content" data-temp="tabdata" {%if g.step!=2%} style="display:none" {%endif%}>
             <div class="m-0">
               {%  with form = g.form_1  %}
               {%  include 'parts/form.html' %}
               {%  endwith %}
             </div>
           </div>
-          <div id="data-step3" class="account-content" data-temp="tabdata" style="display:none">
+          <div id="data-step3" class="account-content" data-temp="tabdata" {%if g.step!=3%} style="display:none" {%endif%}>
             <div id="form-print" class="admission-form-wrapper">
               <div class="row">
                 <div class="col-12">
@@ -234,109 +239,7 @@
               </div>
            </div>
           </div>
-          <div id="data-step3" class="account-content" data-temp="tabdata" style="display:none">
-            <div id="form-print" class="admission-form-wrapper">
-              <div class="row">
-                <div class="col-12">
-                  <div class="heading-part heading-bg mb-30">
-                    <h2 class="heading m-0">My Orders</h2>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 mb-xs-30">
-                  <div class="cart-item-table commun-table">
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th colspan="4">
-                              <ul>
-                                <li><span>Order placed</span> <span>17 December 2016</span></li>
-                                <li class="price-box"><span>Total</span> <span class="price">$160.00</span></li>
-                                <li><span>Order No.</span> <span>#011052</span></li>
-                              </ul>
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <a href="product-page.html">
-                                <div class="product-image">
-                                  <img alt="Everypick" src="images/1.jpg">
-                                </div>
-                              </a>
-                            </td>
-                            <td>
-                              <div class="product-title">
-                                <a href="product-page.html">Cross Colours Camo Print Tank half mengo</a>
-                              </div>
-                              <div class="product-info-stock-sku m-0">
-                                <div>
-                                  <label>Quantity: </label>
-                                  <span class="info-deta">1</span>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="base-price price-box">
-                                <span class="price">$80.00</span>
-                              </div>
-                            </td>
-                            <td>
-                              <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item"></i>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="product-page.html">
-                                <div class="product-image">
-                                  <img alt="Everypick" src="images/2.jpg">
-                                </div>
-                              </a>
-                            </td>
-                            <td>
-                              <div class="product-title">
-                                <a href="product-page.html">Defyant Reversible Dot Shorts</a>
-                              </div>
-                              <div class="product-info-stock-sku m-0">
-                                <div>
-                                  <label>Quantity: </label>
-                                  <span class="info-deta">1</span>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="base-price price-box">
-                                <span class="price">$80.00</span>
-                              </div>
-                            </td>
-                            <td>
-                              <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item"></i>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="print-btn text-center mt-30">
-                  <button onclick="printDiv('form-print')" class="btn btn-color" type="button">Print</button>
-                </div>
-              </div>
-           </div>
-          </div>
-          <div id="data-step4" class="account-content" data-temp="tabdata" style="display:none">
-            {% for category, message in get_flashed_messages(with_categories=true) %}
-            <div class="alert alert-{{ category }}" role="alert">
-                {{ message }}
-            </div>
-            {% endfor %}
+          <div id="data-step4" class="account-content" data-temp="tabdata" {%if g.step!=4%} style="display:none" {%endif%}>
             {%  with form = g.form_2  %}
             {%  include 'parts/form.html' %}
             {%  endwith %}

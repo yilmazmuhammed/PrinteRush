@@ -1,17 +1,14 @@
-
-from flask import Blueprint, redirect, url_for, flash, render_template, request, g
 from flask_login import login_user, login_required, logout_user, current_user
 from passlib.hash import pbkdf2_sha256 as hasher
-
 from printerush.cart.assistanc_fuct import update_cart
 from printerush.common.assistant_func import flask_form_to_dict, FormPI, get_translation, LayoutPI
 from printerush.auth.db import db_add_web_user
 from printerush.auth.exceptions import RegisterException
 from printerush.auth.forms import RegisterForm, LoginForm, UpdateForm, ChangePassword
 from printerush.database.models import WebUser
+from flask import Blueprint, redirect, url_for, flash, render_template, request, g
 
 auth_bp = Blueprint('auth_bp', __name__, template_folder='templates', static_folder='static', static_url_path='assets')
-
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -30,7 +27,6 @@ def register():
                 flash(u"%s" % ex, 'danger')
 
     return render_template("auth/register.html", page_info=FormPI(form=form, title=translation['title']))
-
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -51,14 +47,12 @@ def login():
             flash(translation["wrong_password"], 'danger')
     return render_template("auth/login.html", page_info=FormPI(form=form, title=translation['title']))
 
-
-@login_required
 @auth_bp.route("/logout")
+@login_required
 def logout():
     logout_user()
     flash(get_translation()["auth"]["auth"]["logout"]["logout_successful"], 'success')
     return redirect(url_for("general_bp.index"))
-
 
 @auth_bp.route("/account", methods=['GET', 'POST'])
 @login_required
@@ -67,9 +61,11 @@ def account():
     form_2 = ChangePassword()
     g.form_1 = form_1
     g.form_2 = form_2
+    g.step = 1
     translation = get_translation()["auth"]["auth"]["account"]
     
     if form_1.validate_on_submit():
+        g.step = 2
         if hasher.verify(form_1.password.data, current_user.password_hash):
 
             current_user.first_name = form_1.first_name.data
@@ -77,8 +73,10 @@ def account():
             current_user.email = form_1.email.data
             current_user.phone_number = form_1.phone_number.data
 
-            next_page = request.args.get("next", url_for("auth_bp.account"))
-            return redirect(next_page)
+            #next_page = request.args.get("next", url_for("auth_bp.account"))
+            form_2.error = []
+            flash(get_translation()["auth"]["auth"]["account"]["password_update_successful"], 'success')
+            return render_template("auth/account.html", page_info=LayoutPI(title=translation['title']))
         else:
             flash(u"%s" % translation['wrong_password'], 'danger')
 
@@ -88,11 +86,11 @@ def account():
     form_1.phone_number.data = current_user.phone_number
 
     if form_2.validate_on_submit():
+        g.step = 4
         if hasher.verify(form_2.password.data, current_user.password_hash):
             if form_2.new_password_verification.data==form_2.new_password.data:
 
                 current_user.password_hash = hasher.hash(form_2.new_password_verification.data)
-
                 flash(get_translation()["auth"]["auth"]["account"]["password_update_successful"], 'success')
                 next_page = request.args.get("next", url_for("auth_bp.account"))
                 return redirect(next_page)
@@ -101,6 +99,7 @@ def account():
         else:
             flash(u"%s" % translation['wrong_password'], 'danger')
 
-    
-
     return render_template("auth/account.html", page_info=FormPI(title=translation['title'], form=form_1))
+
+
+

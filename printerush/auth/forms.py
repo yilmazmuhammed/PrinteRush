@@ -131,7 +131,7 @@ class UpdateForm(WebUserForm):
 
     open = form_open(form_name='form-update')
     close = form_close()
-    title = t['title']
+    form_title = t['title']
     #current_user.is_authenticated
     #first_name = current_user.first_name
     #last_name = None
@@ -150,7 +150,7 @@ class ChangePassword(WebUserForm):
 
     open = form_open(form_name='form-update')
     close = form_close()
-    title = translation['title']
+    form_title = translation['title']
     #current_user.is_authenticated
     first_name = None
     last_name = None
