@@ -11,9 +11,11 @@ general_bp = Blueprint('general_bp', __name__,
 def index():
     return render_template('general/index.html', page_info=LayoutPI(title="Home page"))
 
+
 @general_bp.route('/about')
 def about():
     return render_template('general/about.html', page_info=LayoutPI(title="Hakkımızda"))
+
 
 @general_bp.route('/contact_us')
 def contact():
