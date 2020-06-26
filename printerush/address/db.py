@@ -54,3 +54,20 @@ def get_last_address(web_user):
     if not ret:
         raise ThereIsNotAddress(translation["there_is_not_address"])
     return ret
+
+
+def remove_address(address):
+    if address.is_erasable():
+        address.delete()
+    else:
+        address.web_user_ref = None
+        address.store_ref = None
+        # # Adresi düzenlerken kullanılacak
+        # old_address_dict = address.to_dict(with_collections=True)
+        # old_address_dict.pop("id")
+        # old_address_dict.pop("shipped_orders_set")
+        # old_address_dict.pop("invoiced_orders_set")
+        # new_address = Address(**old_address_dict)
+        # address.web_user_ref = None
+        # address.store_ref = None
+        # return new_address

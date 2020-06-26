@@ -28,7 +28,6 @@ class WebUser(db.Entity, UserMixin):
     orders_set = Set('Order')
     addresses_set = Set('Address')
 
-
     def get_id(self):
         return self.id
 
@@ -110,6 +109,15 @@ class Address(db.Entity):
     shipped_orders_set = Set('Order', reverse='shipping_address_ref')
     invoiced_orders_set = Set('Order', reverse='invoicing_address_ref')
 
+    def is_erasable(self):
+        if self.is_constant():
+            return False
+        return True
+
+    # @property
+    # def is_constant(self):
+    #     return self.shipped_orders_set.count() > 0 or self.invoiced_orders_set.count() > 0
+
 
 class Order(db.Entity):
     """
@@ -130,7 +138,9 @@ class Order(db.Entity):
 
     @property
     def products_price(self):
-        return coalesce(select(op.unit_price*op.quantity for op in OrderProduct if op.sub_order_ref.order_ref == self).sum(), 0)
+        return coalesce(
+            select(op.unit_price * op.quantity for op in OrderProduct if op.sub_order_ref.order_ref == self).sum(), 0
+        )
 
     @property
     def shipping_price(self):
@@ -354,7 +364,9 @@ db.generate_mapping(create_tables=True)
 
 if __name__ == '__main__':
     with db_session:
-        webuser = WebUser(email="admin@printerush.com", password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY", is_admin=True)
+        webuser = WebUser(email="admin@printerush.com",
+                          password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY",
+                          is_admin=True)
         turkiye = Country(country="Türkiye")
         izmir = City(city="İzmir", country_ref=turkiye)
         torbali = District(district="Torbalı", city_ref=izmir)

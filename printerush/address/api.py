@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 
 from printerush.address.assistant_func import create_address_json
-from printerush.address.db import get_country, get_city, db_add_address, get_last_address
+from printerush.address.db import get_country, get_city, db_add_address, get_last_address, get_address, remove_address
 from printerush.address.exceptions import ThereIsNotCountry, ThereIsNotDistrict, ThereIsNotAddress
 from printerush.address.forms import AddressModalForm
 from printerush.common.assistant_func import get_translation
@@ -41,7 +41,7 @@ def counties_api():
 @address_api_bp.route("/new_address", methods=["POST"])
 @login_required
 def new_address_api():
-    translation = get_translation()["address"]["address"]["new_address"]
+    translation = get_translation()["address"]["api"]["new_address_api"]
 
     form = AddressModalForm()
 
@@ -79,3 +79,17 @@ def get_last_address_api():
         return jsonify(result=True, address=ret)
     except ThereIsNotAddress as tisa:
         return jsonify(result=False, err_msg=str(tisa))
+
+
+@address_api_bp.route("/remove_address/<int:address_id>", methods=["GET"])
+@login_required
+def remove_address_api(address_id):
+    translation = get_translation()["address"]["api"]["remove_address_api"]
+    try:
+        address = get_address(address_id)
+        if address.web_user_ref != current_user:
+            return jsonify(result=False, err_msg=translation["web_user_address_mismatch"])
+        remove_address(address)
+        return jsonify(result=True, msg=translation["success_msg"])
+    except ThereIsNotAddress as tina:
+        return jsonify(result=False, err_msg=str(tina))

@@ -1,7 +1,11 @@
 {
   "address": {
-    "address": {
-      "new_address": {
+    "api": {
+      "remove_address_api": {
+        "success_msg": "Adres silindi.",
+        "web_user_address_mismatch": "Adres bulunamadı."
+      },
+      "new_address_api": {
         "success_msg": "Adres eklendi.",
         "title": "Yeni Adres"
       }
@@ -249,7 +253,7 @@
         "title": "Sipariş özeti"
       },
       "payment_page": {
-        "title": "Ödeme Sayfası"
+        "title": "Ödeme Sayfasıess"
       },
       "shipping_page": {
         "title": "Siparişi tamamla"

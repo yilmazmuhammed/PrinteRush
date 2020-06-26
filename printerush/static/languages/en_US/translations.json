@@ -1,7 +1,7 @@
 {
   "address": {
-    "address": {
-      "new_address": {
+    "api": {
+      "new_address_api": {
         "title": "New Address"
       }
     }
