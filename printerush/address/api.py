@@ -1,8 +1,11 @@
 from flask import Blueprint, request, jsonify
+from flask_login import login_required, current_user
 
-from printerush.address.db import get_country, get_city, get_district
-from printerush.address.exceptions import ThereIsNotCountry
-from printerush.address.forms import AddressForm
+from printerush.address.assistant_func import create_address_json
+from printerush.address.db import get_country, get_city, db_add_address, get_last_address
+from printerush.address.exceptions import ThereIsNotCountry, ThereIsNotDistrict, ThereIsNotAddress
+from printerush.address.forms import AddressModalForm
+from printerush.common.assistant_func import get_translation
 
 address_api_bp = Blueprint('address_api_bp', __name__)
 
@@ -33,3 +36,46 @@ def counties_api():
         return jsonify(result=True, city=city.to_dict(), counties=counties)
     except ThereIsNotCountry as tinc:
         return jsonify(result=False, err_msg=str(tinc))
+
+
+@address_api_bp.route("/new_address", methods=["POST"])
+@login_required
+def new_address_api():
+    translation = get_translation()["address"]["address"]["new_address"]
+
+    form = AddressModalForm()
+
+    if form.validate_on_submit():
+        try:
+            json_data = create_address_json(form, request.form, web_user=current_user)
+            address = db_add_address(json_data)
+            return jsonify(result=True, msg=translation["success_msg"], address=address.to_dict())
+        except ThereIsNotDistrict as tisd:
+            return jsonify(result=False, validate_on_submit=True, err_msg=str(tisd), address_id=address.id)
+
+    errors = []
+    for field in form:
+        errors += field.errors
+    return jsonify(result=False, validate_on_submit=False, errors=errors)
+
+
+@address_api_bp.route("/get_last_address", methods=["GET"])
+@login_required
+def get_last_address_api():
+    try:
+        address = get_last_address(current_user)
+        ret = address.to_dict(
+            "id title first_name last_name address_detail phone_number invoice_type company_name tax_number tax_office"
+        )
+        ret["district_ref"] = {
+            "district": address.district_ref.district,
+            "city_ref": {
+                "city": address.district_ref.city_ref.city,
+                "country_ref": {
+                    "country": address.district_ref.city_ref.country_ref.country
+                }
+            }
+        }
+        return jsonify(result=True, address=ret)
+    except ThereIsNotAddress as tisa:
+        return jsonify(result=False, err_msg=str(tisa))

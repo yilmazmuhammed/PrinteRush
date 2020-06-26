@@ -1,4 +1,6 @@
-from printerush.address.exceptions import ThereIsNotCountry, ThereIsNotCity, ThereIsNotDistrict
+from pony.orm import desc
+
+from printerush.address.exceptions import ThereIsNotCountry, ThereIsNotCity, ThereIsNotDistrict, ThereIsNotAddress
 from printerush.common.assistant_func import get_translation
 from printerush.database.models import Country, City, District, Address
 
@@ -36,3 +38,19 @@ def get_district(district_id, city_id, country_id):
 
 def db_add_address(json_address):
     return Address(**json_address)
+
+
+def get_address(address_id):
+    translation = get_translation()['address']['db']['get_address']
+    ret = Address.get(id=address_id)
+    if not ret:
+        raise ThereIsNotAddress(translation["there_is_not_address"])
+    return ret
+
+
+def get_last_address(web_user):
+    translation = get_translation()['address']['db']['get_address']
+    ret = web_user.addresses_set.order_by(lambda a: desc(a.id)).first()
+    if not ret:
+        raise ThereIsNotAddress(translation["there_is_not_address"])
+    return ret

@@ -1,0 +1,19 @@
+{% macro bread_crumb(banner_title, layout_translation, list=[]) -%}
+  <!-- Bread Crumb STRAT -->
+  <div class="banner inner-banner1 ">
+    <div class="container">
+      <section class="banner-detail center-xs">
+        <h1 class="banner-title">{{ banner_title }}</h1>
+        <div class="bread-crumb right-side float-none-xs">
+          <ul>
+            <li><a href="{{ url_for("general_bp.index") }}">{{ layout_translation["home_page"] }}</a></li>
+            {% for url, title in list %}
+            <li>/<a href="{{ url }}">{{ title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- Bread Crumb END -->
+{%- endmacro %}

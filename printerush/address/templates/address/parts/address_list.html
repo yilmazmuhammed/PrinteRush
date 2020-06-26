@@ -1,0 +1,42 @@
+<div class="card-group">
+  <div class="row">
+    {% for address in addresses %}
+      <div id="{{ prefix }}address-{{ address.id }}" class="card mx-1 my-2" style="width: 18rem;">
+        <div class="card-header d-flex">
+          <h5 class="card-title">{{ address.title }}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{ address.first_name }} {{ address.last_name }}</p>
+          <p class="card-text">{{ address.address_detail }}</p>
+          <p class="card-text">{{ address.district_ref.district }}/{{ address.district_ref.city_ref.city }}/{{ address.district_ref.city_ref.country_ref.country }}</p>
+          <p class="card-text">{{ address.phone_number }}</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            <a href="#" class="card-link">Sil</a>
+            <a href="#" class="card-link">Düzenle</a>
+          </small>
+        </div>
+      </div>
+    {% endfor %}
+    {% if new_address_form %}
+      <div id="{{ prefix }}address-0" class="card mx-1 my-2" style="width: 18rem;">
+        <div class="card-header d-flex">
+          <h5 class="card-title" style="opacity: 0.0"> Yeni Adres </h5>
+        </div>
+        <div class="card-body text-center">
+          <button type="button" class="btn btn-info btn-lg turned-button" data-toggle="modal" data-target="#form-modal">Yeni adres ekle</button>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            <a class="card-link"> </a>
+            <a class="card-link"> </a>
+          </small>
+        </div>
+      </div>
+    {% with form = new_address_form, errors = new_address_form.errors  %}
+    {% include 'parts/modal_form.html' %}
+    {% endwith %}
+    {% endif %}
+  </div>
+</div>

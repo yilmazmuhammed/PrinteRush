@@ -1,0 +1,182 @@
+{% extends "layout.html" %}
+  {% block css_block %}
+  {%  endblock %}
+
+  {% block content %}
+  {% set translation = page_info.translation["order"]["templates"]["order"]["order_overview_html"] %}
+  
+  {# Bread Crumb STRAT #}
+  {% from 'parts/bread_crumb.html' import bread_crumb %}
+  {{ bread_crumb(banner_title=page_info.title.split("|")[0], layout_translation=page_info.layout_translation) }}
+  {# Bread Crumb END #}
+
+  <!-- CONTAIN START -->
+  <section class="checkout-section ptb-70">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          {% from 'order/parts.html' import steps %}
+          {{ steps(step=2, translation=page_info.translation["order"]["templates"]["order"]["parts"]) }}
+          <div class="checkout-content">
+            <div class="row">
+              <div class="col-12">
+                <div class="heading-part align-center">
+                  <h2 class="heading">Order Overview</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 mb-sm-30">
+                <div class="cart-item-table commun-table mb-30">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>{{ translation["product"] }}</th>
+                            <th>{{ translation["product_detail"] }}</th>
+                            <th>{{ translation["sub_total"] }}</th>
+  {#                          <th>Action</th>#}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for so in g.order.sub_orders_set %}
+                          {% for op in so.order_products_set %}
+                          <tr>
+                            <td>
+                              <a href="{{ url_for("products_bp.view", product_id=op.product_ref.id) }}">
+                                <div class="product-image">
+                                  <img alt="{{ op.product_ref.name }}" src="{{ op.product_ref.main_photo.file_path }}">
+                                </div>
+                              </a>
+                            </td>
+                            <td>
+                              <div class="product-title">
+                                <a href="{{ url_for("products_bp.view", product_id=op.product_ref.id) }}">
+                                  {{ op.product_ref.name }}
+                                </a>
+                                <div class="product-info-stock-sku m-0">
+                                  <div>
+                                    <label>{{ translation["unit_price"] }}: </label>
+                                    <div class="price-box">
+                                      <span class="info-deta price">{{ op.unit_price }}₺</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="product-info-stock-sku m-0">
+                                  <div>
+                                    <label>{{ translation["quantity"] }}: </label>
+                                    <span class="info-deta">{{ op.quantity }}</span> </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td><div data-id="100" class="total-price price-box"> <span class="price">{{ op.quantity * op.unit_price }}₺</span> </div></td>
+  {#                          <td><i class="fa fa-trash cart-remove-item" data-id="100" title="Remove Item From Cart"></i></td>#}
+                          </tr>
+                          {% endfor %}
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+              <div class="row">
+                <div class="cart-total-table address-box commun-table mb-30 col-6">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>{{ translation["shipping_address"] }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ul>
+                              <li class="inner-heading"> <b>{{ g.order.shipping_address_ref.first_name }} {{ g.order.shipping_address_ref.last_name }}</b> </li>
+                              <li>
+                                <p>{{ g.order.shipping_address_ref.address_detail }}</p>
+                              </li>
+                              <li>
+                                <p>{{ g.order.shipping_address_ref.district_ref.district }}/{{ g.order.shipping_address_ref.district_ref.city_ref.city }}/{{ g.order.shipping_address_ref.district_ref.city_ref.country_ref.country }}</p>
+                              </li>
+                              <li>
+                                <p>{{ g.order.shipping_address_ref.phone_number }}</p>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="cart-total-table address-box commun-table col-6">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>{{ translation["invoicing_address"] }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ul>
+                              <li class="inner-heading"> <b>{{ g.order.invoicing_address_ref.first_name }} {{ g.order.invoicing_address_ref.last_name }}</b> </li>
+                              <li>
+                                <p>{{ g.order.invoicing_address_ref.address_detail }}</p>
+                              </li>
+                              <li>
+                                <p>{{ g.order.invoicing_address_ref.district_ref.district }}/{{ g.order.invoicing_address_ref.district_ref.city_ref.city }}/{{ g.order.invoicing_address_ref.district_ref.city_ref.country_ref.country }}</p>
+                              </li>
+                              <li>
+                                <p>{{ g.order.invoicing_address_ref.phone_number }}</p>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div></div>
+              </div>
+              <div class="col-md-4 d-flex flex-column">
+                <div class="cart-total-table commun-table mb-30">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th colspan="2">{{ translation["order_summary"] }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{{ translation["products_price"] }}</td>
+                          <td><div class="price-box"> <span class="price">{{ g.order.products_price }}₺</span> </div></td>
+                        </tr>
+                        <tr>
+                          <td>{{ translation["shipping_price"] }}</td>
+                          <td><div class="price-box"> <span class="price">{% if g.order.is_free_shipping %}{{ translation["free_shipping"] }}{% elif g.order.shipping_price == 0 %}{{ translation["buyer_pay"] }}{% else %}{{ g.order.shipping_price }}{% endif %}</span> </div></td>
+                        </tr>
+                        <tr>
+                          <td><b>{{ translation["amount_payable"] }}</b></td>
+                          <td><div class="price-box"> <span class="price"><b>{{ g.order.products_price + g.order.shipping_price}}₺</b></span> </div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <a href="{{ url_for("order_bp.payment_page") }}">
+                  <button class="btn btn-color" id="continue">{{ translation["continue"] }}<span><i class="fa fa-angle-right"></i></span></button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTAINER END --> 
+  
+  {% endblock %}
+
+  {% block js_block %}
+  {% endblock %}

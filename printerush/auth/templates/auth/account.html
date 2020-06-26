@@ -1,4 +1,7 @@
 {% extends "layout.html" %}
+{% block css_block %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('address_bp.static', filename='parts/address_list.css') }}">
+  {%  endblock %}
 
   {% block content %}
 
@@ -27,15 +30,15 @@
           <div class="account-sidebar account-tab mb-sm-30">
             <div class="dark-bg tab-title-bg">
               <div class="heading-part">
-                <div class="sub-title"><span></span> My Account</div>
+                <div class="sub-title"><span></span> Hesabım</div>
               </div>
             </div>
             <div class="account-tab-inner">
               <ul class="account-tab-stap">
-                <li id="step1" {%if g.step==1%}class="active"{%endif%}> <a href="javascript:void(0)">My Dashboard<i class="fa fa-angle-right"></i> </a> </li>
-                <li id="step2" {%if g.step==2%}class="active"{%endif%}> <a href="javascript:void(0)">Account Details<i class="fa fa-angle-right"></i> </a> </li>
-                <li id="step3" {%if g.step==3%}class="active"{%endif%}> <a href="javascript:void(0)">My Order List<i class="fa fa-angle-right"></i> </a> </li>
-                <li id="step4" {%if g.step==4%}class="active"{%endif%}> <a href="javascript:void(0)">Change Password<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="step1" {%if g.step==1%}class="active"{%endif%}> <a href="javascript:void(0)">Adres Bilgilerim<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="step2" {%if g.step==2%}class="active"{%endif%}> <a href="javascript:void(0)">Hesap Detayları<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="step3" {%if g.step==3%}class="active"{%endif%}> <a href="javascript:void(0)">Siparişlerim<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="step4" {%if g.step==4%}class="active"{%endif%}> <a href="javascript:void(0)">Şifre Değiştir<i class="fa fa-angle-right"></i> </a> </li>
               </ul>
             </div>
           </div>
@@ -50,87 +53,16 @@
             <div class="row">
               <div class="col-12">
                 <div class="heading-part heading-bg mb-30">
-                  <h2 class="heading m-0">Account Dashboard</h2>
+                  <h2 class="heading m-0">Adres Bilgilerim</h2>
                 </div>
               </div>
             </div>
             <div class="mb-30">
               <div class="row">
                 <div class="col-12">
-                  <div class="heading-part">
-                    <h3 class="sub-heading">Hello, Denial</h3>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet.<a class="account-link" id="subscribelink" href="#">Click Here</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="m-0">
-              <div class="row">
-                <div class="col-12 mb-20">
-                  <div class="heading-part">
-                    <h3 class="sub-heading">Account Information</h3>
-                  </div>
-                  <hr>
-                </div>
-                <div class="col-md-6">
-                  <div class="cart-total-table address-box commun-table">
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th>Shipping Address</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td><ul>
-                                <li class="inner-heading"> <b>Denial tom</b> </li>
-                                <li>
-                                  <p>5-A kadEverypicki aprtment,opp. vasan eye care,</p>
-                                </li>
-                                <li>
-                                  <p>Risalabaar,City Road, deesa-405001.</p>
-                                </li>
-                                <li>
-                                  <p>India</p>
-                                </li>
-                              </ul></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="cart-total-table address-box commun-table">
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th>Billing Address</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <ul>
-                                <li class="inner-heading"> <b>Denial tom</b> </li>
-                                <li>
-                                  <p>5-A kadEverypicki aprtment,opp. vasan eye care,</p>
-                                </li>
-                                <li>
-                                  <p>Risalabaar,City Road, deesa-405001.</p>
-                                </li>
-                                <li>
-                                  <p>India</p>
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+                  {% with addresses = g.addresses, prefix="shipping-", new_address_form=g.new_address_form %}
+                  {% include "address/parts/address_list.html" %}
+                  {% endwith %}
                 </div>
               </div>
             </div>
@@ -147,7 +79,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="heading-part heading-bg mb-30">
-                    <h2 class="heading m-0">My Orders</h2>
+                    <h2 class="heading m-0">Siparişlerim</h2>
                   </div>
                 </div>
               </div>
@@ -251,6 +183,10 @@
   <!-- CONTAINER END --> 
   
   {% endblock %}
+
 {% block js_block %}
+<script src="{{ url_for('static', filename='js/modal_form.js') }}"></script>
 <script src="{{ url_for('address_bp.static', filename='address.js') }}"></script>
+<script src="{{ url_for('address_bp.static', filename='parts/address_list.js') }}"></script>
+<script src="{{ url_for('order_bp.static', filename='shipping.js') }}"></script>
 {% endblock %}

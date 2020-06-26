@@ -8,3 +8,7 @@ class ThereIsNotCity(Exception):
 
 class ThereIsNotDistrict(Exception):
     pass
+
+
+class ThereIsNotAddress(Exception):
+    pass

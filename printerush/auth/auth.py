@@ -7,6 +7,8 @@ from printerush.auth.exceptions import RegisterException
 from printerush.auth.forms import RegisterForm, LoginForm, UpdateForm, ChangePassword
 from printerush.database.models import WebUser
 from flask import Blueprint, redirect, url_for, flash, render_template, request, g
+from printerush.address.forms import AddressModalForm
+from printerush.address.assistant_func import country_select_choices
 
 auth_bp = Blueprint('auth_bp', __name__, template_folder='templates', static_folder='static', static_url_path='assets')
 
@@ -62,6 +64,10 @@ def account():
     g.form_1 = form_1
     g.form_2 = form_2
     g.step = 1
+    g.addresses = current_user.addresses_set
+    g.new_address_form = AddressModalForm(url_for("address_api_bp.new_address_api"))
+    g.new_address_form.country.choices += country_select_choices()
+    #print(g.addresses)
     translation = get_translation()["auth"]["auth"]["account"]
     
     if form_1.validate_on_submit():

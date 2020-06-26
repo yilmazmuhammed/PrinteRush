@@ -1,4 +1,7 @@
-$(function() {
+let run = false;
+function modal_form_submit(next=function () {}) {
+  if(run) return;
+  run = true;
   function after_form_submitted(data) {
     if(data.result)
     {
@@ -6,6 +9,7 @@ $(function() {
       $('[name^="modal-form-"]').find("input[type=text], textarea, select, input[type=tel]").val("");
       $('#success_message').append("<div class=\"alert alert-success\" role=\"alert\"><h3>"+data.msg+"</h3></div>").show();
       $('#error_message').hide();
+      next();
     }
     else
     {
@@ -35,18 +39,17 @@ $(function() {
 
     $.ajax({
       type: "POST",
-      url: document.location.pathname,
+      url: $form.attr('action'),
       data: $form.serialize(),
       success: after_form_submitted,
       dataType: 'json'
     });
-
   });
-});
 
-$('#form-modal').on("show.bs.modal", function(){
-  $('[name^="modal-form-"]').show();
-  $('#success_message').html("").hide();
-  $('#error_message').html("").hide();
-  $(this).closest('form').find("input[type=text]").val("");
-});
+  $('#form-modal').on("show.bs.modal", function(){
+    $('[name^="modal-form-"]').show();
+    $('#success_message').html("").hide();
+    $('#error_message').html("").hide();
+    $(this).closest('form').find("input[type=text]").val("");
+  });
+}

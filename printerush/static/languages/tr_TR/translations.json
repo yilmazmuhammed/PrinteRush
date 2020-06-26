@@ -7,6 +7,9 @@
       }
     },
     "db": {
+      "get_address": {
+        "there_is_not_address": "Adres bulunamadı."
+      },
       "get_city": {
         "there_is_not_city": "Böyle bir şehir bulunamadı."
       },
@@ -91,6 +94,13 @@
   },
   "auth": {
     "auth": {
+      "account": {
+        "password_update_successful": "Parola başarıyla değiştirildi",
+        "passwords_do_not_match": "Parolalar eşleşmiyor.",
+        "title": "Hesap Güncelle",
+        "update_successful": "Bilgiler başarıyla değiştirildi",
+        "wrong_password": "Parola yanlış."
+      },
       "login": {
         "login_successful": "Giriş yapıldı.",
         "passive_user": "Kullanıcı aktif değil.",
@@ -103,13 +113,6 @@
       "register": {
         "passwords_do_not_match": "Parolalar eşleşmiyor.",
         "title": "Kayıt ol"
-      },
-      "account": {
-        "wrong_password": "Parola yanlış.",
-        "passwords_do_not_match": "Parolalar eşleşmiyor.",
-        "title": "Hesap Güncelle",
-        "password_update_successful": "Parola başarıyla değiştirildi",
-        "update_successful": "Bilgiler başarıyla değiştirildi"
       }
     },
     "db": {
@@ -119,26 +122,26 @@
       }
     },
     "forms": {
-      "login": {
-        "remember_me": {
-          "label": "Beni hatırla"
-        },
-        "submit": {
-          "label": "Giriş yap"
-        },
-        "title": "Üye Girişi"
-      },
-      "register": {
-        "submit": {
-          "label": "Kayıt ol"
-        },
-        "title": "Üye Ol"
-      },
       "account": {
         "submit": {
           "label": "Güncelle"
         },
         "title": "Üye Bilgileri"
+      },
+      "login": {
+        "form_title": "Üye Girişi",
+        "remember_me": {
+          "label": "Beni hatırla"
+        },
+        "submit": {
+          "label": "Giriş yap"
+        }
+      },
+      "register": {
+        "form_title": "Üye Ol",
+        "submit": {
+          "label": "Kayıt ol"
+        }
       },
       "web_user": {
         "email": {
@@ -162,11 +165,6 @@
           "length": "Soyisim 40 karakterden fazla olamaz.",
           "required": "Lütfen soyisminizi giriniz."
         },
-        "password": {
-          "label": "Parola",
-          "length": "Parola 40 karakterden fazla olamaz.",
-          "required": "Lütfen parolanızı giriniz."
-        },
         "new_password": {
           "label": "Yeni Parola",
           "length": "Parola 40 karakterden fazla olamaz.",
@@ -177,6 +175,11 @@
           "length": "Parola doğrulama 40 karakterden fazla olamaz.",
           "password_equal_to": "Parolalar eşleşmiyor.",
           "required": "Lütfen parola doğrulamayı giriniz."
+        },
+        "password": {
+          "label": "Parola",
+          "length": "Parola 40 karakterden fazla olamaz.",
+          "required": "Lütfen parolanızı giriniz."
         },
         "password_verification": {
           "label": "Parola doğrulama",
@@ -227,10 +230,76 @@
           "products_price": "Ürünlerin fiyatı",
           "quantity": "Adet",
           "shipping": "Kargo ücreti",
-          "sub_total": "Alt Toplam",
+          "sub_total": "Ara Toplam",
           "update_cart": "Sepeti Güncelle"
         },
         "title": "Sepetim"
+      }
+    }
+  },
+  "layout": {
+    "home_page": "Ana Sayfa"
+  },
+  "order": {
+    "order": {
+      "order_completed_page": {
+        "title": "Sipariş sonucu"
+      },
+      "order_overview_page": {
+        "title": "Sipariş özeti"
+      },
+      "payment_page": {
+        "title": "Ödeme Sayfası"
+      },
+      "shipping_page": {
+        "title": "Siparişi tamamla"
+      }
+    },
+    "templates": {
+      "order": {
+        "order_complete_html": {
+          "continue_shopping": "Alışverişe devam et",
+          "invoicing_address": "Fatura adresi",
+          "order_confirmation": "Sipariş Onayı",
+          "order_date": "Sipariş tarihi",
+          "order_no": "Sipariş numarası",
+          "order_overview": "Sipariş Özeti",
+          "payment": "Ödeme",
+          "print": "Yazdır",
+          "product": "Ürün",
+          "product_detail": "Ürün Detayı",
+          "shipping_address": "Teslimat adresi",
+          "total_price": "Toplam fiyat"
+        },
+        "order_overview_html": {
+          "amount_payable": "Ödenecek Tutar",
+          "buyer_pay": "Alıcı ödemeli...",
+          "continue": "Devam et",
+          "free_shipping": "Ücretsiz kargo",
+          "invoicing_address": "Fatura Adresi",
+          "product": "Ürün",
+          "product_detail": "Ürün Detayı",
+          "products_price": "Ürünlerin Fiyatı",
+          "quantity": "Adet",
+          "shipping_address": "Teslimat Adresi",
+          "shipping_price": "Kargo Ücreti",
+          "sub_total": "Ara Toplam",
+          "unit_price": "Birim fiyatı"
+        },
+        "parts": {
+          "order_complete": "Sipariş Sonucu",
+          "order_overview": "Sipariş Özeti",
+          "payment": "Ödeme Bilgileri",
+          "shipping": "Teslimat Bilgileri"
+        },
+        "shipping_html": {
+          "amount_payable": "Ödenecek tutar",
+          "cart_summary": "Sepet Özeti",
+          "continue": "Devam et",
+          "please_select_address": "Lütfen adresinizi seçiniz",
+          "products_price": "Ürünlerin fiyatı",
+          "shipping_price": "Kargo ücreti"
+        }
       }
     }
   },

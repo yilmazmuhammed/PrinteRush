@@ -7,14 +7,15 @@ from wtforms import SubmitField
 
 
 class LayoutPI:
-    def __init__(self, title):
+    def __init__(self, title, translation=None):
         self.title = title + " | PrinteRush"
-        self.translation = get_translation()
+        self.translation = get_translation() if not translation else translation
         g.languages = LANGUAGES
         if current_user.is_authenticated:
             g.shopping_cart = current_user.cart_products_set
         else:
             g.shopping_cart = session.get("shopping_cart", [])
+        self.layout_translation = get_translation()["layout"]
         # if current_user.is_authenticated:
         #     self.none = None
 
@@ -24,8 +25,6 @@ class FormPI(LayoutPI):
         super().__init__(*args, **kwargs)
         self.form = form
         self.errors = []
-        for field in form:
-            self.errors += field.errors
 
 
 def flask_form_to_dict(request_form: MultiDict, exclude=[]):
@@ -48,11 +47,11 @@ def flask_form_to_dict(request_form: MultiDict, exclude=[]):
 
 
 LANGUAGES = {'tr_TR': 'Türkçe', 'en_US': 'English'}
-translation = {}
+global_translation = {}
 
 
 def set_translation(language=None):  # language = session.get('language')
-    global translation
+    global global_translation
     default_language = 'tr_TR'
 
     select_translation = {}
@@ -60,16 +59,16 @@ def set_translation(language=None):  # language = session.get('language')
         with open(url_for('static', filename='languages/%s/translations.json' % language), 'r') as f:
             select_translation = json.load(f)
     with open('./printerush/static/languages/%s/translations.json' % default_language, 'r') as f:
-        translation = json.load(f)
-    translation.update(select_translation)
-    return translation
+        global_translation = json.load(f)
+    global_translation.update(select_translation)
+    return global_translation
 
 
 def get_translation():
-    global translation
-    if len(translation) == 0:
+    global global_translation
+    if len(global_translation) == 0:
         set_translation()
-    return translation
+    return global_translation
 
 
 class Forms:

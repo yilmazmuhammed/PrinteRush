@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+  {% block css_block %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('address_bp.static', filename='parts/address_list.css') }}">
+  {%  endblock %}
+
+  {% block content %}
+  {% set translation = page_info.translation["order"]["templates"]["order"]["shipping_html"] %}
+
+  <!-- Bread Crumb STRAT -->
+  {% from 'parts/bread_crumb.html' import bread_crumb %}
+  {{ bread_crumb(banner_title=page_info.title.split("|")[0], layout_translation=page_info.layout_translation) }}
+  <!-- Bread Crumb END -->
+  
+  <!-- CONTAIN START -->
+  <section class="checkout-section ptb-70">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          {% from 'order/parts.html' import steps %}
+          {{ steps(step=1, translation=page_info.translation["order"]["templates"]["order"]["parts"]) }}
+          <div class="checkout-content" >
+            <div class="row">
+              <div class="col-12">
+                <div class="heading-part align-center">
+                  <h2 class="heading">{{ translation["please_select_address"] }}</h2>
+                </div>
+              </div>
+            </div>
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+            <div class="alert alert-{{ category }}" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="row justify-content-center">
+              <div class="col-9">
+                <div id="shipping-addresses" class="row">
+                  {% with addresses = g.addresses, prefix="shipping-", new_address_form=g.new_address_form %}
+                  {% include "address/parts/address_list.html" %}
+                  {% endwith %}
+                </div>
+                <br>
+                <div class="row check-box">
+                  <span>
+                    <input checked="" class="checkbox" id="also_invoicing_address" name="also_invoicing_address" type="checkbox" value="y">
+                    <label for="also_invoicing_address">Fatura adresim olarak da aynı adresi kulan.</label>
+                  </span>
+                </div>
+                <br>
+                <div id="invoicing-addresses" class="row" style="display: none;">
+                  {% with addresses = g.addresses, prefix="invoicing-", new_address_form=g.new_address_form %}
+                  {% include "address/parts/address_list.html" %}
+                  {% endwith %}
+                </div>
+              </div>
+              <div class="col-3 d-flex flex-column">
+                <div class="cart-total-table commun-table">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th colspan="2">{{ translation["cart_summary"] }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ translation["products_price"] }}</td>
+                        <td>
+                          <div class="price-box">
+                            <span class="price">{{ g.products_price }}₺</span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>{{ translation["shipping_price"] }}</td>
+                        <td>
+                          <div class="price-box">
+                            <span class="price">Hesaplanmadı...</span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>{{ translation["amount_payable"] }}</b></td>
+                        <td>
+                          <div class="price-box">
+                            <span class="price"><b>{{ g.products_price }}₺</b></span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-color" id="continue">{{ translation["continue"] }}<span><i class="fa fa-angle-right"></i></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% with form = g.sa_form %}
+    {% include "parts/form.html" %}
+    {% endwith %}
+  </section>
+  <!-- CONTAINER END -->
+  
+  {% endblock %}
+
+{% block js_block %}
+<script src="{{ url_for('static', filename='js/modal_form.js') }}"></script>
+<script src="{{ url_for('address_bp.static', filename='address.js') }}"></script>
+<script src="{{ url_for('address_bp.static', filename='parts/address_list.js') }}"></script>
+<script src="{{ url_for('order_bp.static', filename='shipping.js') }}"></script>
+{% endblock %}
