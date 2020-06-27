@@ -204,6 +204,31 @@
           "length": "Kullanıcı adı 20 karakterden fazla olamaz.",
           "required": "Lütfen kullanıcı adını giriniz."
         }
+      },
+      "contact_user": {
+        "email": {
+          "label": "Eposta adresi",
+          "length": "Eposta adresi 254 karakterden fazla olamaz.",
+          "required": "Lütfen e-posta adresinizi giriniz."
+        },
+        "first_name": {
+          "label": "İsim",
+          "length": "İsim 40 karakterden fazla olamaz.",
+          "required": "Lütfen isminizi giriniz."
+        },
+        "phone_number": {
+          "label": "Telefon numarası",
+          "length": "Telefon numarası 20 karakterden fazla olamaz.",
+          "required": "Lütfen telefon numarası giriniz."
+        },
+        "submit": {
+          "label": "Gönder"
+        },
+        "message": {
+          "label": "Mesajınız",
+          "length": "Mesajınız 20 karakterden az olamaz.",
+          "required": "Lütfen mesajınızı giriniz."
+        }
       }
     }
   },

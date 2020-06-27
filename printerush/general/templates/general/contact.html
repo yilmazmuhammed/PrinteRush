@@ -42,21 +42,21 @@
             <div class="contact-box">
               <div class="contact-icon contact-phone-icon"></div>
               <span><b>Tel</b></span>
-              <p>0123 456 789 / 0123 456 788</p>
+              <p>{%if g.phone_number==None%} Kayıtlı Numara Yok {%endif%}</p>
             </div>
           </div>
           <div class="col-md-4 p-0">
             <div class="contact-box">
               <div class="contact-icon contact-mail-icon"></div>
-              <span><b>Mail</b></span>
-              <p>infoservices@everypick.com </p>
+              <span><b>E-Posta</b></span>
+              <p>printerush@gmail.com</p>
             </div>
           </div>
           <div class="col-md-4 p-0">
             <div class="contact-box">
               <div class="contact-icon contact-open-icon"></div>
-              <span><b>Open</b></span>
-              <p>Mon – Sat: 9:00 – 18:00</p>
+              <span><b>Açık</b></span>
+              <p>7 Gün 24 Saat</p>
             </div>
           </div>
         </div>
@@ -74,27 +74,9 @@
         </div>
       </div>
       <div class="main-form">
-        <form action="contact-form-handler.php" method="POST" name="contactform">
-          <div class="row">
-            <div class="col-md-4 mb-30">
-              <input type="text" required placeholder="Name" name="name">
-            </div>
-            <div class="col-md-4 mb-30">
-              <input type="email" required placeholder="Email" name="email">
-            </div>
-            <div class="col-md-4 mb-30">
-              <input type="text" required placeholder="Website" name="website">
-            </div>
-            <div class="col-12 mb-30">
-              <textarea required placeholder="Message" rows="3" cols="30" name="message"></textarea>
-            </div>
-            <div class="col-12">
-              <div class="align-center">
-                <button type="submit" name="submit" class="btn btn-color">Submit</button>
-              </div>
-            </div>
-          </div>
-        </form>
+        {%  with form = page_info.form  %}
+        {%  include 'parts/form.html' %}
+        {%  endwith %}
       </div>
     </div>
   </section>

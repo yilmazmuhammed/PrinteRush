@@ -427,7 +427,7 @@
                               <li class="level3"><a href="product-page.html"><span>■</span>product-page</a></li>
                               <li class="level3"><a href="product-page_2.html"><span>■</span>product-page 2</a></li>
                               <li class="level3"><a href="product-page_3.html"><span>■</span>product-page 3</a></li>
-                              <li class="level3"><a href="about.html"><span>■</span>About Us</a></li>
+                              <li class="level3"><a href="{{ url_for('general_bp.about') }}"><span>■</span>About Us</a></li>
                               <li class="level3"><a href="about-2.html"><span>■</span>About Us 2</a></li>
                               <li class="level3"><a href="about-3.html"><span>■</span>About Us 3</a></li>
                               <li class="level3"><a href="account.html"><span>■</span>Account</a></li>
@@ -436,7 +436,7 @@
                           <li class="level2">
                             <ul class="sub-menu-level2 ">
                               <li class="level3"><a href="checkout.html"><span>■</span>Checkout</a></li>
-                              <li class="level3"><a href="contact.html"><span>■</span>Contact</a></li>
+                              <li class="level3"><a href="{{ url_for('general_bp.contact') }}"><span>■</span>Contact</a></li>
                               <li class="level3"><a href="compare.html"><span>■</span>Compare</a></li>
                               <li class="level3"><a href="wishlist.html"><span>■</span>Wishlist</a></li>
                               <li class="level3"><a href="blog.html"><span>■</span>Blog</a></li>
@@ -794,7 +794,7 @@
                       <li><a href="#"><i class="fa fa-caret-right"></i>Delivery information</a></li>
                       <li><a href="#"><i class="fa fa-caret-right"></i>Privacy Policy</a></li>
                       <li><a href="#"><i class="fa fa-caret-right"></i>Terms & Conditions</a></li>
-                      <li><a href="#"><i class="fa fa-caret-right"></i>Contact</a></li>
+                      <li><a href="{{ url_for('general_bp.contact') }}"><i class="fa fa-caret-right"></i>Contact</a></li>
                       <li><a href="#"><i class="fa fa-caret-right"></i>Sitemap</a></li>
                     </ul>
                   </div>

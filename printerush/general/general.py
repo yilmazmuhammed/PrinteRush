@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template
-
-from printerush.common.assistant_func import LayoutPI
+from flask import Blueprint, redirect, url_for, render_template, g
+from printerush.general.forms import ContactUserForm
+from printerush.common.assistant_func import LayoutPI, FormPI
+from printerush.database.models import WebUser
 
 general_bp = Blueprint('general_bp', __name__,
                        template_folder='templates',
@@ -17,6 +18,25 @@ def about():
     return render_template('general/about.html', page_info=LayoutPI(title="Hakkımızda"))
 
 
-@general_bp.route('/contact_us')
+@general_bp.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('general/contact.html', page_info=LayoutPI(title="İletişim Kur"))
+	form = ContactUserForm()
+
+	user = WebUser.get(is_admin=True)
+	if len(user.phone_number) == 0:
+		g.phone_number = None
+	else:
+		g.phone_number = user.phone_number
+	if len(user.email) == 0:
+		g.email = None
+	else:
+		g.email = user.email
+
+	if form.validate_on_submit():
+		print(form.first_name.data)
+		print(form.email.data)
+		print(form.phone_number.data)
+		print(form.message.data)
+		return redirect(url_for('general_bp.contact'))
+
+	return render_template('general/contact.html', page_info=FormPI(title="İletişim Kur", form=form))
