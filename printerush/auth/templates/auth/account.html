@@ -160,7 +160,7 @@
                                   <span class="font-weight-bold">Takip numarası: </span>
                                   <span>{{ shipping_tracking.shipping_tracking_number }}</span>
                                 </div></div>
-                              </div>
+                              </div></div>
                               {% else %}
                               <div class="row"><div class="col">
                                   <span class="font-weight-bold">Kargo durumu: </span>
@@ -182,7 +182,7 @@
                                   <span class="font-weight-bold">Takip numarası: </span>
                                   <span>{{ shipping_tracking.shipping_tracking_number }}</span>
                                 </div></div>
-                              </div>
+                              </div></div>
                               {% endif %}
                               {% endwith %}
                             </div>
@@ -202,7 +202,7 @@
                   <button onclick="printDiv('form-print')" class="btn btn-color" type="button">Print</button>
                 </div>
               </div>
-           </div>
+            </div>
           </div>
           <div id="data-tab4" class="account-content" data-temp="tabdata" {%if g.tab!=4%} style="display:none" {%endif%}>
             {%  with form = g.form_2  %}
