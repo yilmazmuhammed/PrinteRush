@@ -100,7 +100,7 @@ def order_completed_page():
     ret = json.loads(checkout_form_result.read().decode('utf-8'))
     if ret["status"] == "success":
         order = get_cart_order(current_user)
-        order.stage = 1
+        order.stage = 2
         for cp in current_user.cart_products_set:
             cp.delete()
 

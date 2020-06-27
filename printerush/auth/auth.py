@@ -12,6 +12,7 @@ from printerush.address.assistant_func import country_select_choices
 
 auth_bp = Blueprint('auth_bp', __name__, template_folder='templates', static_folder='static', static_url_path='assets')
 
+
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
@@ -29,6 +30,7 @@ def register():
                 flash(u"%s" % ex, 'danger')
 
     return render_template("auth/register.html", page_info=FormPI(form=form, title=translation['title']))
+
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -49,12 +51,14 @@ def login():
             flash(translation["wrong_password"], 'danger')
     return render_template("auth/login.html", page_info=FormPI(form=form, title=translation['title']))
 
+
 @auth_bp.route("/logout")
 @login_required
 def logout():
     logout_user()
     flash(get_translation()["auth"]["auth"]["logout"]["logout_successful"], 'success')
     return redirect(url_for("general_bp.index"))
+
 
 @auth_bp.route("/account", methods=['GET', 'POST'])
 @login_required
@@ -63,26 +67,22 @@ def account():
     form_2 = ChangePassword()
     g.form_1 = form_1
     g.form_2 = form_2
-    g.step = 1
+    g.tab = 1 if not request.args.get("tab") else int(request.args.get("tab"))
     g.addresses = current_user.addresses_set
     g.new_address_form = AddressModalForm(url_for("address_api_bp.new_address_api"))
     g.new_address_form.country.choices += country_select_choices()
-    #print(g.addresses)
     translation = get_translation()["auth"]["auth"]["account"]
-    
-    if form_1.validate_on_submit():
-        g.step = 2
-        if hasher.verify(form_1.password.data, current_user.password_hash):
 
+    if form_1.validate_on_submit():
+        form_2.error = []
+        if hasher.verify(form_1.password.data, current_user.password_hash):
             current_user.first_name = form_1.first_name.data
             current_user.last_name = form_1.last_name.data
             current_user.email = form_1.email.data
             current_user.phone_number = form_1.phone_number.data
 
-            #next_page = request.args.get("next", url_for("auth_bp.account"))
-            form_2.error = []
             flash(get_translation()["auth"]["auth"]["account"]["password_update_successful"], 'success')
-            return render_template("auth/account.html", page_info=LayoutPI(title=translation['title']))
+            return redirect(url_for("auth_bp.account", tab=2))
         else:
             flash(u"%s" % translation['wrong_password'], 'danger')
 
@@ -92,20 +92,17 @@ def account():
     form_1.phone_number.data = current_user.phone_number
 
     if form_2.validate_on_submit():
-        g.step = 4
+        form_1.error = []
         if hasher.verify(form_2.password.data, current_user.password_hash):
-            if form_2.new_password_verification.data==form_2.new_password.data:
+            if form_2.new_password_verification.data == form_2.new_password.data:
 
                 current_user.password_hash = hasher.hash(form_2.new_password_verification.data)
                 flash(get_translation()["auth"]["auth"]["account"]["password_update_successful"], 'success')
-                next_page = request.args.get("next", url_for("auth_bp.account"))
-                return redirect(next_page)
+                return redirect(url_for("auth_bp.account", tab=4))
             else:
                 flash(u"%s" % translation['passwords_do_not_match'], 'danger')
         else:
             flash(u"%s" % translation['wrong_password'], 'danger')
 
+    g.orders = current_user.orders_set
     return render_template("auth/account.html", page_info=FormPI(title=translation['title'], form=form_1))
-
-
-

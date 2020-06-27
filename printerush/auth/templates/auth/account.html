@@ -35,10 +35,10 @@
             </div>
             <div class="account-tab-inner">
               <ul class="account-tab-stap">
-                <li id="step1" {%if g.step==1%}class="active"{%endif%}> <a href="javascript:void(0)">Adres Bilgilerim<i class="fa fa-angle-right"></i> </a> </li>
-                <li id="step2" {%if g.step==2%}class="active"{%endif%}> <a href="javascript:void(0)">Hesap Detayları<i class="fa fa-angle-right"></i> </a> </li>
-                <li id="step3" {%if g.step==3%}class="active"{%endif%}> <a href="javascript:void(0)">Siparişlerim<i class="fa fa-angle-right"></i> </a> </li>
-                <li id="step4" {%if g.step==4%}class="active"{%endif%}> <a href="javascript:void(0)">Şifre Değiştir<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="tab1" {%if g.tab==1%}class="active"{%endif%}> <a href="javascript:void(0)">Adres Bilgilerim<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="tab2" {%if g.tab==2%}class="active"{%endif%}> <a href="javascript:void(0)">Hesap Detayları<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="tab3" {%if g.tab==3%}class="active"{%endif%}> <a href="javascript:void(0)">Siparişlerim<i class="fa fa-angle-right"></i> </a> </li>
+                <li id="tab4" {%if g.tab==4%}class="active"{%endif%}> <a href="javascript:void(0)">Şifre Değiştir<i class="fa fa-angle-right"></i> </a> </li>
               </ul>
             </div>
           </div>
@@ -48,8 +48,8 @@
             <div class="alert alert-{{ category }}" role="alert">
                 {{ message }}
             </div>
-            {% endfor %}
-          <div id="data-step1" class="account-content" data-temp="tabdata" {%if g.step!=1%} style="display:none" {%endif%}>
+          {% endfor %}
+          <div id="data-tab1" class="account-content" data-temp="tabdata" {%if g.tab!=1%} style="display:none" {%endif%}>
             <div class="row">
               <div class="col-12">
                 <div class="heading-part heading-bg mb-30">
@@ -67,14 +67,14 @@
               </div>
             </div>
           </div>
-          <div id="data-step2" class="account-content" data-temp="tabdata" {%if g.step!=2%} style="display:none" {%endif%}>
+          <div id="data-tab2" class="account-content" data-temp="tabdata" {%if g.tab!=2%} style="display: none;" {%endif%}>
             <div class="m-0">
               {%  with form = g.form_1  %}
               {%  include 'parts/form.html' %}
               {%  endwith %}
             </div>
           </div>
-          <div id="data-step3" class="account-content" data-temp="tabdata" {%if g.step!=3%} style="display:none" {%endif%}>
+          <div id="data-tab3" class="account-content" data-temp="tabdata" {%if g.tab!=3%} style="display:none" {%endif%}>
             <div id="form-print" class="admission-form-wrapper">
               <div class="row">
                 <div class="col-12">
@@ -85,81 +85,114 @@
               </div>
               <div class="row">
                 <div class="col-12 mb-xs-30">
-                  <div class="cart-item-table commun-table">
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th colspan="4">
-                              <ul>
-                                <li><span>Order placed</span> <span>17 December 2016</span></li>
-                                <li class="price-box"><span>Total</span> <span class="price">$160.00</span></li>
-                                <li><span>Order No.</span> <span>#011052</span></li>
-                              </ul>
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <a href="product-page.html">
-                                <div class="product-image">
-                                  <img alt="Everypick" src="images/1.jpg">
+                  {% for order in g.orders %}
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="row">
+                        <div class="col-md-3 text-center">
+                          <div>
+                            <small>Sipariş No: <b>{{ order.id}}</b></small>
+                          </div>
+                          <div class="text-muted">
+                            <small><span>{{ order.data_status_ref.creation_time.strftime("%d %B %Y, %H:%M") }}</span></small>
+                          </div>
+                        </div>
+                        <div class="col-md-6 text-center">
+                          <div class="font-weight-bold h6">
+                            <i class="fa fa-check ml-auto text-success" aria-hidden="true"></i>
+                            <span>{{ order.order_status_message }}</span>
+                          </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                          <div>
+                            <b>{{ order.total_price }}₺</b>
+                          </div>
+                          <div>
+                            <small>{{ order.payment_method }}</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body" style="display: none;">
+
+                      {% for sub_order in order.sub_orders_set %}
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-6">
+                              {% for order_product in sub_order.order_products_set %}
+                              <div class="row my-2">
+                                <div class="col-4 product-image">
+                                  <a href="{{ url_for("products_bp.view", product_id=order_product.product_ref.id) }}">
+                                    <div class="product-image">
+                                      <img alt="{{ order_product.product_ref.name }}" src="{{ order_product.product_ref.main_photo.file_path }}">
+                                    </div>
+                                  </a>
                                 </div>
-                              </a>
-                            </td>
-                            <td>
-                              <div class="product-title">
-                                <a href="product-page.html">Cross Colours Camo Print Tank half mengo</a>
-                              </div>
-                              <div class="product-info-stock-sku m-0">
-                                <div>
-                                  <label>Quantity: </label>
-                                  <span class="info-deta">1</span>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="base-price price-box">
-                                <span class="price">$80.00</span>
-                              </div>
-                            </td>
-                            <td>
-                              <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item"></i>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="product-page.html">
-                                <div class="product-image">
-                                  <img alt="Everypick" src="images/2.jpg">
-                                </div>
-                              </a>
-                            </td>
-                            <td>
-                              <div class="product-title">
-                                <a href="product-page.html">Defyant Reversible Dot Shorts</a>
-                              </div>
-                              <div class="product-info-stock-sku m-0">
-                                <div>
-                                  <label>Quantity: </label>
-                                  <span class="info-deta">1</span>
+                                <div class="col-8">
+                                  <div>
+                                    <a href="{{ url_for("products_bp.view", product_id=order_product.product_ref.id) }}">
+                                      {{ order_product.product_ref.name }}
+                                    </a>
+                                  </div>
+                                  <div>
+                                    <span>Mağaza: <a class="font-weight-bold" href="#" >{{ sub_order.store_ref.name }}</a></span>
+                                  </div>
+                                  <div>
+                                    <span class="price">{% if order_product.quantity>1 %}{{ order_product.quantity }} adet * {% endif %}{{ order_product.unit_price }}₺</span>
+                                  </div>
                                 </div>
                               </div>
-                            </td>
-                            <td>
-                              <div class="base-price price-box">
-                                <span class="price">$80.00</span>
+                              {% endfor %}
+                            </div>
+                            <div class="col-md-6 border-left">
+                              {% with shipping_tracking = sub_order.shipping_information_for_products_ref %}
+                              {% if shipping_tracking %}
+                              <div class="row"><div class="col">
+                                <div class="row"><div class="col">
+                                  <span class="font-weight-bold">Kargo durumu: </span>
+                                  <span>{% if shipping_tracking.status == 1 %}Kargoya verildi{% elif shipping_tracking.status == 2 %}Kargo geri döndü{% elif shipping_tracking.status == 3 %}Kargo teslim edildi <i class="fa fa-check ml-auto text-success" aria-hidden="true"></i>{% endif %}</span>
+                                </div></div>
+                                <div class="row"><div class="col">
+                                  <span class="font-weight-bold">Kargo firması: {{ shipping_tracking.shipping_company }}</span>
+                                </div></div>
+                                <div class="row"><div class="col">
+                                  <span class="font-weight-bold">Takip numarası: </span>
+                                  <span>{{ shipping_tracking.shipping_tracking_number }}</span>
+                                </div></div>
                               </div>
-                            </td>
-                            <td>
-                              <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item"></i>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                              {% else %}
+                              <div class="row"><div class="col">
+                                  <span class="font-weight-bold">Kargo durumu: </span>
+                                  <span>Sipariş hazırlanıyor</span>
+                              </div></div>
+                              {% endif %}
+                              {% endwith %}
+                              {% with shipping_tracking = sub_order.shipping_information_for_invoice_ref %}
+                              {% if shipping_tracking %}
+                              <div class="row"><div class="col">
+                                <div class="row"><div class="col">
+                                  <span class="font-weight-bold">Kargo durumu: </span>
+                                  <span>{% if shipping_tracking.status == 1 %}Kargoya verildi{% elif shipping_tracking.status == 2 %}Kargo geri döndü{% elif shipping_tracking.status == 3 %}Kargo teslim edildi <i class="fa fa-check ml-auto text-success" aria-hidden="true"></i>{% endif %}</span>
+                                </div></div>
+                                <div class="row"><div class="col">
+                                  <span class="font-weight-bold">Kargo firması: {{ shipping_tracking.shipping_company }}</span>
+                                </div></div>
+                                <div class="row"><div class="col">
+                                  <span class="font-weight-bold">Takip numarası: </span>
+                                  <span>{{ shipping_tracking.shipping_tracking_number }}</span>
+                                </div></div>
+                              </div>
+                              {% endif %}
+                              {% endwith %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
                     </div>
                   </div>
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -171,7 +204,7 @@
               </div>
            </div>
           </div>
-          <div id="data-step4" class="account-content" data-temp="tabdata" {%if g.step!=4%} style="display:none" {%endif%}>
+          <div id="data-tab4" class="account-content" data-temp="tabdata" {%if g.tab!=4%} style="display:none" {%endif%}>
             {%  with form = g.form_2  %}
             {%  include 'parts/form.html' %}
             {%  endwith %}
@@ -189,4 +222,9 @@
 <script src="{{ url_for('address_bp.static', filename='address.js') }}"></script>
 <script src="{{ url_for('address_bp.static', filename='parts/address_list.js') }}"></script>
 <script src="{{ url_for('order_bp.static', filename='shipping.js') }}"></script>
+<script>
+  $(document).on("click", ".card-header", function () {
+    $(this).parent().children(".card-body").toggle();
+  });
+</script>
 {% endblock %}

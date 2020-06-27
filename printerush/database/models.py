@@ -154,6 +154,24 @@ class Order(db.Entity):
     def total_price(self):
         return self.shipping_price + self.products_price
 
+    @property
+    def payment_method(self):
+        return "Online ödeme"
+
+    @property
+    def order_status_message(self):
+        if self.stage == 1:
+            return "Ödeme bekleniyor"
+        if self.stage == 2:
+            return "Sipariş onay bekliyor"
+        if self.stage == 3:
+            return "Sipariş onaylandı"
+        if self.stage == 3:
+            return "Müşteri onayı bekleniyor"
+        if self.stage == 5:
+            return "Sipariş tamamlandı"
+
+
 
 class Printable3dModel(db.Entity):
     id = PrimaryKey(int, auto=True)
@@ -347,7 +365,9 @@ class ShippingTracking(db.Entity):
     sub_order_for_products_ref = Optional(SubOrder, reverse='shipping_information_for_products_ref')
     sub_order_for_invoice_ref = Optional(SubOrder, reverse='shipping_information_for_invoice_ref')
 
-
+    @property
+    def shipping_company(self):
+        return "PTT Kargo"
 # # PostgreSQL
 # url = os.getenv("DATABASE_URL")
 # user = url.split('://')[1].split(':')[0]
