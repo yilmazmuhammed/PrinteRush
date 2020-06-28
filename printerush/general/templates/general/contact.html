@@ -42,7 +42,7 @@
             <div class="contact-box">
               <div class="contact-icon contact-phone-icon"></div>
               <span><b>Tel</b></span>
-              <p>{%if g.phone_number==None%} Kayıtlı Numara Yok {%endif%}</p>
+              <p>{%if g.phone_number==None%}Kayıtlı Numara Yok{%else}g.phone_number{%endif%}</p>
             </div>
           </div>
           <div class="col-md-4 p-0">
