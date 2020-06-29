@@ -366,17 +366,17 @@ class ShippingTracking(db.Entity):
     @property
     def shipping_company(self):
         return "PTT Kargo"
-# # PostgreSQL
-# url = os.getenv("DATABASE_URL")
-# user = url.split('://')[1].split(':')[0]
-# password = url.split('://')[1].split(':')[1].split('@')[0]
-# host = url.split('://')[1].split(':')[1].split('@')[1]
-# port = url.split('://')[1].split(':')[2].split('/')[0]
-# database = url.split('://')[1].split(':')[2].split('/')[1]
-# db.bind(provider='postgres', user=user, password=password, host=host, database=database, port=port)
+# PostgreSQL
+url = os.getenv("DATABASE_URL")
+user = url.split('://')[1].split(':')[0]
+password = url.split('://')[1].split(':')[1].split('@')[0]
+host = url.split('://')[1].split(':')[1].split('@')[1]
+port = url.split('://')[1].split(':')[2].split('/')[0]
+database = url.split('://')[1].split(':')[2].split('/')[1]
+db.bind(provider='postgres', user=user, password=password, host=host, database=database, port=port)
 
-# SQLite
-db.bind(provider='sqlite', filename='database.sqlite', create_db=True)
+# # SQLite
+# db.bind(provider='sqlite', filename='database.sqlite', create_db=True)
 
 db.generate_mapping(create_tables=True)
 
