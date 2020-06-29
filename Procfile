@@ -1,2 +1,2 @@
-web: gunicorn run:app
-# release: python database/dbinit.py
+web: gunicorn printerush.app:app
+release: python printerush/database/models.py
