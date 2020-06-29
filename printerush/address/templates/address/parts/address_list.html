@@ -1,7 +1,7 @@
-<div class="card-group">
-  <div class="row">
+<div id="{{ prefix }}address-group" class="card-group">
+  <div class="row ">
     {% for address in addresses %}
-      <div id="{{ prefix }}address-{{ address.id }}" class="card mx-1 my-2" style="width: 18rem;">
+      <div id="{{ prefix }}address-{{ address.id }}" class="card mx-md-1 my-2 mx-auto address-card" style="width: 18rem;">
         <div class="card-header d-flex">
           <h5 class="card-title">{{ address.title }}</h5>
         </div>
@@ -13,14 +13,14 @@
         </div>
         <div class="card-footer">
           <small class="text-muted">
-            <a href="#" class="card-link">Sil</a>
-            <a href="#" class="card-link">Düzenle</a>
+            <a id="remove-address-{{ address.id }}" class="card-link">Sil</a>
+{#            <a href="#" class="card-link">Düzenle</a>#}
           </small>
         </div>
       </div>
     {% endfor %}
     {% if new_address_form %}
-      <div id="{{ prefix }}address-0" class="card mx-1 my-2" style="width: 18rem;">
+      <div id="new-address-card" class="card mx-1 my-2" style="width: 18rem;">
         <div class="card-header d-flex">
           <h5 class="card-title" style="opacity: 0.0"> Yeni Adres </h5>
         </div>
