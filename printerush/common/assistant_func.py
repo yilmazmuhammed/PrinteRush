@@ -1,3 +1,4 @@
+import codecs
 import json
 
 from flask import url_for, g, session
@@ -56,9 +57,9 @@ def set_translation(language=None):  # language = session.get('language')
 
     select_translation = {}
     if language is not None and language in LANGUAGES.keys():
-        with open(url_for('static', filename='languages/%s/translations.json' % language), 'r') as f:
+        with codecs.open(url_for('static', filename='languages/%s/translations.json' % language), 'r', "utf-8") as f:
             select_translation = json.load(f)
-    with open('./printerush/static/languages/%s/translations.json' % default_language, 'r') as f:
+    with codecs.open('./printerush/static/languages/%s/translations.json' % default_language, 'r', "utf-8") as f:
         global_translation = json.load(f)
     global_translation.update(select_translation)
     return global_translation
