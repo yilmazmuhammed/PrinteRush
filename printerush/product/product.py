@@ -13,8 +13,8 @@ products_bp = Blueprint('products_bp', __name__, template_folder='templates', st
                         static_url_path='assets')
 
 
-@products_bp.route('/<int:product_id>', defaults={'p': None}, methods=['GET', 'POST'])
-@products_bp.route('/<int:product_id>/<p>', methods=['GET', 'POST'])
+@products_bp.route('/p<int:product_id>', defaults={'p': None}, methods=['GET', 'POST'])
+@products_bp.route('/<p>-p<int:product_id>', methods=['GET', 'POST'])
 @url_reformative
 def view(product_id, p):
     product = Product.get(id=product_id)
