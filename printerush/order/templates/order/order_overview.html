@@ -15,18 +15,18 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          {% from 'order/parts.html' import steps %}
+          {% from 'order/macros.html' import steps %}
           {{ steps(step=2, translation=page_info.translation["order"]["templates"]["order"]["parts"]) }}
           <div class="checkout-content">
             <div class="row">
               <div class="col-12">
                 <div class="heading-part align-center">
-                  <h2 class="heading">Order Overview</h2>
+                  <h2 class="heading">{{ translation["order_overview"] }}</h2>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-8 mb-sm-30">
+              <div class="col-md-9 mb-sm-30">
                 <div class="cart-item-table commun-table mb-30">
                     <div class="table-responsive">
                       <table class="table">
@@ -138,7 +138,7 @@
                   </div>
                 </div></div>
               </div>
-              <div class="col-md-4 d-flex flex-column">
+              <div class="col-md-3 d-flex flex-column">
                 <div class="cart-total-table commun-table mb-30">
                   <div class="table-responsive">
                     <table class="table">
@@ -164,7 +164,7 @@
                     </table>
                   </div>
                 </div>
-                <a href="{{ url_for("order_bp.payment_page") }}">
+                <a class="mx-auto" href="{{ url_for("order_bp.payment_page") }}">
                   <button class="btn btn-color" id="continue">{{ translation["continue"] }}<span><i class="fa fa-angle-right"></i></span></button>
                 </a>
               </div>

@@ -89,7 +89,7 @@ def payment_page():
                            page_info=LayoutPI(title=translation["title"]))
 
 
-@order_bp.route("/checkout/order_completed", methods=["GET", "POST"])
+@order_bp.route("/checkout/order_completed", methods=["POST"])
 @cart_required
 def order_completed_page():
     if not request.form.get("token"):

@@ -13,7 +13,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          {% from 'order/parts.html' import steps %}
+          {% from 'order/macros.html' import steps %}
           {{ steps(step=4, translation=page_info.translation["order"]["templates"]["order"]["parts"]) }}
           <div id="form-print" class="checkout-content">
             <div class="row">

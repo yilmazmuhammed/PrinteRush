@@ -2,6 +2,7 @@ let run = false;
 function modal_form_submit(next=function () {}) {
   if(run) return;
   run = true;
+
   function after_form_submitted(data) {
     if(data.result)
     {

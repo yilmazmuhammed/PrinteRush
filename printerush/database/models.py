@@ -105,7 +105,6 @@ class Address(db.Entity):
     district_ref = Required('District')
     web_user_ref = Optional(WebUser)
     store_ref = Optional('Store')
-    is_constant = Required(bool, default=False)
     shipped_orders_set = Set('Order', reverse='shipping_address_ref')
     invoiced_orders_set = Set('Order', reverse='invoicing_address_ref')
 
@@ -114,9 +113,8 @@ class Address(db.Entity):
             return False
         return True
 
-    # @property
-    # def is_constant(self):
-    #     return self.shipped_orders_set.count() > 0 or self.invoiced_orders_set.count() > 0
+    def is_constant(self):
+        return self.shipped_orders_set.count() > 0 or self.invoiced_orders_set.count() > 0
 
 
 class Order(db.Entity):

@@ -4,21 +4,10 @@
   {% set translation = page_info.translation['cart']['cart']['view_cart']['html'] %}
   {% set product = page_info.product %}
   
-  <!-- Bread Crumb STRAT -->
-  <div class="banner inner-banner1 ">
-    <div class="container">
-      <section class="banner-detail center-xs">
-        <h1 class="banner-title">{{ page_info.title.split(' | ')[0] }}</h1>
-        <div class="bread-crumb right-side float-none-xs">
-          <ul>
-            <li><a href="{{ url_for('general_bp.index') }}">Home</a>/</li>
-            <li><span>Women</span></li>
-          </ul>
-        </div>
-      </section>
-    </div>
-  </div>
-  <!-- Bread Crumb END -->
+  {# Bread Crumb STRAT #}
+  {% from 'parts/bread_crumb.html' import bread_crumb %}
+  {{ bread_crumb(banner_title=page_info.title.split("|")[0], layout_translation=page_info.layout_translation) }}
+  {# Bread Crumb END #}
   
   <!-- CONTAIN START -->
   <section class="ptb-70">
@@ -99,18 +88,18 @@
       <div class="mb-30">
         <div class="row">
           <div class="col-md-6">
-            <div class="mt-30"> 
+            <div class="mt-30">
               <a href="shop.html" class="btn btn-color">
                 <span><i class="fa fa-angle-left"></i></span>
                 {{ translation["continue_shopping"] }}
-              </a> 
+              </a>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="mt-30 right-side float-none-xs"> 
-              <a class="btn btn-color">{{ translation["update_cart"] }}</a>
-            </div>
-          </div>
+{#          <div class="col-md-6">#}
+{#            <div class="mt-30 right-side float-none-xs"> #}
+{#              <a class="btn btn-color">{{ translation["update_cart"] }}</a>#}
+{#            </div>#}
+{#          </div>#}
         </div>
       </div>
       <hr>
@@ -204,10 +193,10 @@
       <div class="mt-30">
         <div class="row">
           <div class="col-12">
-            <div class="right-side float-none-xs"> 
+            <div class="right-side float-none-xs">
               <a href="{{ url_for("order_bp.shipping_page") }}" class="btn btn-color">{{ translation["proceed_to_checkout"] }}
                 <span><i class="fa fa-angle-right"></i></span>
-              </a> 
+              </a>
             </div>
           </div>
         </div>

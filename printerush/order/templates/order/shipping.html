@@ -16,7 +16,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          {% from 'order/parts.html' import steps %}
+          {% from 'order/macros.html' import steps %}
           {{ steps(step=1, translation=page_info.translation["order"]["templates"]["order"]["parts"]) }}
           <div class="checkout-content" >
             <div class="row">
@@ -32,12 +32,12 @@
             </div>
             {% endfor %}
             <div class="row justify-content-center">
-              <div class="col-9">
-                <div id="shipping-addresses" class="row">
+              <div class="col-lg-9">
+                <div id="shipping-addresses" class="row"> <div class="col">
                   {% with addresses = g.addresses, prefix="shipping-", new_address_form=g.new_address_form %}
                   {% include "address/parts/address_list.html" %}
                   {% endwith %}
-                </div>
+                </div></div>
                 <br>
                 <div class="row check-box">
                   <span>
@@ -46,13 +46,13 @@
                   </span>
                 </div>
                 <br>
-                <div id="invoicing-addresses" class="row" style="display: none;">
+                <div id="invoicing-addresses" class="row" style="display: none;"> <div class="col">
                   {% with addresses = g.addresses, prefix="invoicing-", new_address_form=g.new_address_form %}
                   {% include "address/parts/address_list.html" %}
                   {% endwith %}
-                </div>
+                </div></div>
               </div>
-              <div class="col-3 d-flex flex-column">
+              <div class="col-lg-3 d-flex flex-column">
                 <div class="cart-total-table commun-table">
                   <table class="table">
                     <thead>
@@ -88,7 +88,7 @@
                     </tbody>
                   </table>
                 </div>
-                <button class="btn btn-color" id="continue">{{ translation["continue"] }}<span><i class="fa fa-angle-right"></i></span></button>
+                <button class="mx-auto btn btn-color" id="continue">{{ translation["continue"] }}<span><i class="fa fa-angle-right"></i></span></button>
               </div>
             </div>
           </div>

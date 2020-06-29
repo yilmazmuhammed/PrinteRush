@@ -82,9 +82,9 @@ async function update_cart(){
               "  </div>\n" +
               "</li>"
       sum += cp.product_ref.main_option.price*cp.quantity;
-      }
+    }
     $(".cart-list").html(html);
-    $(".cart-price-box.price-box").html(sum + "TL");
+    $(".cart-price-box.price-box").html(sum + "₺");
     $("#number-of-cart-product").html(i);
   }
 }
@@ -134,7 +134,7 @@ $(document)
   .on('click', '[id^="remove-from-cart-p"]', function(){
     let product_id = this.id.substring(18);
     api_remove_from_cart(product_id).then(r => update_cart());
-})
+  })
   .on("click", '[id^="add-to-cart-p"]', function(){
     let product_id = this.id.substring(13);
     let quantity = $('#qty').val();
@@ -142,19 +142,19 @@ $(document)
       show_message_modal(msg);
       update_cart();
     });
-})
+  })
   .on("change", '[id^="cart-page-quantity-p"]', function () {
     let new_quantity = $(this).val();
     let product_id = this.id.substring("cart-page-quantity-p".length);
     api_update_cart_product(product_id, new_quantity).then(r => update_cart_page_html()).then(r => toggle_message_modal("Sepet güncellendi."));
-})
+  })
   .on("click", '[id^="cart-page-remove-p"]', function () {
     let product_id = this.id.substring("cart-page-remove-p".length);
     api_remove_from_cart(product_id).then(r => update_cart_page_html()).then(r => toggle_message_modal("Sepet güncellendi."));
-})
+  })
   .on("click", '[id^="wishlist-p"]', function(){
     alert("Beğendiklerime ekle");
-})
+  })
   .on("click", '[id^="compare-p"]', function(){
     alert("Karşılaştır");
-});
+  });

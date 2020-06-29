@@ -3,7 +3,7 @@
   {%  endblock %}
 
   {% block content %}
-{#  {% set translation = page_info.translation["order"]["templates"]["order"]["payment_html"] %}#}
+  {% set translation = page_info.translation["order"]["templates"]["order"]["payment_html"] %}
   
   {# Bread Crumb STRAT #}
   {% from 'parts/bread_crumb.html' import bread_crumb %}
@@ -15,13 +15,13 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          {% from 'order/parts.html' import steps %}
+          {% from 'order/macros.html' import steps %}
           {{ steps(step=3, translation=page_info.translation["order"]["templates"]["order"]["parts"]) }}
           <div class="checkout-content">
             <div class="row">
               <div class="col-12">
                 <div class="heading-part align-center">
-                  <h2 class="heading">Select a payment method</h2>
+                  <h2 class="heading">{{ translation["payment_method"] }}</h2>
                 </div>
               </div>
             </div>

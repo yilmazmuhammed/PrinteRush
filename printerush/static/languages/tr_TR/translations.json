@@ -1,13 +1,13 @@
 {
   "address": {
     "api": {
-      "remove_address_api": {
-        "success_msg": "Adres silindi.",
-        "web_user_address_mismatch": "Adres bulunamadı."
-      },
       "new_address_api": {
         "success_msg": "Adres eklendi.",
         "title": "Yeni Adres"
+      },
+      "remove_address_api": {
+        "success_msg": "Adres silindi.",
+        "web_user_address_mismatch": "Adres bulunamadı."
       }
     },
     "db": {
@@ -132,6 +132,31 @@
         },
         "title": "Üye Bilgileri"
       },
+      "contact_user": {
+        "email": {
+          "label": "Eposta adresi",
+          "length": "Eposta adresi 254 karakterden fazla olamaz.",
+          "required": "Lütfen e-posta adresinizi giriniz."
+        },
+        "first_name": {
+          "label": "İsim",
+          "length": "İsim 40 karakterden fazla olamaz.",
+          "required": "Lütfen isminizi giriniz."
+        },
+        "message": {
+          "label": "Mesajınız",
+          "length": "Mesajınız 20 karakterden az olamaz.",
+          "required": "Lütfen mesajınızı giriniz."
+        },
+        "phone_number": {
+          "label": "Telefon numarası",
+          "length": "Telefon numarası 20 karakterden fazla olamaz.",
+          "required": "Lütfen telefon numarası giriniz."
+        },
+        "submit": {
+          "label": "Gönder"
+        }
+      },
       "login": {
         "form_title": "Üye Girişi",
         "remember_me": {
@@ -203,31 +228,6 @@
           "label": "Kullanıcı Adı",
           "length": "Kullanıcı adı 20 karakterden fazla olamaz.",
           "required": "Lütfen kullanıcı adını giriniz."
-        }
-      },
-      "contact_user": {
-        "email": {
-          "label": "Eposta adresi",
-          "length": "Eposta adresi 254 karakterden fazla olamaz.",
-          "required": "Lütfen e-posta adresinizi giriniz."
-        },
-        "first_name": {
-          "label": "İsim",
-          "length": "İsim 40 karakterden fazla olamaz.",
-          "required": "Lütfen isminizi giriniz."
-        },
-        "phone_number": {
-          "label": "Telefon numarası",
-          "length": "Telefon numarası 20 karakterden fazla olamaz.",
-          "required": "Lütfen telefon numarası giriniz."
-        },
-        "submit": {
-          "label": "Gönder"
-        },
-        "message": {
-          "label": "Mesajınız",
-          "length": "Mesajınız 20 karakterden az olamaz.",
-          "required": "Lütfen mesajınızı giriniz."
         }
       }
     }
@@ -306,6 +306,7 @@
           "continue": "Devam et",
           "free_shipping": "Ücretsiz kargo",
           "invoicing_address": "Fatura Adresi",
+          "order_overview": "Sipariş özeti",
           "product": "Ürün",
           "product_detail": "Ürün Detayı",
           "products_price": "Ürünlerin Fiyatı",
@@ -320,6 +321,9 @@
           "order_overview": "Sipariş Özeti",
           "payment": "Ödeme Bilgileri",
           "shipping": "Teslimat Bilgileri"
+        },
+        "payment_html": {
+          "payment_method": "Ödeme yöntemi"
         },
         "shipping_html": {
           "amount_payable": "Ödenecek tutar",

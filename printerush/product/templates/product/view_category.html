@@ -9,21 +9,10 @@
   {% set products = page_info.products %}
 
 
-  <!-- Bread Crumb STRAT -->
-  <div class="banner inner-banner1 ">
-    <div class="container">
-      <section class="banner-detail center-xs">
-        <h1 class="banner-title">Women</h1>
-        <div class="bread-crumb right-side float-none-xs">
-          <ul>
-            <li><a href="{{ url_for('general_bp.index') }}">Home</a>/</li>
-            <li><span>Women</span></li>
-          </ul>
-        </div>
-      </section>
-    </div>
-  </div>
-  <!-- Bread Crumb END -->  
+  {# Bread Crumb STRAT #}
+  {% from 'parts/bread_crumb.html' import bread_crumb %}
+  {{ bread_crumb(banner_title=page_info.title.split("|")[0], layout_translation=page_info.layout_translation) }}
+  {# Bread Crumb END #}
   
   <!-- CONTAIN START -->
   <section class="ptb-70">
@@ -75,174 +64,174 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group mb-20">
-                  <div class="inner-title">{{ translation['discount'] }}</div>
-                  <ul class="discount">
-                    <li>
-                      <div class="radio">
-                        <input id="disc80" class="radio-button" type="radio" value="disc80" name="radio-disc">
-                        <label for="disc80">80% and above</label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="radio">
-                        <input id="disc70" class="radio-button" type="radio" value="disc70" name="radio-disc">
-                        <label for="disc70">70% and above</label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="radio">
-                        <input id="disc60" class="radio-button" type="radio" value="disc60" name="radio-disc">
-                        <label for="disc60">60% and above</label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="radio">
-                        <input id="disc50" class="radio-button" type="radio" value="disc50" name="radio-disc">
-                        <label for="disc50">50% and above</label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="radio">
-                        <input id="disc40" class="radio-button" type="radio" value="disc40" name="radio-disc">
-                        <label for="disc40">40% and above</label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="select-color mb-20">
-                  <div class="inner-title">{{ translation['color'] }}</div>
-                  <ul>
-                    <li>
-                      <div class="check-box"> 
-                        <div>
-                          <div class="color-tooltip">
-                            <span class="color-arrow"></span>red
-                          </div>
-                          <input type="checkbox" class="checkbox" id="red" name="red">
-                          <label for="red" class="red"></label>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="check-box"> 
-                        <div>
-                          <div class="color-tooltip">
-                            <span class="color-arrow"></span>black
-                          </div>
-                          <input type="checkbox" class="checkbox" id="black" name="black">
-                          <label for="black" class="black"></label>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="check-box"> 
-                        <div>
-                          <div class="color-tooltip">
-                            <span class="color-arrow"></span>navyblue
-                          </div>
-                          <input type="checkbox" class="checkbox" id="navyblue" name="navyblue">
-                          <label for="navyblue" class="navyblue"></label>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="check-box"> 
-                        <div>
-                          <div class="color-tooltip">
-                            <span class="color-arrow"></span>green
-                          </div>
-                          <input type="checkbox" class="checkbox" id="green" name="green">
-                          <label for="green" class="green"></label>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="check-box"> 
-                        <div>
-                          <div class="color-tooltip">
-                            <span class="color-arrow"></span>blue
-                          </div>
-                          <input type="checkbox" class="checkbox" id="blue" name="blue">
-                          <label for="blue" class="blue"></label>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="check-box"> 
-                        <div>
-                          <div class="color-tooltip">
-                            <span class="color-arrow"></span>rose
-                          </div>
-                          <input type="checkbox" class="checkbox" id="rose" name="rose">
-                          <label for="rose" class="rose"></label>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="check-box"> 
-                        <div>
-                          <div class="color-tooltip">
-                            <span class="color-arrow"></span>magenta
-                          </div>
-                          <input type="checkbox" class="checkbox" id="magenta" name="magenta">
-                          <label for="magenta" class="magenta"></label>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="mb-20">
-                  <div class="inner-title">{{ translation['manufacture'] }}</div>
-                  <ul>
-                    <li>
-                      <div class="check-box"> 
-                        <span>
-                          <input type="checkbox" class="checkbox" id="apple" name="apple">
-                          <label for="apple">Apple <span>(15)</span></label>
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="check-box"> 
-                        <span>
-                          <input type="checkbox" class="checkbox" id="prada" name="prada">
-                          <label for="prada">Prada <span>(05)</span></label>
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="check-box"> 
-                        <span>
-                          <input type="checkbox" class="checkbox" id="canon" name="canon">
-                          <label for="canon">Canon <span>(10)</span></label>
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="check-box"> 
-                        <span>
-                          <input type="checkbox" class="checkbox" id="htc" name="htc">
-                          <label for="htc">HTC <span>(10)</span></label>
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="check-box"> 
-                        <span>
-                          <input type="checkbox" class="checkbox" id="palm" name="palm">
-                          <label for="palm">Palm <span>(10)</span></label>
-                        </span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+{#                <div class="form-group mb-20">#}
+{#                  <div class="inner-title">{{ translation['discount'] }}</div>#}
+{#                  <ul class="discount">#}
+{#                    <li>#}
+{#                      <div class="radio">#}
+{#                        <input id="disc80" class="radio-button" type="radio" value="disc80" name="radio-disc">#}
+{#                        <label for="disc80">80% and above</label>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="radio">#}
+{#                        <input id="disc70" class="radio-button" type="radio" value="disc70" name="radio-disc">#}
+{#                        <label for="disc70">70% and above</label>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="radio">#}
+{#                        <input id="disc60" class="radio-button" type="radio" value="disc60" name="radio-disc">#}
+{#                        <label for="disc60">60% and above</label>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="radio">#}
+{#                        <input id="disc50" class="radio-button" type="radio" value="disc50" name="radio-disc">#}
+{#                        <label for="disc50">50% and above</label>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="radio">#}
+{#                        <input id="disc40" class="radio-button" type="radio" value="disc40" name="radio-disc">#}
+{#                        <label for="disc40">40% and above</label>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                </div>#}
+{#                <div class="select-color mb-20">#}
+{#                  <div class="inner-title">{{ translation['color'] }}</div>#}
+{#                  <ul>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <div>#}
+{#                          <div class="color-tooltip">#}
+{#                            <span class="color-arrow"></span>red#}
+{#                          </div>#}
+{#                          <input type="checkbox" class="checkbox" id="red" name="red">#}
+{#                          <label for="red" class="red"></label>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <div>#}
+{#                          <div class="color-tooltip">#}
+{#                            <span class="color-arrow"></span>black#}
+{#                          </div>#}
+{#                          <input type="checkbox" class="checkbox" id="black" name="black">#}
+{#                          <label for="black" class="black"></label>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <div>#}
+{#                          <div class="color-tooltip">#}
+{#                            <span class="color-arrow"></span>navyblue#}
+{#                          </div>#}
+{#                          <input type="checkbox" class="checkbox" id="navyblue" name="navyblue">#}
+{#                          <label for="navyblue" class="navyblue"></label>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <div>#}
+{#                          <div class="color-tooltip">#}
+{#                            <span class="color-arrow"></span>green#}
+{#                          </div>#}
+{#                          <input type="checkbox" class="checkbox" id="green" name="green">#}
+{#                          <label for="green" class="green"></label>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <div>#}
+{#                          <div class="color-tooltip">#}
+{#                            <span class="color-arrow"></span>blue#}
+{#                          </div>#}
+{#                          <input type="checkbox" class="checkbox" id="blue" name="blue">#}
+{#                          <label for="blue" class="blue"></label>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <div>#}
+{#                          <div class="color-tooltip">#}
+{#                            <span class="color-arrow"></span>rose#}
+{#                          </div>#}
+{#                          <input type="checkbox" class="checkbox" id="rose" name="rose">#}
+{#                          <label for="rose" class="rose"></label>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <div>#}
+{#                          <div class="color-tooltip">#}
+{#                            <span class="color-arrow"></span>magenta#}
+{#                          </div>#}
+{#                          <input type="checkbox" class="checkbox" id="magenta" name="magenta">#}
+{#                          <label for="magenta" class="magenta"></label>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                </div>#}
+{#                <div class="mb-20">#}
+{#                  <div class="inner-title">{{ translation['manufacture'] }}</div>#}
+{#                  <ul>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <span>#}
+{#                          <input type="checkbox" class="checkbox" id="apple" name="apple">#}
+{#                          <label for="apple">Apple <span>(15)</span></label>#}
+{#                        </span>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <span>#}
+{#                          <input type="checkbox" class="checkbox" id="prada" name="prada">#}
+{#                          <label for="prada">Prada <span>(05)</span></label>#}
+{#                        </span>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <span>#}
+{#                          <input type="checkbox" class="checkbox" id="canon" name="canon">#}
+{#                          <label for="canon">Canon <span>(10)</span></label>#}
+{#                        </span>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <span>#}
+{#                          <input type="checkbox" class="checkbox" id="htc" name="htc">#}
+{#                          <label for="htc">HTC <span>(10)</span></label>#}
+{#                        </span>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                      <div class="check-box"> #}
+{#                        <span>#}
+{#                          <input type="checkbox" class="checkbox" id="palm" name="palm">#}
+{#                          <label for="palm">Palm <span>(10)</span></label>#}
+{#                        </span>#}
+{#                      </div>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                </div>#}
                 <a href="#" id="refine" class="btn btn-color">{{ translation['refine'] }}</a>
               </div>
             </div>
             <div class="sidebar-box mb-40 d-none d-lg-block"> 
               <a href="#"> 
-                <img src="images/left-banner.jpg" alt="Everypick"> 
+                <img src="/static/images/left-banner.jpg" alt="Everypick">
               </a> 
             </div>
             <div class="sidebar-box sidebar-item"> <span class="opener plus"></span>
@@ -251,48 +240,27 @@
               </div>
               <div class="sidebar-contant">
                 <ul>
+                  {% for product in g.best_seller %}
                   <li>
-                    <div class="pro-media"> <a href="#"><img alt="T-shirt" src="images/1.jpg"></a> </div>
-                    <div class="pro-detail-info"> <a href="#">Black African Print</a>
+                    <div class="pro-media"> <a href="{{ url_for("products_bp.view", product_id=product.id) }}">
+                      <img alt="{{ product.name }}" src="{{ product.main_photo.file_path }}">
+                    </a> </div>
+                    <div class="pro-detail-info">
+                      <a href="{{ url_for("products_bp.view", product_id=product.id) }}">
+                          {{ product.name }}
+                      </a>
                       <div class="rating-summary-block">
-                        <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
+                        <div class="rating-result" title="{{ product.point|round(2) }}"> <span style="width:{{ product.point * 20 }}%"></span> </div>
                       </div>
-                      <div class="price-box"> <span class="price">$80.00</span> </div>
-                      <div class="cart-link">
-                        <form>
-                          <button title="Add to Cart">Add To Cart</button>
-                        </form>
-                      </div>
+                      <div class="price-box"> <span class="price">{{ product.main_option.price }}₺</span> </div>
+{#                      <div class="cart-link">#}
+{#                        <form>#}
+{#                          <button title="Add to Cart">Add To Cart</button>#}
+{#                        </form>#}
+{#                      </div>#}
                     </div>
                   </li>
-                  <li>
-                    <div class="pro-media"> <a href="#"><img alt="T-shirt" src="images/1.jpg"></a> </div>
-                    <div class="pro-detail-info"> <a href="#">Black African Print</a>
-                      <div class="rating-summary-block">
-                        <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
-                      </div>
-                      <div class="price-box"> <span class="price">$80.00</span> </div>
-                      <div class="cart-link">
-                        <form>
-                          <button title="Add to Cart">Add To Cart</button>
-                        </form>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="pro-media"> <a href="#"><img alt="T-shirt" src="images/1.jpg"></a> </div>
-                    <div class="pro-detail-info"> <a href="#">Black African Print</a>
-                      <div class="rating-summary-block">
-                        <div class="rating-result" title="53%"> <span style="width:53%"></span> </div>
-                      </div>
-                      <div class="price-box"> <span class="price">$80.00</span> </div>
-                      <div class="cart-link">
-                        <form>
-                          <button title="Add to Cart">Add To Cart</button>
-                        </form>
-                      </div>
-                    </div>
-                  </li>
+                  {% endfor %}
                 </ul>
               </div>
             </div>

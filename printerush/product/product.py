@@ -56,6 +56,7 @@ def view_category(category_id, p):
 
     g.product_count = products.count()
     g.number_of_page = int(round(g.product_count / pagesize)) + (g.product_count % pagesize > 0)
+    g.best_seller = category.products().sort_by("lambda p: desc(p.sold)")[:3]
     title = get_translation()['product']['product']['view_category']['title']
     return render_template('product/view_category.html',
                            page_info=ProductCategoryPI(category=category, products=products, title=title, form=filter_form))

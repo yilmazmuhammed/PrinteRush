@@ -4840,11 +4840,11 @@ label {
 	vertical-align: middle;
 }
 .cart-total-table .table tbody tr td {
-	padding: 10px 25px;
+/*	padding: 10px 25px;*/
 	vertical-align: middle;
 }
 .cart-total-table .table thead tr th {
-	padding: 15px 25px;
+/*	padding: 15px 25px;*/
 	vertical-align: middle;
 }
 .commun-table .table tbody tr:first-child td {

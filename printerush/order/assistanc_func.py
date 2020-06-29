@@ -72,7 +72,8 @@ class IyzikoInitialize:
             'price': order.total_price,
             'paidPrice': order.total_price,
             'currency': 'TRY',
-            "callbackUrl": "http://127.0.0.1:5000/order/checkout/payment",
+            # TODO url ekle
+            "callbackUrl": "http://127.0.0.1:5000/order/checkout/order_completed",
             "enabledInstallments": ['2', '3', '6', '9'],
             'buyer': self.buyer,
             'shippingAddress': self.shipping_address,

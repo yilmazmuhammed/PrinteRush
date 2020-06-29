@@ -6,21 +6,10 @@
   {% block content %}
 
 
-  <!-- Bread Crumb STRAT -->
-  <div class="banner inner-banner1 ">
-    <div class="container">
-      <section class="banner-detail center-xs">
-        <h1 class="banner-title">Account</h1>
-        <div class="bread-crumb right-side float-none-xs">
-          <ul>
-            <li><a href="index.html">Home</a>/</li>
-            <li><span>Account</span></li>
-          </ul>
-        </div>
-      </section>
-    </div>
-  </div>
-  <!-- Bread Crumb END -->
+  {# Bread Crumb STRAT #}
+  {% from 'parts/bread_crumb.html' import bread_crumb %}
+  {{ bread_crumb(banner_title=page_info.title.split("|")[0], layout_translation=page_info.layout_translation) }}
+  {# Bread Crumb END #}
 
   <!-- CONTAIN START -->
   <section class="checkout-section ptb-70">
@@ -86,8 +75,8 @@
               <div class="row">
                 <div class="col-12 mb-xs-30">
                   {% for order in g.orders %}
-                  <div class="card">
-                    <div class="card-header">
+                  <div class="card order-card my-3">
+                    <div class="card-header order-card-header">
                       <div class="row">
                         <div class="col-md-3 text-center">
                           <div>
@@ -223,7 +212,7 @@
 <script src="{{ url_for('address_bp.static', filename='parts/address_list.js') }}"></script>
 <script src="{{ url_for('order_bp.static', filename='shipping.js') }}"></script>
 <script>
-  $(document).on("click", ".card-header", function () {
+  $(document).on("click", ".order-card-header", function () {
     $(this).parent().children(".card-body").toggle();
   });
 </script>
