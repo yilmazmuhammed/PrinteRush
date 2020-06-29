@@ -17,7 +17,6 @@ def cart_required(func):
 
 def url_reformative(func):
     @wraps(func)
-    @login_required
     def decorated_view(*args, **kwargs):
         url = request.path
         if url.count(" ") or not url.islower():

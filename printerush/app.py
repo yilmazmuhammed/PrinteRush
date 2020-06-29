@@ -54,7 +54,7 @@ lm.login_message_category = 'danger'
 
 @app.errorhandler(404)
 def unauthorized_access_page(err):
-    return render_template("error/404.html", page_info = LayoutPI(title="Aradığınız sayfa bulunamadı"))
+    return render_template("error/404.html", page_info=LayoutPI(title="Aradığınız sayfa bulunamadı"))
 
 
 if __name__ == '__main__':
