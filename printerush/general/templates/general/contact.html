@@ -31,7 +31,7 @@
             <div class="contact-box">
               <div class="contact-icon contact-phone-icon"></div>
               <span><b>Tel</b></span>
-              <p>{% if g.phone_number==None %}Kayıtlı Numara Yok{% else %}g.phone_number{% endif %}</p>
+              <p>+90 506 643 01 68</p>
             </div>
           </div>
           <div class="col-md-4 p-0">
@@ -53,19 +53,27 @@
     </div>
   </section>
 
-  <section class="ptb-70">
+  <section class="checkout-section ptb-70">
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <div class="heading-part line-bottom mb-30">
-            <h2 class="main_title  heading"><span>Leave a message!</span></h2>
+      <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-8 col-md-8 ">
+          <div class="row">
+            <div class="col-12">
+              <div class="heading-part line-bottom mb-30">
+                <h2 class="main_title  heading"><span>Leave a message!</span></h2>
+              </div>
+            </div>
+          </div>
+          <div class="main-form">
+            {%  with form = page_info.form  %}
+            {%  include 'parts/form.html' %}
+            {%  endwith %}
           </div>
         </div>
       </div>
-      <div class="main-form">
-        {%  with form = page_info.form  %}
-        {%  include 'parts/form.html' %}
-        {%  endwith %}
+        </div>
       </div>
     </div>
   </section>

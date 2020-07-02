@@ -116,6 +116,7 @@
       },
       "register": {
         "passwords_do_not_match": "Parolalar eşleşmiyor.",
+        "success_msg": "Kayıt olundu. Lütfen giriş yapınız.",
         "title": "Kayıt ol"
       }
     },

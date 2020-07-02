@@ -226,14 +226,14 @@
 {#                    </li>#}
 {#                  </ul>#}
 {#                </div>#}
-                <a href="#" id="refine" class="btn btn-color">{{ translation['refine'] }}</a>
+                <a id="refine" class="btn btn-color">{{ translation['refine'] }}</a>
               </div>
             </div>
-            <div class="sidebar-box mb-40 d-none d-lg-block"> 
-              <a href="#"> 
-                <img src="/static/images/left-banner.jpg" alt="Everypick">
-              </a> 
-            </div>
+{#            <div class="sidebar-box mb-40 d-none d-lg-block"> #}
+{#              <a href="#"> #}
+{#                <img src="/static/images/left-banner.jpg" alt="Everypick">#}
+{#              </a> #}
+{#            </div>#}
             <div class="sidebar-box sidebar-item"> <span class="opener plus"></span>
               <div class="sidebar-title">
                 <h3><span>{{ translation['best_seller'] }}</span></h3>
@@ -288,14 +288,14 @@
 {#                        ORIGINAL#}
 {#                      <select  name="speed" id="sort-price" class="option-drop">#}
                       <select  name="speed" id="my_sort" class="">
-                        <option value="ascending_name" selected="selected">Name (A to Z)</option>
-                        <option value="descending_name"><a href="#">Name(Z - A)</a></option>
-                        <option value="ascending_price">price(low&gt;high)</option>
-                        <option value="descending_price">price(high &gt; low)</option>
-                        <option value="ascending_point">rating(highest)</option>
-                        <option value="descending_point">rating(lowest)</option>
-                        <option value="ascending_sold">sold(highest)</option>
-                        <option value="descending_sold">sold(lowest)</option>
+                        <option value="descending_sold" selected="selected">Çok satanlar</option>
+{#                        <option value="ascending_sold"></option>#}
+{#                        <option value="ascending_name">İsme göre (A'dan Z'ye)</option>#}
+{#                        <option value="descending_name"><a href="#">İsme göre (Z'den A'ya)</a></option>#}
+                        <option value="ascending_price">Artan fiyat</option>
+                        <option value="descending_price">Azalan fiyat</option>
+                        <option value="ascending_point">En yüksek puanlılar</option>
+{#                        <option value="descending_point">Puana göre (Artan)</option>#}
                       </select>
                     </fieldset>
                   </div>
@@ -315,7 +315,7 @@
                     </fieldset>
                   </div>
                   <span>{{ translation['show_product'] }}</span>
-                  <div class="compare float-right-sm"> <a href="#" class="btn btn-color">{{ translation['compare'] }} (0)</a> </div>
+{#                  <div class="compare float-right-sm"> <a href="#" class="btn btn-color">{{ translation['compare'] }} (0)</a> </div>#}
                 </div>
               </div>
             </div>
@@ -338,7 +338,7 @@
                                 <li class="pro-cart-icon"><button title="{{ translation['cart'] }}" id="add-to-cart-p{{ product.id }}"><i class="fa fa-shopping-basket"></i></button></li>
 {#                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
                                 <li class="pro-wishlist-icon"><button title="{{ translation['wishlist'] }}"  id="wishlist-p{{ product.id }}"><i class="fa fa-heart"></i></button></li>
-                                <li class="pro-compare-icon"><button title="{{ translation['compare'] }}"  id="compare-p{{ product.id }}"><i class="fa fa-refresh"></i></button></li>
+{#                                <li class="pro-compare-icon"><button title="{{ translation['compare'] }}"  id="compare-p{{ product.id }}"><i class="fa fa-refresh"></i></button></li>#}
                                 <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
                               </ul>
                             </div>
@@ -366,7 +366,7 @@
                                 <li class="pro-cart-icon"><button title="{{ translation['cart'] }}" id="add-to-cart-p{{ product.id }}"><i class="fa fa-shopping-basket"></i></button></li>
 {#                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
                                 <li class="pro-wishlist-icon"><button title="{{ translation['wishlist'] }}"  id="wishlist-p{{ product.id }}"><i class="fa fa-heart"></i></button></li>
-                                <li class="pro-compare-icon"><button title="{{ translation['compare'] }}"  id="compare-p{{ product.id }}"><i class="fa fa-refresh"></i></button></li>
+{#                                <li class="pro-compare-icon"><button title="{{ translation['compare'] }}"  id="compare-p{{ product.id }}"><i class="fa fa-refresh"></i></button></li>#}
                                 <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
                               </ul>
                             </div>
@@ -557,7 +557,7 @@
                                 <div class="bottom-detail">
                                   <ul>
                                     <li class="pro-wishlist-icon"><a href="wishlist.html"><span><i class="fa fa-heart"></i></span>Wishlist</a></li>
-                                    <li class="pro-compare-icon"><a href="compare.html"><span><i class="fa fa-refresh"></i></span>Compare</a></li>
+{#                                    <li class="pro-compare-icon"><a href="compare.html"><span><i class="fa fa-refresh"></i></span>Compare</a></li>#}
                                     <li class="pro-email-icon"><a href="#"><span><i class="fa fa-envelope"></i></span>Email to Friends</a></li>
                                   </ul>
                                 </div>

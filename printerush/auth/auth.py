@@ -25,6 +25,7 @@ def register():
             try:
                 json_data = flask_form_to_dict(request_form=request.form, exclude=['password_verification'])
                 db_add_web_user(json_webuser=json_data)
+                flash(translation["success_msg"], 'success')
                 return redirect(url_for('auth_bp.login'))
             except RegisterException as ex:
                 flash(u"%s" % ex, 'danger')
@@ -42,7 +43,7 @@ def login():
         if user and hasher.verify(form.password.data, user.password_hash) and user.is_active:
             login_user(user, remember=form.remember_me.data)
             update_cart()
-            flash(translation["login_successful"], 'success')
+            # flash(translation["login_successful"], 'success')
             next_page = request.args.get("next", url_for("general_bp.index"))
             return redirect(next_page)
         elif user and not user.is_active:
@@ -56,7 +57,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash(get_translation()["auth"]["auth"]["logout"]["logout_successful"], 'success')
+    # flash(get_translation()["auth"]["auth"]["logout"]["logout_successful"], 'success')
     return redirect(url_for("general_bp.index"))
 
 

@@ -14,6 +14,7 @@
         <div class="col-12">
           <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8 col-md-8 ">
+              {%  include 'parts/flashed_messages.html' %}
               {%  with form = page_info.form %}
               {%  include 'parts/form.html' %}
               {%  endwith %}

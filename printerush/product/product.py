@@ -52,8 +52,10 @@ def view_category(category_id, p):
         abort(404)
 
     filter_form = FilterForm()
-    products = category.products().filter(filtering).sort_by(sorting)
-
+    try:
+        products = category.products().filter(filtering).sort_by(sorting)
+    except Exception as e:
+        return redirect(url_for("products_bp.view_category", category_id=category_id, p=p))
     g.product_count = products.count()
     g.number_of_page = int(round(g.product_count / pagesize)) + (g.product_count % pagesize > 0)
     g.best_seller = category.products().sort_by("lambda p: desc(p.sold)")[:3]

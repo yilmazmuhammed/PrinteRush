@@ -26,16 +26,6 @@ def about():
 def contact():
     form = ContactUserForm()
 
-    user = WebUser.get(is_admin=True)
-    if len(user.phone_number) == 0:
-        g.phone_number = None
-    else:
-        g.phone_number = user.phone_number
-    if len(user.email) == 0:
-        g.email = None
-    else:
-        g.email = user.email
-
     if form.validate_on_submit():
         print(form.first_name.data)
         print(form.email.data)
