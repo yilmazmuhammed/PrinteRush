@@ -170,7 +170,6 @@ class Order(db.Entity):
             return "Sipariş tamamlandı"
 
 
-
 class Printable3dModel(db.Entity):
     id = PrimaryKey(int, auto=True)
     title = Optional(str)
@@ -213,9 +212,12 @@ class ProductCategory(db.Entity):
 
         return ret
 
-    def products(self):
+    def products(self, sort_by=None):
         categories = self.sub_categories()
-        return select(p for p in Product if p.product_category_ref in categories)
+        ret = select(p for p in Product if p.product_category_ref in categories)
+        if sort_by:
+            ret = ret.sort_by(sort_by)
+        return ret
 
 
 class Store(db.Entity):
@@ -366,14 +368,16 @@ class ShippingTracking(db.Entity):
     @property
     def shipping_company(self):
         return "PTT Kargo"
+
+
 # PostgreSQL
-url = os.getenv("DATABASE_URL")
-user = url.split('://')[1].split(':')[0]
-password = url.split('://')[1].split(':')[1].split('@')[0]
-host = url.split('://')[1].split(':')[1].split('@')[1]
-port = url.split('://')[1].split(':')[2].split('/')[0]
-database = url.split('://')[1].split(':')[2].split('/')[1]
-db.bind(provider='postgres', user=user, password=password, host=host, database=database, port=port)
+# url = os.getenv("DATABASE_URL")
+# user = url.split('://')[1].split(':')[0]
+# password = url.split('://')[1].split(':')[1].split('@')[0]
+# host = url.split('://')[1].split(':')[1].split('@')[1]
+# port = url.split('://')[1].split(':')[2].split('/')[0]
+# database = url.split('://')[1].split(':')[2].split('/')[1]
+db.bind(provider="postgres", dsn=os.getenv('DATABASE_URL'))
 
 # # SQLite
 # db.bind(provider='sqlite', filename='database.sqlite', create_db=True)
@@ -382,36 +386,40 @@ db.generate_mapping(create_tables=True)
 
 if __name__ == '__main__':
     with db_session:
-        webuser = WebUser(email="admin@printerush.com",
-                          password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY",
-                          is_admin=True)
-        turkiye = Country(country="Türkiye")
-        izmir = City(city="İzmir", country_ref=turkiye)
-        torbali = District(district="Torbalı", city_ref=izmir)
-        addr = Address(title="store address", first_name="fn", last_name="ln", address_detail="ad", phone_number="pn",
-                       invoice_type=0, district_ref=torbali)
-        store1 = Store(name="PrinteRush", short_name="PrinteRush", phone_number="+905392024175",
-                       email="store@printerush.com", address_ref=addr)
-        root = ProductCategory(title_key="Ana Sayfa")
-        category1 = ProductCategory(title_key="Aydınlatma", parent_category_ref=root)
-        category1_1 = ProductCategory(title_key="Masa Lambası", parent_category_ref=category1)
-        category1_2 = ProductCategory(title_key="Tavan Lambası", parent_category_ref=category1)
-        photo1 = Photo(file_path="/static/images/1.jpg")
-        product1 = Product(name="Ürün 1", description_html="Product 1 açıklaması",
-                           short_description_html="<b>Product</b> 1 sort",
-                           store_ref=store1, product_category_ref=category1_1,
-                           data_status_ref=DataStatus(creator_ref=webuser))
-        Comment(point=4, title="comment 1 title of product 1", message="comment 1 of product 1 comment of product 1",
-                to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
-        Comment(point=5, title="comment 2 title of product 1", message="comment 2 of product 1 comment of product 1",
-                to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
-        Comment(point=5, title="comment 3 title of product 1", message="comment 3 of product 1 comment of product 1",
-                to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
-        ProductOption(product_ref=product1, price=10.50, stock=15)
+        if WebUser.select(lambda w: w.is_admin == True):
+            print("db pass")
+            pass
+        else:
+            webuser = WebUser(email="admin@printerush.com",
+                              password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY",
+                              is_admin=True)
+            turkiye = Country(country="Türkiye")
+            izmir = City(city="İzmir", country_ref=turkiye)
+            torbali = District(district="Torbalı", city_ref=izmir)
+            addr = Address(title="store address", first_name="fn", last_name="ln", address_detail="ad",
+                           phone_number="pn", invoice_type=0, district_ref=torbali)
+            store1 = Store(name="PrinteRush", short_name="PrinteRush", phone_number="+905392024175",
+                           email="store@printerush.com", address_ref=addr)
+            root = ProductCategory(title_key="Ana Sayfa")
+            category1 = ProductCategory(title_key="Aydınlatma", parent_category_ref=root)
+            category1_1 = ProductCategory(title_key="Masa Lambası", parent_category_ref=category1)
+            category1_2 = ProductCategory(title_key="Tavan Lambası", parent_category_ref=category1)
+            photo1 = Photo(file_path="/static/images/1.jpg")
+            product1 = Product(name="Ürün 1", description_html="Product 1 açıklaması",
+                               short_description_html="<b>Product</b> 1 sort",
+                               store_ref=store1, product_category_ref=category1_1,
+                               data_status_ref=DataStatus(creator_ref=webuser))
+            Comment(point=4, title="comment 1 title of product 1", message="comment1 of product 1 comment of product 1",
+                    to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
+            Comment(point=5, title="comment 2 title of product 1", message="comment2 of product 1 comment of product 1",
+                    to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
+            Comment(point=5, title="comment 3 title of product 1", message="comment3 of product 1 comment of product 1",
+                    to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
+            ProductOption(product_ref=product1, price=10.50, stock=15)
 
-        ProductOption(product_ref=Product(name="Ürün 2", description_html="Product 2 açıklaması",
-                                          short_description_html="<b>Product</b> 2 sort",
-                                          store_ref=store1, product_category_ref=category1_2,
-                                          data_status_ref=DataStatus(creator_ref=webuser)
-                                          ),
-                      price=100, stock=15)
+            ProductOption(product_ref=Product(name="Ürün 2", description_html="Product 2 açıklaması",
+                                              short_description_html="<b>Product</b> 2 sort",
+                                              store_ref=store1, product_category_ref=category1_2,
+                                              data_status_ref=DataStatus(creator_ref=webuser)
+                                              ),
+                          price=100, stock=15)

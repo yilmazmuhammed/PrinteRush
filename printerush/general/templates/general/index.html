@@ -65,54 +65,54 @@
   
   <!-- CONTAIN START -->
 
-  <!--  Site Services Features Block Start  -->
-  <div class="pt-70">
-    <div class="ser-feature-block ">
-      <div class="container">
-        <div class="center-xs">
-          <div class="row">
-            <div class="col-xl-3 col-md-6 service-box">
-              <div class="feature-box ">
-                <div class="feature-icon feature1"></div>
-                <div class="feature-detail">
-                  <div class="ser-title">Free Delivery</div>
-                  <div class="ser-subtitle">From $59.89</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 service-box">
-              <div class="feature-box">
-                <div class="feature-icon feature2"></div>
-                <div class="feature-detail">
-                  <div class="ser-title">Support 24/7</div>
-                  <div class="ser-subtitle">Online 24 hours</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 service-box">
-              <div class="feature-box ">
-                <div class="feature-icon feature3"></div>
-                <div class="feature-detail">
-                  <div class="ser-title">Free return</div>
-                  <div class="ser-subtitle">365 a day</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 service-box">
-              <div class="feature-box ">
-                <div class="feature-icon feature4"></div>
-                <div class="feature-detail">
-                  <div class="ser-title">Big Saving</div>
-                  <div class="ser-subtitle">Weeken Sales</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--  Site Services Features Block End  -->
+{#  <!--  Site Services Features Block Start  -->#}
+{#  <div class="pt-70">#}
+{#    <div class="ser-feature-block ">#}
+{#      <div class="container">#}
+{#        <div class="center-xs">#}
+{#          <div class="row">#}
+{#            <div class="col-xl-3 col-md-6 service-box">#}
+{#              <div class="feature-box ">#}
+{#                <div class="feature-icon feature1"></div>#}
+{#                <div class="feature-detail">#}
+{#                  <div class="ser-title">Free Delivery</div>#}
+{#                  <div class="ser-subtitle">From $59.89</div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="col-xl-3 col-md-6 service-box">#}
+{#              <div class="feature-box">#}
+{#                <div class="feature-icon feature2"></div>#}
+{#                <div class="feature-detail">#}
+{#                  <div class="ser-title">Support 24/7</div>#}
+{#                  <div class="ser-subtitle">Online 24 hours</div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="col-xl-3 col-md-6 service-box">#}
+{#              <div class="feature-box ">#}
+{#                <div class="feature-icon feature3"></div>#}
+{#                <div class="feature-detail">#}
+{#                  <div class="ser-title">Free return</div>#}
+{#                  <div class="ser-subtitle">365 a day</div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="col-xl-3 col-md-6 service-box">#}
+{#              <div class="feature-box ">#}
+{#                <div class="feature-icon feature4"></div>#}
+{#                <div class="feature-detail">#}
+{#                  <div class="ser-title">Big Saving</div>#}
+{#                  <div class="ser-subtitle">Weeken Sales</div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  <!--  Site Services Features Block End  -->#}
   
   <!--  New arrivals Products Slider Block Start  -->
   <section class="pt-70 mt-sm-30">
@@ -123,270 +123,68 @@
             <div class="row">
               <div class="col-12">
                 <div class="heading-part line-bottom mb-30">
-                  <h2 class="main_title heading"><span>New Arrivals</span></h2>
+                  <h2 class="main_title heading"><span>Yeni Ürünler</span></h2>
                 </div>
               </div>
             </div>
             <div class="pro_cat">
               <div class="row mlr_-20">
                 <div class="owl-carousel pro-cat-slider ">
+                  {% for product in g.new_arrivals %}
                   <div class="item">
                     <div class="product-item">
                       <div class="main-label new-label"><span>New</span></div>
                       <div class="product-image"> 
-                        <a href="product-page.html"> <img src="/static/images/1.jpg" alt="Everypick"> </a>
+                        <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.name) }}"> <img src="{{ product.main_photo.file_path }}" alt="{{ product.name }}"> </a>
                       </div>
                       <div class="product-detail-inner">
                         <div class="detail-inner-left align-center">
                           <ul>
                             <li class="pro-cart-icon">
-                              <form>
-                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                              </form>
+                              <button id="add-to-cart-p{{ product.id }}" title="Sepete ekle"><i class="fa fa-shopping-basket"></i></button>
                             </li>
-                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
+                            <li class="pro-wishlist-icon"><a href="#" title="Wishlist"><i class="fa fa-heart"></i></a></li>
+{#                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
                           </ul>
                         </div>
                       </div>
                       <div class="product-item-details">
-                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item sold-out">
-                      <div class="main-label sale-label"><span>Sale</span></div>
-                      <div class="product-image"> 
-                        <a href="product-page.html"> <img src="/static/images/2.jpg" alt="Everypick"> </a>
-                      </div>
-                      <div class="product-detail-inner">
-                        <div class="detail-inner-left align-center">
-                          <ul>
-                            <li class="pro-cart-icon">
-                              <form>
-                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                              </form>
-                            </li>
-                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                          </ul>
+                        <div class="product-item-name"> <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.name) }}">{{ product.name }}</a> </div>
+                        <div class="price-box">
+                          <span class="price">{{ product.main_option.price }}₺</span>
+{#                          <del class="price old-price">$120.00</del> #}
                         </div>
                       </div>
-                      <div class="product-item-details">
-                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="main-label new-label"><span>New</span></div>
-                      <div class="main-label sale-label"><span>Sale</span></div>
-                      <div class="product-image"> 
-                        <a href="product-page.html"> <img src="/static/images/3.jpg" alt="Everypick"> </a>
-                      </div>
-                      <div class="product-detail-inner">
-                        <div class="detail-inner-left align-center">
-                          <ul>
-                            <li class="pro-cart-icon">
-                              <form>
-                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                              </form>
-                            </li>
-                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="product-item-details">
-                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="product-image"> 
-                        <a href="product-page.html"> <img src="/static/images/4.jpg" alt="Everypick"> </a>
-                      </div>
-                      <div class="product-detail-inner">
-                        <div class="detail-inner-left align-center">
-                          <ul>
-                            <li class="pro-cart-icon">
-                              <form>
-                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                              </form>
-                            </li>
-                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="product-item-details">
-                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="main-label sale-label"><span>Sale</span></div>
-                      <div class="product-image"> 
-                        <a href="product-page.html"> <img src="/static/images/8.jpg" alt="Everypick"> </a>
-                      </div>
-                      <div class="product-detail-inner">
-                        <div class="detail-inner-left align-center">
-                          <ul>
-                            <li class="pro-cart-icon">
-                              <form>
-                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                              </form>
-                            </li>
-                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="product-item-details">
-                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="product-image"> 
-                        <a href="product-page.html"> <img src="/static/images/6.jpg" alt="Everypick"> </a>
-                      </div>
-                      <div class="product-detail-inner">
-                        <div class="detail-inner-left align-center">
-                          <ul>
-                            <li class="pro-cart-icon">
-                              <form>
-                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                              </form>
-                            </li>
-                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="product-item-details">
-                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item sold-out">
-                      <div class="main-label new-label"><span>New</span></div>
-                      <div class="main-label sale-label"><span>Sale</span></div>
-                      <div class="product-image"> 
-                        <a href="product-page.html"> <img src="/static/images/13.jpg" alt="Everypick"> </a>
-                      </div>
-                      <div class="product-detail-inner">
-                        <div class="detail-inner-left align-center">
-                          <ul>
-                            <li class="pro-cart-icon">
-                              <form>
-                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                              </form>
-                            </li>
-                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="product-item-details">
-                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="product-image"> 
-                        <a href="product-page.html"> <img src="/static/images/12.jpg" alt="Everypick"> </a>
-                      </div>
-                      <div class="product-detail-inner">
-                        <div class="detail-inner-left align-center">
-                          <ul>
-                            <li class="pro-cart-icon">
-                              <form>
-                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                              </form>
-                            </li>
-                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="product-item-details">
-                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="product-image"> 
-                        <a href="product-page.html"> <img src="/static/images/16.jpg" alt="Everypick"> </a>
-                      </div>
-                      <div class="product-detail-inner">
-                        <div class="detail-inner-left align-center">
-                          <ul>
-                            <li class="pro-cart-icon">
-                              <form>
-                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                              </form>
-                            </li>
-                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="product-item-details">
-                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="product-image"> 
-                        <a href="product-page.html"> <img src="/static/images/10.jpg" alt="Everypick"> </a>
-                      </div>
-                      <div class="product-detail-inner">
-                        <div class="detail-inner-left align-center">
-                          <ul>
-                            <li class="pro-cart-icon">
-                              <form>
-                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                              </form>
-                            </li>
-                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="product-item-details">
-                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                      </div>
-                    </div>
-                  </div>
+                  {% endfor %}
+{#                  <div class="item">#}
+{#                    <div class="product-item sold-out">#}
+{#                      <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                      <div class="product-image"> #}
+{#                        <a href="product-page.html"> <img src="/static/images/2.jpg" alt="Everypick"> </a>#}
+{#                      </div>#}
+{#                      <div class="product-detail-inner">#}
+{#                        <div class="detail-inner-left align-center">#}
+{#                          <ul>#}
+{#                            <li class="pro-cart-icon">#}
+{#                              <form>#}
+{#                                <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                              </form>#}
+{#                            </li>#}
+{#                            <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                            <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                            <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                          </ul>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                      <div class="product-item-details">#}
+{#                        <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                        <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
                 </div>
               </div>
             </div>
@@ -575,60 +373,60 @@
   </section>
   <!--  New arrivals Products Slider Block End  -->
 
-    <!-- SUB-BANNER START -->
-  <div class="sub-banner-block pt-70 ">
-    <div class="container">
-      <div class="pro_cat center-sm">
-        <div class="row">
-          <div class="owl-carousel sub-banner-slider">
-            <div class="item">
-              <a href="shop.html">
-                <div class="sub-banner sub-banner1" >
-                  <img alt="Everypick" src="/static/images/sub-banner1.jpg">
-                </div>
-              </a>
-            </div>
-            <div class="item">
-              <a href="shop.html">
-                <div class="sub-banner sub-banner2" >
-                  <img alt="Everypick" src="/static/images/sub-banner2.jpg">
-                </div>
-              </a>
-            </div>
-            <div class="item">
-              <a href="shop.html">
-                <div class="sub-banner sub-banner3" >
-                  <img alt="Everypick" src="/static/images/sub-banner3.jpg">
-                </div>
-              </a>
-            </div>
-            <div class="item">
-              <a href="shop.html">
-                <div class="sub-banner sub-banner4" >
-                  <img alt="Everypick" src="/static/images/sub-banner4.jpg">
-                </div>
-              </a>
-            </div>
-            <div class="item">
-              <a href="shop.html">
-                <div class="sub-banner sub-banner5" >
-                  <img alt="Everypick" src="/static/images/sub-banner5.jpg">
-                </div>
-              </a>
-            </div>
-            <div class="item">
-              <a href="shop.html">
-                <div class="sub-banner sub-banner6" >
-                  <img alt="Everypick" src="/static/images/sub-banner6.jpg">
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- SUB-BANNER END -->
+{#    <!-- SUB-BANNER START -->#}
+{#  <div class="sub-banner-block pt-70 ">#}
+{#    <div class="container">#}
+{#      <div class="pro_cat center-sm">#}
+{#        <div class="row">#}
+{#          <div class="owl-carousel sub-banner-slider">#}
+{#            <div class="item">#}
+{#              <a href="shop.html">#}
+{#                <div class="sub-banner sub-banner1" >#}
+{#                  <img alt="Everypick" src="/static/images/sub-banner1.jpg">#}
+{#                </div>#}
+{#              </a>#}
+{#            </div>#}
+{#            <div class="item">#}
+{#              <a href="shop.html">#}
+{#                <div class="sub-banner sub-banner2" >#}
+{#                  <img alt="Everypick" src="/static/images/sub-banner2.jpg">#}
+{#                </div>#}
+{#              </a>#}
+{#            </div>#}
+{#            <div class="item">#}
+{#              <a href="shop.html">#}
+{#                <div class="sub-banner sub-banner3" >#}
+{#                  <img alt="Everypick" src="/static/images/sub-banner3.jpg">#}
+{#                </div>#}
+{#              </a>#}
+{#            </div>#}
+{#            <div class="item">#}
+{#              <a href="shop.html">#}
+{#                <div class="sub-banner sub-banner4" >#}
+{#                  <img alt="Everypick" src="/static/images/sub-banner4.jpg">#}
+{#                </div>#}
+{#              </a>#}
+{#            </div>#}
+{#            <div class="item">#}
+{#              <a href="shop.html">#}
+{#                <div class="sub-banner sub-banner5" >#}
+{#                  <img alt="Everypick" src="/static/images/sub-banner5.jpg">#}
+{#                </div>#}
+{#              </a>#}
+{#            </div>#}
+{#            <div class="item">#}
+{#              <a href="shop.html">#}
+{#                <div class="sub-banner sub-banner6" >#}
+{#                  <img alt="Everypick" src="/static/images/sub-banner6.jpg">#}
+{#                </div>#}
+{#              </a>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  <!-- SUB-BANNER END -->#}
 
   <!--  Featured Products Slider Block Start  -->
   <div class="featured-product ptb-70">
@@ -1497,493 +1295,493 @@
   </section>
   <!-- perellex-banner End -->
 
-  <!-- Daily Deals Start -->
-  <section class="pt-70">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-3 col-lg-5 col-lgmd-40per">
-          <div class="row">
-            <div class="col-lg-12 col-sm-6">
-              <div class="side-banner side-banner1">
-                <a href="#"> 
-                  <img src="/static/images/side-banner1.jpg" alt="Everypick">
-                </a> 
-              </div>
-            </div>
-            <div class="col-lg-12 col-sm-6">
-              <div class="side-banner side-banner2">
-                <a href="#"> 
-                  <img src="/static/images/side-banner2.jpg" alt="Everypick">
-                </a> 
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-9 col-lg-7 col-lgmd-60per">
-          <div class="daily-deals mt-sm-30">
-            <div class="row m-0">
-              <div class="col-12 p-0">
-                <div class="heading-part line-bottom mb-30 ">
-                  <h2 class="main_title heading"><span>Daily Deals</span></h2>
-                </div>
-              </div>
-            </div>
-            <div class="pro_cat">
-              <div class="row">
-                <div id="daily_deals" class="owl-carousel ">
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="row ">
-                        <div class="col-sm-6 col-12 deals-img ">
-                          <div class="product-image"> 
-                            <a href="product-page.html"> 
-                              <img src="/static/images/2.jpg" alt="Everypick">
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-12 ">
-                          <div class="product-item-details">
-                            <div class="product-item-name"> 
-                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> 
-                            </div>
-                            <div class="price-box"> 
-                              <span class="price">$80.00</span> 
-                              <del class="price old-price">$120.00</del> 
-                            </div>
-                            <div class="rating-summary-block">
-                              <div title="53%" class="rating-result"> 
-                                <span style="width:53%"></span> 
-                              </div>
-                            </div>
-                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>
-                          </div>
-                          <div class="product-detail-inner">
-                            <div class="detail-inner-left">
-                              <ul>
-                                <li class="pro-cart-icon">
-                                  <form>
-                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                  </form>
-                                </li>
-                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="pro-progress">
-                            <div class="sold left-side">Sold <span>(10)</span></div> 
-                            <div class="available align-right">Available <span>(20)</span></div>
-                            <div class="progress">
-                              <div class="progress-bar" style="width:66.66%" role="progressbar"></div>
-                            </div>
-                          </div>
-                          <div class="item-offer-clock">
-                            <ul class="countdown-clock">
-                              <li>
-                                <span class="days">00</span>
-                                <p class="days_ref">days</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="hours">00</span>
-                                <p class="hours_ref">hrs</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="minutes">00</span>
-                                <p class="minutes_ref">min</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="seconds">00</span>
-                                <p class="seconds_ref">sec</p>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="row ">
-                        <div class="col-sm-6 col-12 deals-img ">
-                          <div class="product-image"> 
-                            <a href="product-page.html"> 
-                              <img src="/static/images/12.jpg" alt="Everypick">
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-12 ">
-                          <div class="product-item-details">
-                            <div class="product-item-name"> 
-                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> 
-                            </div>
-                            <div class="price-box"> 
-                              <span class="price">$80.00</span> 
-                              <del class="price old-price">$120.00</del> 
-                            </div>
-                            <div class="rating-summary-block">
-                              <div title="53%" class="rating-result"> 
-                                <span style="width:53%"></span> 
-                              </div>
-                            </div>
-                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>
-                          </div>
-                          <div class="product-detail-inner">
-                            <div class="detail-inner-left">
-                              <ul>
-                                <li class="pro-cart-icon">
-                                  <form>
-                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                  </form>
-                                </li>
-                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="pro-progress">
-                            <div class="sold left-side">Sold <span>(05)</span></div> 
-                            <div class="available align-right">Available <span>(25)</span></div>
-                            <div class="progress">
-                              <div class="progress-bar" style="width:83.34%" role="progressbar"></div>
-                            </div>
-                          </div>
-                          <div class="item-offer-clock">
-                            <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">
-                              <li>
-                                <span class="days">00</span>
-                                <p class="days_ref">days</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="hours">00</span>
-                                <p class="hours_ref">hrs</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="minutes">00</span>
-                                <p class="minutes_ref">min</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="seconds">00</span>
-                                <p class="seconds_ref">sec</p>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="row ">
-                        <div class="col-sm-6 col-12 deals-img ">
-                          <div class="product-image"> 
-                            <a href="product-page.html"> 
-                              <img src="/static/images/10.jpg" alt="Everypick">
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-12">
-                          <div class="product-item-details">
-                            <div class="product-item-name"> 
-                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> 
-                            </div>
-                            <div class="price-box"> 
-                              <span class="price">$80.00</span> 
-                              <del class="price old-price">$120.00</del> 
-                            </div>
-                            <div class="rating-summary-block">
-                              <div title="53%" class="rating-result"> 
-                                <span style="width:53%"></span> 
-                              </div>
-                            </div>
-                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>
-                          </div>
-                          <div class="product-detail-inner">
-                            <div class="detail-inner-left">
-                              <ul>
-                                <li class="pro-cart-icon">
-                                  <form>
-                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                  </form>
-                                </li>
-                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="pro-progress">
-                            <div class="sold left-side">Sold <span>(10)</span></div> 
-                            <div class="available align-right">Available <span>(20)</span></div>
-                            <div class="progress">
-                              <div class="progress-bar" style="width:66.66%" role="progressbar"></div>
-                            </div>
-                          </div>
-                          <div class="item-offer-clock">
-                            <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">
-                              <li>
-                                <span class="days">00</span>
-                                <p class="days_ref">days</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="hours">00</span>
-                                <p class="hours_ref">hrs</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="minutes">00</span>
-                                <p class="minutes_ref">min</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="seconds">00</span>
-                                <p class="seconds_ref">sec</p>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="row ">
-                        <div class="col-sm-6 col-12 deals-img ">
-                          <div class="product-image"> 
-                            <a href="product-page.html"> 
-                              <img src="/static/images/1.jpg" alt="Everypick">
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-12 ">
-                          <div class="product-item-details">
-                            <div class="product-item-name"> 
-                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> 
-                            </div>
-                            <div class="price-box"> 
-                              <span class="price">$80.00</span> 
-                              <del class="price old-price">$120.00</del> 
-                            </div>
-                            <div class="rating-summary-block">
-                              <div title="53%" class="rating-result"> 
-                                <span style="width:53%"></span> 
-                              </div>
-                            </div>
-                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>
-                          </div>
-                          <div class="product-detail-inner">
-                            <div class="detail-inner-left">
-                              <ul>
-                                <li class="pro-cart-icon">
-                                  <form>
-                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                  </form>
-                                </li>
-                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="pro-progress">
-                            <div class="sold left-side">Sold <span>(20)</span></div> 
-                            <div class="available align-right">Available <span>(09)</span></div>
-                            <div class="progress">
-                              <div class="progress-bar" style="width:31.03%" role="progressbar"></div>
-                            </div>
-                          </div>
-                          <div class="item-offer-clock">
-                            <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">
-                              <li>
-                                <span class="days">00</span>
-                                <p class="days_ref">days</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="hours">00</span>
-                                <p class="hours_ref">hrs</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="minutes">00</span>
-                                <p class="minutes_ref">min</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="seconds">00</span>
-                                <p class="seconds_ref">sec</p>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="row ">
-                        <div class="col-sm-6 col-12 deals-img ">
-                          <div class="product-image"> 
-                            <a href="product-page.html"> 
-                              <img src="/static/images/3.jpg" alt="Everypick">
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-12 ">
-                          <div class="product-item-details">
-                            <div class="product-item-name"> 
-                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> 
-                            </div>
-                            <div class="price-box"> 
-                              <span class="price">$80.00</span> 
-                              <del class="price old-price">$120.00</del> 
-                            </div>
-                            <div class="rating-summary-block">
-                              <div title="53%" class="rating-result"> 
-                                <span style="width:53%"></span> 
-                              </div>
-                            </div>
-                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>
-                          </div>
-                          <div class="product-detail-inner">
-                            <div class="detail-inner-left">
-                              <ul>
-                                <li class="pro-cart-icon">
-                                  <form>
-                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                  </form>
-                                </li>
-                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="pro-progress">
-                            <div class="sold left-side">Sold <span>(10)</span></div> 
-                            <div class="available align-right">Available <span>(02)</span></div>
-                            <div class="progress">
-                              <div class="progress-bar" style="width:83.34%" role="progressbar"></div>
-                            </div>
-                          </div>
-                          <div class="item-offer-clock">
-                            <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">
-                              <li>
-                                <span class="days">00</span>
-                                <p class="days_ref">days</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="hours">00</span>
-                                <p class="hours_ref">hrs</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="minutes">00</span>
-                                <p class="minutes_ref">min</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="seconds">00</span>
-                                <p class="seconds_ref">sec</p>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="product-item">
-                      <div class="row ">
-                        <div class="col-sm-6 col-12 deals-img ">
-                          <div class="product-image"> 
-                            <a href="product-page.html"> 
-                              <img src="/static/images/4.jpg" alt="Everypick">
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-12 ">
-                          <div class="product-item-details">
-                            <div class="product-item-name"> 
-                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> 
-                            </div>
-                            <div class="price-box"> 
-                              <span class="price">$80.00</span> 
-                              <del class="price old-price">$120.00</del> 
-                            </div>
-                            <div class="rating-summary-block">
-                              <div title="53%" class="rating-result"> 
-                                <span style="width:53%"></span> 
-                              </div>
-                            </div>
-                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>
-                          </div>
-                          <div class="product-detail-inner">
-                            <div class="detail-inner-left">
-                              <ul>
-                                <li class="pro-cart-icon">
-                                  <form>
-                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                  </form>
-                                </li>
-                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="pro-progress">
-                            <div class="sold left-side">Sold <span>(10)</span></div> 
-                            <div class="available align-right">Available <span>(20)</span></div>
-                            <div class="progress">
-                              <div class="progress-bar" style="width:66.66%" role="progressbar"></div>
-                            </div>
-                          </div>
-                          <div class="item-offer-clock">
-                            <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">
-                              <li>
-                                <span class="days">00</span>
-                                <p class="days_ref">days</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="hours">00</span>
-                                <p class="hours_ref">hrs</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="minutes">00</span>
-                                <p class="minutes_ref">min</p>
-                              </li>
-                              <li class="seperator">:</li>
-                              <li>
-                                <span class="seconds">00</span>
-                                <p class="seconds_ref">sec</p>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Daily Deals End -->
+{#  <!-- Daily Deals Start -->#}
+{#  <section class="pt-70">#}
+{#    <div class="container">#}
+{#      <div class="row">#}
+{#        <div class="col-xl-3 col-lg-5 col-lgmd-40per">#}
+{#          <div class="row">#}
+{#            <div class="col-lg-12 col-sm-6">#}
+{#              <div class="side-banner side-banner1">#}
+{#                <a href="#"> #}
+{#                  <img src="/static/images/side-banner1.jpg" alt="Everypick">#}
+{#                </a> #}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="col-lg-12 col-sm-6">#}
+{#              <div class="side-banner side-banner2">#}
+{#                <a href="#"> #}
+{#                  <img src="/static/images/side-banner2.jpg" alt="Everypick">#}
+{#                </a> #}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="col-xl-9 col-lg-7 col-lgmd-60per">#}
+{#          <div class="daily-deals mt-sm-30">#}
+{#            <div class="row m-0">#}
+{#              <div class="col-12 p-0">#}
+{#                <div class="heading-part line-bottom mb-30 ">#}
+{#                  <h2 class="main_title heading"><span>Daily Deals</span></h2>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="pro_cat">#}
+{#              <div class="row">#}
+{#                <div id="daily_deals" class="owl-carousel ">#}
+{#                  <div class="item">#}
+{#                    <div class="product-item">#}
+{#                      <div class="row ">#}
+{#                        <div class="col-sm-6 col-12 deals-img ">#}
+{#                          <div class="product-image"> #}
+{#                            <a href="product-page.html"> #}
+{#                              <img src="/static/images/2.jpg" alt="Everypick">#}
+{#                            </a>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-sm-6 col-12 ">#}
+{#                          <div class="product-item-details">#}
+{#                            <div class="product-item-name"> #}
+{#                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> #}
+{#                            </div>#}
+{#                            <div class="price-box"> #}
+{#                              <span class="price">$80.00</span> #}
+{#                              <del class="price old-price">$120.00</del> #}
+{#                            </div>#}
+{#                            <div class="rating-summary-block">#}
+{#                              <div title="53%" class="rating-result"> #}
+{#                                <span style="width:53%"></span> #}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>#}
+{#                          </div>#}
+{#                          <div class="product-detail-inner">#}
+{#                            <div class="detail-inner-left">#}
+{#                              <ul>#}
+{#                                <li class="pro-cart-icon">#}
+{#                                  <form>#}
+{#                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                  </form>#}
+{#                                </li>#}
+{#                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                              </ul>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="pro-progress">#}
+{#                            <div class="sold left-side">Sold <span>(10)</span></div> #}
+{#                            <div class="available align-right">Available <span>(20)</span></div>#}
+{#                            <div class="progress">#}
+{#                              <div class="progress-bar" style="width:66.66%" role="progressbar"></div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="item-offer-clock">#}
+{#                            <ul class="countdown-clock">#}
+{#                              <li>#}
+{#                                <span class="days">00</span>#}
+{#                                <p class="days_ref">days</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="hours">00</span>#}
+{#                                <p class="hours_ref">hrs</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="minutes">00</span>#}
+{#                                <p class="minutes_ref">min</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="seconds">00</span>#}
+{#                                <p class="seconds_ref">sec</p>#}
+{#                              </li>#}
+{#                            </ul>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <div class="item">#}
+{#                    <div class="product-item">#}
+{#                      <div class="row ">#}
+{#                        <div class="col-sm-6 col-12 deals-img ">#}
+{#                          <div class="product-image"> #}
+{#                            <a href="product-page.html"> #}
+{#                              <img src="/static/images/12.jpg" alt="Everypick">#}
+{#                            </a>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-sm-6 col-12 ">#}
+{#                          <div class="product-item-details">#}
+{#                            <div class="product-item-name"> #}
+{#                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> #}
+{#                            </div>#}
+{#                            <div class="price-box"> #}
+{#                              <span class="price">$80.00</span> #}
+{#                              <del class="price old-price">$120.00</del> #}
+{#                            </div>#}
+{#                            <div class="rating-summary-block">#}
+{#                              <div title="53%" class="rating-result"> #}
+{#                                <span style="width:53%"></span> #}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>#}
+{#                          </div>#}
+{#                          <div class="product-detail-inner">#}
+{#                            <div class="detail-inner-left">#}
+{#                              <ul>#}
+{#                                <li class="pro-cart-icon">#}
+{#                                  <form>#}
+{#                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                  </form>#}
+{#                                </li>#}
+{#                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                              </ul>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="pro-progress">#}
+{#                            <div class="sold left-side">Sold <span>(05)</span></div> #}
+{#                            <div class="available align-right">Available <span>(25)</span></div>#}
+{#                            <div class="progress">#}
+{#                              <div class="progress-bar" style="width:83.34%" role="progressbar"></div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="item-offer-clock">#}
+{#                            <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">#}
+{#                              <li>#}
+{#                                <span class="days">00</span>#}
+{#                                <p class="days_ref">days</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="hours">00</span>#}
+{#                                <p class="hours_ref">hrs</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="minutes">00</span>#}
+{#                                <p class="minutes_ref">min</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="seconds">00</span>#}
+{#                                <p class="seconds_ref">sec</p>#}
+{#                              </li>#}
+{#                            </ul>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <div class="item">#}
+{#                    <div class="product-item">#}
+{#                      <div class="row ">#}
+{#                        <div class="col-sm-6 col-12 deals-img ">#}
+{#                          <div class="product-image"> #}
+{#                            <a href="product-page.html"> #}
+{#                              <img src="/static/images/10.jpg" alt="Everypick">#}
+{#                            </a>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-sm-6 col-12">#}
+{#                          <div class="product-item-details">#}
+{#                            <div class="product-item-name"> #}
+{#                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> #}
+{#                            </div>#}
+{#                            <div class="price-box"> #}
+{#                              <span class="price">$80.00</span> #}
+{#                              <del class="price old-price">$120.00</del> #}
+{#                            </div>#}
+{#                            <div class="rating-summary-block">#}
+{#                              <div title="53%" class="rating-result"> #}
+{#                                <span style="width:53%"></span> #}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>#}
+{#                          </div>#}
+{#                          <div class="product-detail-inner">#}
+{#                            <div class="detail-inner-left">#}
+{#                              <ul>#}
+{#                                <li class="pro-cart-icon">#}
+{#                                  <form>#}
+{#                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                  </form>#}
+{#                                </li>#}
+{#                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                              </ul>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="pro-progress">#}
+{#                            <div class="sold left-side">Sold <span>(10)</span></div> #}
+{#                            <div class="available align-right">Available <span>(20)</span></div>#}
+{#                            <div class="progress">#}
+{#                              <div class="progress-bar" style="width:66.66%" role="progressbar"></div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="item-offer-clock">#}
+{#                            <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">#}
+{#                              <li>#}
+{#                                <span class="days">00</span>#}
+{#                                <p class="days_ref">days</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="hours">00</span>#}
+{#                                <p class="hours_ref">hrs</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="minutes">00</span>#}
+{#                                <p class="minutes_ref">min</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="seconds">00</span>#}
+{#                                <p class="seconds_ref">sec</p>#}
+{#                              </li>#}
+{#                            </ul>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <div class="item">#}
+{#                    <div class="product-item">#}
+{#                      <div class="row ">#}
+{#                        <div class="col-sm-6 col-12 deals-img ">#}
+{#                          <div class="product-image"> #}
+{#                            <a href="product-page.html"> #}
+{#                              <img src="/static/images/1.jpg" alt="Everypick">#}
+{#                            </a>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-sm-6 col-12 ">#}
+{#                          <div class="product-item-details">#}
+{#                            <div class="product-item-name"> #}
+{#                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> #}
+{#                            </div>#}
+{#                            <div class="price-box"> #}
+{#                              <span class="price">$80.00</span> #}
+{#                              <del class="price old-price">$120.00</del> #}
+{#                            </div>#}
+{#                            <div class="rating-summary-block">#}
+{#                              <div title="53%" class="rating-result"> #}
+{#                                <span style="width:53%"></span> #}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>#}
+{#                          </div>#}
+{#                          <div class="product-detail-inner">#}
+{#                            <div class="detail-inner-left">#}
+{#                              <ul>#}
+{#                                <li class="pro-cart-icon">#}
+{#                                  <form>#}
+{#                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                  </form>#}
+{#                                </li>#}
+{#                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                              </ul>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="pro-progress">#}
+{#                            <div class="sold left-side">Sold <span>(20)</span></div> #}
+{#                            <div class="available align-right">Available <span>(09)</span></div>#}
+{#                            <div class="progress">#}
+{#                              <div class="progress-bar" style="width:31.03%" role="progressbar"></div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="item-offer-clock">#}
+{#                            <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">#}
+{#                              <li>#}
+{#                                <span class="days">00</span>#}
+{#                                <p class="days_ref">days</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="hours">00</span>#}
+{#                                <p class="hours_ref">hrs</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="minutes">00</span>#}
+{#                                <p class="minutes_ref">min</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="seconds">00</span>#}
+{#                                <p class="seconds_ref">sec</p>#}
+{#                              </li>#}
+{#                            </ul>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <div class="item">#}
+{#                    <div class="product-item">#}
+{#                      <div class="row ">#}
+{#                        <div class="col-sm-6 col-12 deals-img ">#}
+{#                          <div class="product-image"> #}
+{#                            <a href="product-page.html"> #}
+{#                              <img src="/static/images/3.jpg" alt="Everypick">#}
+{#                            </a>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-sm-6 col-12 ">#}
+{#                          <div class="product-item-details">#}
+{#                            <div class="product-item-name"> #}
+{#                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> #}
+{#                            </div>#}
+{#                            <div class="price-box"> #}
+{#                              <span class="price">$80.00</span> #}
+{#                              <del class="price old-price">$120.00</del> #}
+{#                            </div>#}
+{#                            <div class="rating-summary-block">#}
+{#                              <div title="53%" class="rating-result"> #}
+{#                                <span style="width:53%"></span> #}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>#}
+{#                          </div>#}
+{#                          <div class="product-detail-inner">#}
+{#                            <div class="detail-inner-left">#}
+{#                              <ul>#}
+{#                                <li class="pro-cart-icon">#}
+{#                                  <form>#}
+{#                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                  </form>#}
+{#                                </li>#}
+{#                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                              </ul>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="pro-progress">#}
+{#                            <div class="sold left-side">Sold <span>(10)</span></div> #}
+{#                            <div class="available align-right">Available <span>(02)</span></div>#}
+{#                            <div class="progress">#}
+{#                              <div class="progress-bar" style="width:83.34%" role="progressbar"></div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="item-offer-clock">#}
+{#                            <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">#}
+{#                              <li>#}
+{#                                <span class="days">00</span>#}
+{#                                <p class="days_ref">days</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="hours">00</span>#}
+{#                                <p class="hours_ref">hrs</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="minutes">00</span>#}
+{#                                <p class="minutes_ref">min</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="seconds">00</span>#}
+{#                                <p class="seconds_ref">sec</p>#}
+{#                              </li>#}
+{#                            </ul>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <div class="item">#}
+{#                    <div class="product-item">#}
+{#                      <div class="row ">#}
+{#                        <div class="col-sm-6 col-12 deals-img ">#}
+{#                          <div class="product-image"> #}
+{#                            <a href="product-page.html"> #}
+{#                              <img src="/static/images/4.jpg" alt="Everypick">#}
+{#                            </a>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-sm-6 col-12 ">#}
+{#                          <div class="product-item-details">#}
+{#                            <div class="product-item-name"> #}
+{#                              <a href="product-page.html">Defyant Reversible Dot Shorts</a> #}
+{#                            </div>#}
+{#                            <div class="price-box"> #}
+{#                              <span class="price">$80.00</span> #}
+{#                              <del class="price old-price">$120.00</del> #}
+{#                            </div>#}
+{#                            <div class="rating-summary-block">#}
+{#                              <div title="53%" class="rating-result"> #}
+{#                                <span style="width:53%"></span> #}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <p>Lorem ipsum dolor eros consectetuer adipiscing. Donec eros</p>#}
+{#                          </div>#}
+{#                          <div class="product-detail-inner">#}
+{#                            <div class="detail-inner-left">#}
+{#                              <ul>#}
+{#                                <li class="pro-cart-icon">#}
+{#                                  <form>#}
+{#                                    <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                  </form>#}
+{#                                </li>#}
+{#                                <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                              </ul>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="pro-progress">#}
+{#                            <div class="sold left-side">Sold <span>(10)</span></div> #}
+{#                            <div class="available align-right">Available <span>(20)</span></div>#}
+{#                            <div class="progress">#}
+{#                              <div class="progress-bar" style="width:66.66%" role="progressbar"></div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <div class="item-offer-clock">#}
+{#                            <ul class="countdown-clock" data-end-date="06/29/2018 12:00:00">#}
+{#                              <li>#}
+{#                                <span class="days">00</span>#}
+{#                                <p class="days_ref">days</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="hours">00</span>#}
+{#                                <p class="hours_ref">hrs</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="minutes">00</span>#}
+{#                                <p class="minutes_ref">min</p>#}
+{#                              </li>#}
+{#                              <li class="seperator">:</li>#}
+{#                              <li>#}
+{#                                <span class="seconds">00</span>#}
+{#                                <p class="seconds_ref">sec</p>#}
+{#                              </li>#}
+{#                            </ul>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </section>#}
+{#  <!-- Daily Deals End -->#}
 
   <!--  Special product Products Slider Block Start  -->
   <section class="pt-70">
@@ -1992,362 +1790,43 @@
         <div class="row m-0">
           <div class="col-12 p-0">
             <div class="heading-part line-bottom mb-30 mb-xs-15">
-              <h2 class="main_title heading"><span>Best seller</span></h2>
+              <h2 class="main_title heading"><span>Çok Satanlar</span></h2>
             </div>
           </div>
         </div>
         <div class="row mlr_-20">
           <div class="owl-carousel best-seller-pro">
+            {% for i in range(0,g.best_seller|length, 2) %}
             <div class="item plr-20">
               <div class="cat-box">
                 <div class="cat-box-inner">
                   <ul>
+                    {% for product in g.best_seller[i:i+2] %}
                     <li>
                       <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/1.jpg" alt="Everypick"></a>
+                        <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.name) }}"><img src="{{ product.main_photo.file_path }}" alt="{{ product.name }}"></a>
                       </div>
                       <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
+                        <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.name) }}">{{ product.name }}</a>
                         <div class="price-box">
-                          <span class="price">$80.00</span>
+                          <span class="price">{{ product.main_option.price }}₺</span>
                         </div>
                         <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
+                          <div title="{{ product.point }}" class="rating-result">
+                            <span style="width:{{ product.point*20 }}%"></span>
                           </div>
                         </div>
                         <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
+                          <button id="add-to-cart-p{{ product.id }}" title="Sepete ekle"><span>Sepete ekle</span></button>
                         </div>
                       </div>
                     </li>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/2.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
+                    {% endfor %}
                   </ul>
                 </div>
               </div>
             </div>
-            <div class="item plr-20">
-              <div class="cat-box">
-                <div class="cat-box-inner">
-                  <ul>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/3.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/4.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="item plr-20">
-              <div class="cat-box">
-                <div class="cat-box-inner">
-                  <ul>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/5.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/6.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="item plr-20">
-              <div class="cat-box">
-                <div class="cat-box-inner">
-                  <ul>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/7.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/8.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="item plr-20">
-              <div class="cat-box">
-                <div class="cat-box-inner">
-                  <ul>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/9.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/10.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="item plr-20">
-              <div class="cat-box">
-                <div class="cat-box-inner">
-                  <ul>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/11.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/12.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="item plr-20">
-              <div class="cat-box">
-                <div class="cat-box-inner">
-                  <ul>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/13.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="pro-media"> 
-                        <a href="product-page.html"><img src="/static/images/14.jpg" alt="Everypick"></a>
-                      </div>
-                      <div class="pro-detail-info">
-                        <a href="product-page.html">Cross Colours Camo Print Tank</a>
-                        <div class="price-box">
-                          <span class="price">$80.00</span>
-                        </div>
-                        <div class="rating-summary-block">
-                          <div title="53%" class="rating-result">
-                            <span style="width:53%"></span>
-                          </div>
-                        </div>
-                        <div class="cart-link">
-                          <form>
-                            <button title="Add to Cart"><span></span>Add To Cart</button>
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -2355,276 +1834,276 @@
   </section>
   <!--  Special product Products Slider Block End  -->
 
-  <!--Blog Block Start -->
-  <section class="pt-70">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-8 col-12">
-          <div class="row">
-            <div class="col-12 ">
-              <div class="heading-part  line-bottom mb-30">
-                <h2 class="main_title heading"><span>Latest News</span></h2>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div id="blog" class="owl-carousel">
-              <div class="item">
-                <div class="blog-item">
-                  <div class="row">
-                    <div class="col-md-6 mb-xs-30">
-                      <div class="blog-media"> 
-                        <img src="/static/images/blog_img1.jpg" alt="Everypick">
-                        <div class="blog-effect"></div> 
-                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> 
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="blog-detail"> 
-                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>
-                        <span>by Wed Censtoriya</span>
-                        <div class="post-info">
-                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>
-                          <ul>
-                            <li>
-                              <a href="#">0 comment(s)</a>
-                            </li>
-                            <li>
-                              <a href="single-blog.html">Read more 
-                                <i class="fa fa-angle-double-right"></i>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="blog-item">
-                  <div class="row">
-                    <div class="col-md-6 mb-xs-30">
-                      <div class="blog-media"> 
-                        <img src="/static/images/blog_img2.jpg" alt="Everypick">
-                        <div class="blog-effect"></div> 
-                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> 
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="blog-detail"> 
-                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>
-                        <span>by Wed Censtoriya</span>
-                        <div class="post-info">
-                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>
-                          <ul>
-                            <li>
-                              <a href="#">0 comment(s)</a>
-                            </li>
-                            <li>
-                              <a href="single-blog.html">Read more 
-                                <i class="fa fa-angle-double-right"></i>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="blog-item">
-                  <div class="row">
-                    <div class="col-md-6 mb-xs-30">
-                      <div class="blog-media"> 
-                        <img src="/static/images/blog_img3.jpg" alt="Everypick">
-                        <div class="blog-effect"></div> 
-                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> 
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="blog-detail"> 
-                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>
-                        <span>by Wed Censtoriya</span>
-                        <div class="post-info">
-                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>
-                          <ul>
-                            <li>
-                              <a href="#">0 comment(s)</a>
-                            </li>
-                            <li>
-                              <a href="single-blog.html">Read more 
-                                <i class="fa fa-angle-double-right"></i>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="blog-item">
-                  <div class="row">
-                    <div class="col-md-6 mb-xs-30">
-                      <div class="blog-media"> 
-                        <img src="/static/images/blog_img4.jpg" alt="Everypick">
-                        <div class="blog-effect"></div> 
-                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> 
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="blog-detail"> 
-                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>
-                        <span>by Wed Censtoriya</span>
-                        <div class="post-info">
-                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>
-                          <ul>
-                            <li>
-                              <a href="#">0 comment(s)</a>
-                            </li>
-                            <li>
-                              <a href="single-blog.html">Read more 
-                                <i class="fa fa-angle-double-right"></i>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="blog-item">
-                  <div class="row">
-                    <div class="col-md-6 mb-xs-30">
-                      <div class="blog-media"> 
-                        <img src="/static/images/blog_img5.jpg" alt="Everypick">
-                        <div class="blog-effect"></div> 
-                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> 
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="blog-detail"> 
-                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>
-                        <span>by Wed Censtoriya</span>
-                        <div class="post-info">
-                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>
-                          <ul>
-                            <li>
-                              <a href="#">0 comment(s)</a>
-                            </li>
-                            <li>
-                              <a href="single-blog.html">Read more 
-                                <i class="fa fa-angle-double-right"></i>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="blog-item">
-                  <div class="row">
-                    <div class="col-md-6 mb-xs-30">
-                      <div class="blog-media"> 
-                        <img src="/static/images/blog_img6.jpg" alt="Everypick">
-                        <div class="blog-effect"></div> 
-                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> 
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="blog-detail"> 
-                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>
-                        <span>by Wed Censtoriya</span>
-                        <div class="post-info">
-                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>
-                          <ul>
-                            <li>
-                              <a href="#">0 comment(s)</a>
-                            </li>
-                            <li>
-                              <a href="single-blog.html">Read more 
-                                <i class="fa fa-angle-double-right"></i>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-12">
-          <!--Testimonial Block Start -->
-            <div class="">
-              <div class="client-main client-bg">
-                <div class="client-inner align-center">
-                  <div id="client" class="owl-carousel">
-                    <div class="item client-detail">
-                      <div class="quote right-side">
-                        <div class="quote1-img">
-                          <img src="/static/images/home-quote1.png" alt="Everypick">
-                        </div>
-                        <p>It is a long established fact that a reader will be distracted by the Ipsum is that it has a mtters. It is a long established fact that a reader will be distracted.</p>
-                        <div class="quote2-img">
-                          <img src="/static/images/home-quote2.png" alt="Everypick">
-                        </div>
-                      </div>
-                      <div class="client-img left-side ">
-                        <h4 class="sub-title client-title">- Joseph deboungawer - </h4>
-                        <img alt="Everypick" src="/static/images/testimonial_img1.jpg">
-                      </div>
-                    </div>
-                    <div class="item client-detail">
-                      <div class="quote right-side">
-                        <div class="quote1-img">
-                          <img src="/static/images/home-quote1.png" alt="Everypick">
-                        </div>
-                        <p>It is a long established fact that a reader will be distracted by the Ipsum is that it has a mtters. It is a long established fact that a reader will be distracted.</p>
-                        <div class="quote2-img">
-                          <img src="/static/images/home-quote2.png" alt="Everypick">
-                        </div>
-                      </div>
-                      <div class="client-img left-side ">
-                        <h4 class="sub-title client-title">- Joseph deboungawer - </h4>
-                        <img alt="Everypick" src="/static/images/testimonial_img2.jpg">
-                      </div>
-                    </div>
-                    <div class="item client-detail">
-                      <div class="quote right-side">
-                        <div class="quote1-img">
-                          <img src="/static/images/home-quote1.png" alt="Everypick">
-                        </div>
-                        <p>It is a long established fact that a reader will be distracted by the Ipsum is that it has a mtters. It is a long established fact that a reader will be distracted.</p>
-                        <div class="quote2-img">
-                          <img src="/static/images/home-quote2.png" alt="Everypick">
-                        </div>
-                      </div>
-                      <div class="client-img left-side ">
-                        <h4 class="sub-title client-title">- Joseph deboungawer - </h4>
-                        <img alt="Everypick" src="/static/images/testimonial_img3.jpg">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--Testimonial Block End -->
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--Blog Block End -->
+{#  <!--Blog Block Start -->#}
+{#  <section class="pt-70">#}
+{#    <div class="container">#}
+{#      <div class="row">#}
+{#        <div class="col-xl-8 col-12">#}
+{#          <div class="row">#}
+{#            <div class="col-12 ">#}
+{#              <div class="heading-part  line-bottom mb-30">#}
+{#                <h2 class="main_title heading"><span>Latest News</span></h2>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="row">#}
+{#            <div id="blog" class="owl-carousel">#}
+{#              <div class="item">#}
+{#                <div class="blog-item">#}
+{#                  <div class="row">#}
+{#                    <div class="col-md-6 mb-xs-30">#}
+{#                      <div class="blog-media"> #}
+{#                        <img src="/static/images/blog_img1.jpg" alt="Everypick">#}
+{#                        <div class="blog-effect"></div> #}
+{#                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> #}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-6">#}
+{#                      <div class="blog-detail"> #}
+{#                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>#}
+{#                        <span>by Wed Censtoriya</span>#}
+{#                        <div class="post-info">#}
+{#                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>#}
+{#                          <ul>#}
+{#                            <li>#}
+{#                              <a href="#">0 comment(s)</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                              <a href="single-blog.html">Read more #}
+{#                                <i class="fa fa-angle-double-right"></i>#}
+{#                              </a>#}
+{#                            </li>#}
+{#                          </ul>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="item">#}
+{#                <div class="blog-item">#}
+{#                  <div class="row">#}
+{#                    <div class="col-md-6 mb-xs-30">#}
+{#                      <div class="blog-media"> #}
+{#                        <img src="/static/images/blog_img2.jpg" alt="Everypick">#}
+{#                        <div class="blog-effect"></div> #}
+{#                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> #}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-6">#}
+{#                      <div class="blog-detail"> #}
+{#                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>#}
+{#                        <span>by Wed Censtoriya</span>#}
+{#                        <div class="post-info">#}
+{#                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>#}
+{#                          <ul>#}
+{#                            <li>#}
+{#                              <a href="#">0 comment(s)</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                              <a href="single-blog.html">Read more #}
+{#                                <i class="fa fa-angle-double-right"></i>#}
+{#                              </a>#}
+{#                            </li>#}
+{#                          </ul>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="item">#}
+{#                <div class="blog-item">#}
+{#                  <div class="row">#}
+{#                    <div class="col-md-6 mb-xs-30">#}
+{#                      <div class="blog-media"> #}
+{#                        <img src="/static/images/blog_img3.jpg" alt="Everypick">#}
+{#                        <div class="blog-effect"></div> #}
+{#                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> #}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-6">#}
+{#                      <div class="blog-detail"> #}
+{#                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>#}
+{#                        <span>by Wed Censtoriya</span>#}
+{#                        <div class="post-info">#}
+{#                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>#}
+{#                          <ul>#}
+{#                            <li>#}
+{#                              <a href="#">0 comment(s)</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                              <a href="single-blog.html">Read more #}
+{#                                <i class="fa fa-angle-double-right"></i>#}
+{#                              </a>#}
+{#                            </li>#}
+{#                          </ul>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="item">#}
+{#                <div class="blog-item">#}
+{#                  <div class="row">#}
+{#                    <div class="col-md-6 mb-xs-30">#}
+{#                      <div class="blog-media"> #}
+{#                        <img src="/static/images/blog_img4.jpg" alt="Everypick">#}
+{#                        <div class="blog-effect"></div> #}
+{#                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> #}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-6">#}
+{#                      <div class="blog-detail"> #}
+{#                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>#}
+{#                        <span>by Wed Censtoriya</span>#}
+{#                        <div class="post-info">#}
+{#                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>#}
+{#                          <ul>#}
+{#                            <li>#}
+{#                              <a href="#">0 comment(s)</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                              <a href="single-blog.html">Read more #}
+{#                                <i class="fa fa-angle-double-right"></i>#}
+{#                              </a>#}
+{#                            </li>#}
+{#                          </ul>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="item">#}
+{#                <div class="blog-item">#}
+{#                  <div class="row">#}
+{#                    <div class="col-md-6 mb-xs-30">#}
+{#                      <div class="blog-media"> #}
+{#                        <img src="/static/images/blog_img5.jpg" alt="Everypick">#}
+{#                        <div class="blog-effect"></div> #}
+{#                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> #}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-6">#}
+{#                      <div class="blog-detail"> #}
+{#                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>#}
+{#                        <span>by Wed Censtoriya</span>#}
+{#                        <div class="post-info">#}
+{#                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>#}
+{#                          <ul>#}
+{#                            <li>#}
+{#                              <a href="#">0 comment(s)</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                              <a href="single-blog.html">Read more #}
+{#                                <i class="fa fa-angle-double-right"></i>#}
+{#                              </a>#}
+{#                            </li>#}
+{#                          </ul>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="item">#}
+{#                <div class="blog-item">#}
+{#                  <div class="row">#}
+{#                    <div class="col-md-6 mb-xs-30">#}
+{#                      <div class="blog-media"> #}
+{#                        <img src="/static/images/blog_img6.jpg" alt="Everypick">#}
+{#                        <div class="blog-effect"></div> #}
+{#                        <a href="single-blog.html" title="Click For Read More" class="read">&nbsp;</a> #}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-6">#}
+{#                      <div class="blog-detail"> #}
+{#                        <div class="blog-title"><a href="single-blog.html">MAURIS LACINIA LECTUS</a></div>#}
+{#                        <span>by Wed Censtoriya</span>#}
+{#                        <div class="post-info">#}
+{#                          <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit. Donec eros tellus laoreet sit amet. Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec elit.</p>#}
+{#                          <ul>#}
+{#                            <li>#}
+{#                              <a href="#">0 comment(s)</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                              <a href="single-blog.html">Read more #}
+{#                                <i class="fa fa-angle-double-right"></i>#}
+{#                              </a>#}
+{#                            </li>#}
+{#                          </ul>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="col-xl-4 col-12">#}
+{#          <!--Testimonial Block Start -->#}
+{#            <div class="">#}
+{#              <div class="client-main client-bg">#}
+{#                <div class="client-inner align-center">#}
+{#                  <div id="client" class="owl-carousel">#}
+{#                    <div class="item client-detail">#}
+{#                      <div class="quote right-side">#}
+{#                        <div class="quote1-img">#}
+{#                          <img src="/static/images/home-quote1.png" alt="Everypick">#}
+{#                        </div>#}
+{#                        <p>It is a long established fact that a reader will be distracted by the Ipsum is that it has a mtters. It is a long established fact that a reader will be distracted.</p>#}
+{#                        <div class="quote2-img">#}
+{#                          <img src="/static/images/home-quote2.png" alt="Everypick">#}
+{#                        </div>#}
+{#                      </div>#}
+{#                      <div class="client-img left-side ">#}
+{#                        <h4 class="sub-title client-title">- Joseph deboungawer - </h4>#}
+{#                        <img alt="Everypick" src="/static/images/testimonial_img1.jpg">#}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="item client-detail">#}
+{#                      <div class="quote right-side">#}
+{#                        <div class="quote1-img">#}
+{#                          <img src="/static/images/home-quote1.png" alt="Everypick">#}
+{#                        </div>#}
+{#                        <p>It is a long established fact that a reader will be distracted by the Ipsum is that it has a mtters. It is a long established fact that a reader will be distracted.</p>#}
+{#                        <div class="quote2-img">#}
+{#                          <img src="/static/images/home-quote2.png" alt="Everypick">#}
+{#                        </div>#}
+{#                      </div>#}
+{#                      <div class="client-img left-side ">#}
+{#                        <h4 class="sub-title client-title">- Joseph deboungawer - </h4>#}
+{#                        <img alt="Everypick" src="/static/images/testimonial_img2.jpg">#}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="item client-detail">#}
+{#                      <div class="quote right-side">#}
+{#                        <div class="quote1-img">#}
+{#                          <img src="/static/images/home-quote1.png" alt="Everypick">#}
+{#                        </div>#}
+{#                        <p>It is a long established fact that a reader will be distracted by the Ipsum is that it has a mtters. It is a long established fact that a reader will be distracted.</p>#}
+{#                        <div class="quote2-img">#}
+{#                          <img src="/static/images/home-quote2.png" alt="Everypick">#}
+{#                        </div>#}
+{#                      </div>#}
+{#                      <div class="client-img left-side ">#}
+{#                        <h4 class="sub-title client-title">- Joseph deboungawer - </h4>#}
+{#                        <img alt="Everypick" src="/static/images/testimonial_img3.jpg">#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#            <!--Testimonial Block End -->#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </section>#}
+{#  <!--Blog Block End -->#}
 
   <!-- Brand logo block Start  -->
   <div class="brand-logo pt-70">
@@ -2632,7 +2111,7 @@
       <div class="row">
         <div class="col-12 ">
           <div class="heading-part line-bottom mb-30 ">
-            <h2 class="main_title heading"><span>Our Brands</span></h2>
+            <h2 class="main_title heading"><span>Destekçilerimiz</span></h2>
           </div>
         </div>
       </div>

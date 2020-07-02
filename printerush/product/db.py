@@ -1,5 +1,5 @@
 from printerush.common.assistant_func import get_translation
-from printerush.database.models import Product
+from printerush.database.models import Product, ProductCategory
 from printerush.product.exception import ThereIsNotProduct
 
 
@@ -9,3 +9,7 @@ def get_product(product_id):
     if p is None:
         raise ThereIsNotProduct(translation['there_is_not_product'])
     return p
+
+
+def get_main_category():
+    return ProductCategory[1]
