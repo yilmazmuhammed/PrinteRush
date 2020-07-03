@@ -1,3 +1,6 @@
+from flask import request
+
+
 class IyzikoInitialize:
     def __init__(self, web_user, order):
         self.options = {}
@@ -73,7 +76,7 @@ class IyzikoInitialize:
             'paidPrice': order.total_price,
             'currency': 'TRY',
             # TODO url ekle
-            "callbackUrl": "http://127.0.0.1:5000/order/checkout/order_completed",
+            "callbackUrl": request.host_url+"order/checkout/order_completed",
             "enabledInstallments": ['2', '3', '6', '9'],
             'buyer': self.buyer,
             'shippingAddress': self.shipping_address,
