@@ -19,6 +19,7 @@ from printerush.database.models import WebUser
 from printerush.general.general import general_bp
 from printerush.order.order import order_bp
 from printerush.printable_3d_model.printable_3d_model import models_bp
+from printerush.product.api import product_api_bp
 from printerush.product.product import products_bp
 
 locale.setlocale(locale.LC_ALL, 'tr_TR.utf8')
@@ -38,6 +39,7 @@ app.register_blueprint(models_bp, url_prefix="/models/")
 app.register_blueprint(address_bp, url_prefix="/address")
 app.register_blueprint(cart_api_bp, url_prefix="/api/cart")
 app.register_blueprint(address_api_bp, url_prefix="/api/address")
+app.register_blueprint(product_api_bp, url_prefix="/api/product")
 
 lm = LoginManager()
 

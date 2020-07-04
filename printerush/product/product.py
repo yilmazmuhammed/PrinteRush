@@ -7,6 +7,7 @@ from printerush.common.db import db_add_comment
 from printerush.database.models import Product, ProductCategory
 from printerush.general.requirement import url_reformative
 from printerush.product.assistant_func import ProductPI, detect_sorting_and_filtering, ProductCategoryPI
+from printerush.product.db import get_product
 from printerush.product.forms import CommentForm, FilterForm
 
 products_bp = Blueprint('products_bp', __name__, template_folder='templates', static_folder='static',
@@ -17,7 +18,7 @@ products_bp = Blueprint('products_bp', __name__, template_folder='templates', st
 @products_bp.route('/<p>-p<int:product_id>', methods=['GET', 'POST'])
 @url_reformative
 def view(product_id, p):
-    product = Product.get(id=product_id)
+    product = get_product(product_id=product_id)
     if not product:
         abort(404)
 
