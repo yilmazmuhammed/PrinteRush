@@ -370,11 +370,12 @@ class ShippingTracking(db.Entity):
         return "PTT Kargo"
 
 
-# PostgreSQL
-db.bind(provider="postgres", dsn=os.getenv('DATABASE_URL'))
-
-# # SQLite
-# db.bind(provider='sqlite', filename='database.sqlite', create_db=True)
+if os.getenv('DEBUG') == "TRUE":
+    # SQLite
+    db.bind(provider='sqlite', filename='database.sqlite', create_db=True)
+else:
+    # PostgreSQL
+    db.bind(provider="postgres", dsn=os.getenv('DATABASE_URL'))
 
 db.generate_mapping(create_tables=True)
 
