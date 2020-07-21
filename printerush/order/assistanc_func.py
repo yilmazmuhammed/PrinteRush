@@ -26,17 +26,18 @@ class IyzikoInitialize:
 
     # TODO only web_user info
     def init_buyer(self, web_user, order):
+        # TODO isim, soyisim, tc kontrolü yap, yoksa hesabım sayfasına yönlendir
         self.buyer = {
             'id': str(web_user.id),
-            'name': web_user.first_name,
-            'surname': web_user.last_name,
+            'name': web_user.first_name if web_user.first_name else order.shipping_address_ref.first_name,
+            'surname': web_user.last_name if web_user.last_name else order.shipping_address_ref.last_name,
             'email': web_user.email,
-            'identityNumber': '74300864791',
-            'ip': '85.34.78.112',
+            'identityNumber': '00000000000',
+            'ip': request.remote_addr,
             'gsmNumber': order.invoicing_address_ref.phone_number,
             'city': order.invoicing_address_ref.district_ref.city_ref.city,
             'country': order.invoicing_address_ref.district_ref.city_ref.country_ref.country,
-            'registrationAddress': order.invoicing_address_ref.address_detail
+            'registrationAddress': order.invoicing_address_ref.address_detail + " " + order.invoicing_address_ref.district_ref.district
         }
 
     def init_invoicing_address(self, order):
@@ -44,7 +45,7 @@ class IyzikoInitialize:
             'contactName': order.invoicing_address_ref.first_name + " " + order.invoicing_address_ref.last_name,
             'city': order.invoicing_address_ref.district_ref.city_ref.city,
             'country': order.invoicing_address_ref.district_ref.city_ref.country_ref.country,
-            'address': order.invoicing_address_ref.address_detail
+            'address': order.invoicing_address_ref.address_detail + " " + order.invoicing_address_ref.district_ref.district
         }
 
     def init_shipping_address(self, order):
@@ -52,7 +53,7 @@ class IyzikoInitialize:
             'contactName': order.shipping_address_ref.first_name + " " + order.shipping_address_ref.last_name,
             'city': order.shipping_address_ref.district_ref.city_ref.city,
             'country': order.shipping_address_ref.district_ref.city_ref.country_ref.country,
-            'address': order.shipping_address_ref.address_detail
+            'address': order.shipping_address_ref.address_detail + " " + order.shipping_address_ref.district_ref.district
         }
 
     def init_basket_items(self, order):

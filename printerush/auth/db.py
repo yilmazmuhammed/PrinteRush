@@ -14,3 +14,8 @@ def db_add_web_user(json_webuser):
     json_webuser['password_hash'] = hasher.hash(json_webuser.pop('password'))
     # TODO form'u ögeyi incele ile değiştirip üst yetkili webuser olulturma
     return WebUser(**json_webuser)
+
+
+def get_webuser(**kwargs):
+    ret = WebUser.get(**kwargs)
+    return ret

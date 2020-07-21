@@ -52,6 +52,7 @@ def load_user(wu_id):
 lm.init_app(app)
 lm.login_view = "auth_bp.login"
 lm.login_message_category = 'danger'
+lm.login_message = u"Lütfen giriş yapınız."
 
 
 @app.errorhandler(404)

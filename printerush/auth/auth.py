@@ -2,10 +2,9 @@ from flask_login import login_user, login_required, logout_user, current_user
 from passlib.hash import pbkdf2_sha256 as hasher
 from printerush.cart.assistanc_fuct import update_cart
 from printerush.common.assistant_func import flask_form_to_dict, FormPI, get_translation, LayoutPI
-from printerush.auth.db import db_add_web_user
+from printerush.auth.db import db_add_web_user, get_webuser
 from printerush.auth.exceptions import RegisterException
 from printerush.auth.forms import RegisterForm, LoginForm, UpdateForm, ChangePassword
-from printerush.database.models import WebUser
 from flask import Blueprint, redirect, url_for, flash, render_template, request, g
 from printerush.address.forms import AddressModalForm
 from printerush.address.assistant_func import country_select_choices
@@ -39,7 +38,7 @@ def login():
     translation = get_translation()["auth"]["auth"]["login"]
 
     if form.validate_on_submit():
-        user = WebUser.get(email=form.email.data)
+        user = get_webuser(email=form.email.data, account_type=0)
         if user and hasher.verify(form.password.data, user.password_hash) and user.is_active:
             login_user(user, remember=form.remember_me.data)
             update_cart()

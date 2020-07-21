@@ -51,7 +51,7 @@ class WebUserForm(FlaskForm):
             Length(max=254, message=t['email']['length']),
             Email(t['email']['required'])
         ],
-        id='username', render_kw={"placeholder": t['email']['label']}
+        id='email', render_kw={"placeholder": t['email']['label']}
     )
 
     phone_number = TelField(

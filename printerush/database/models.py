@@ -9,10 +9,16 @@ db = Database()
 
 # TODO is_active
 class WebUser(db.Entity, UserMixin):
+    """
+    :param account_type: Üyelik tipini belirtir
+                         0 -> Müşteri hesabı
+                         1 -> Mağaza hesabı,
+                         2 -> Yönetici hesabı
+    """
     id = PrimaryKey(int, auto=True)
     first_name = Optional(str, 40)
     last_name = Optional(str, 40)
-    email = Required(str, 254, unique=True)
+    email = Required(str, 254)
     phone_number = Optional(str, 20)
     password_hash = Required(str)
     is_admin = Required(bool, default=False)
@@ -27,6 +33,8 @@ class WebUser(db.Entity, UserMixin):
     shoppin_lists_set = Set('ShoppinList')
     orders_set = Set('Order')
     addresses_set = Set('Address')
+    store_authorizations_set = Set('StoreAuthorization')
+    composite_key(email, account_type)
 
     def get_id(self):
         return self.id
@@ -94,8 +102,8 @@ class Product(db.Entity):
 class Address(db.Entity):
     id = PrimaryKey(int, auto=True)
     title = Required(str, 40)
-    first_name = Required(str, 40)
-    last_name = Required(str, 40)
+    first_name = Optional(str, 40)
+    last_name = Optional(str, 40)
     address_detail = Required(str, 1000)
     phone_number = Required(str, 20)
     invoice_type = Required(int, size=8)
@@ -103,8 +111,8 @@ class Address(db.Entity):
     tax_number = Optional(str, 20)
     tax_office = Optional(str, 50)
     district_ref = Required('District')
-    web_user_ref = Optional(WebUser)
     store_ref = Optional('Store')
+    web_user_ref = Optional(WebUser)
     shipped_orders_set = Set('Order', reverse='shipping_address_ref')
     invoiced_orders_set = Set('Order', reverse='invoicing_address_ref')
 
@@ -224,14 +232,16 @@ class Store(db.Entity):
     id = PrimaryKey(int, auto=True)
     name = Required(str, 100, unique=True)
     short_name = Required(str, 20, unique=True)
-    explanation_html = Optional(str)
     about_html = Optional(str)
+    explanation_html = Optional(str)
     phone_number = Required(str, 20)
     email = Required(str, 254)
+    data_status_ref = Required('DataStatus')
     comments_set = Set('Comment')
     products_set = Set(Product)
     sub_orders_set = Set('SubOrder')
     address_ref = Required(Address)
+    store_authorizations_set = Set('StoreAuthorization')
 
 
 class Comment(db.Entity):
@@ -307,6 +317,7 @@ class DataStatus(db.Entity):
     edit_time = Optional(datetime)
     deletor_ref = Optional(WebUser, reverse='deleted_set')
     deletion_time = Optional(datetime)
+    store_ref = Optional(Store)
     comment_ref = Optional(Comment)
     printable_3d_model_ref = Optional(Printable3dModel)
     product_ref = Optional(Product)
@@ -329,10 +340,10 @@ class ShoppinList(db.Entity):
 
 
 class CartProduct(db.Entity):
+    id = PrimaryKey(int, auto=True)
     product_ref = Required(Product)
     quantity = Required(int)
     web_user_ref = Required(WebUser)
-    PrimaryKey(product_ref, web_user_ref)
 
 
 class SubOrder(db.Entity):
@@ -361,13 +372,19 @@ class SubOrder(db.Entity):
 class ShippingTracking(db.Entity):
     id = PrimaryKey(int, auto=True)
     delivery_time = Optional(datetime)
+    shipping_company = Required(str)
     shipping_tracking_number = Required(str)
+    status = Required(int)
     sub_order_for_products_ref = Optional(SubOrder, reverse='shipping_information_for_products_ref')
     sub_order_for_invoice_ref = Optional(SubOrder, reverse='shipping_information_for_invoice_ref')
 
-    @property
-    def shipping_company(self):
-        return "PTT Kargo"
+
+class StoreAuthorization(db.Entity):
+    id = PrimaryKey(int, auto=True)
+    authorization = Required(str, 50)
+    is_admin = Required(bool, default=False)
+    store_ref = Required(Store)
+    web_users_set = Set(WebUser)
 
 
 if os.getenv('DEBUG') == "TRUE":
@@ -394,7 +411,10 @@ if __name__ == '__main__':
             addr = Address(title="store address", first_name="fn", last_name="ln", address_detail="ad",
                            phone_number="pn", invoice_type=0, district_ref=torbali)
             store1 = Store(name="PrinteRush", short_name="PrinteRush", phone_number="+905392024175",
-                           email="store@printerush.com", address_ref=addr)
+                           email="store@printerush.com", address_ref=addr,
+                           data_status_ref=DataStatus(creator_ref=webuser,
+                                                      confirmer_ref=webuser, confirmation_time=datetime.now())
+                           )
             root = ProductCategory(title_key="Ana Sayfa")
             category1 = ProductCategory(title_key="Aydınlatma", parent_category_ref=root)
             category1_1 = ProductCategory(title_key="Masa Lambası", parent_category_ref=category1)
