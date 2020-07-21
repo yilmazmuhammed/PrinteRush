@@ -2,12 +2,21 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 
 from printerush.address.assistant_func import create_address_json
-from printerush.address.db import get_country, get_city, db_add_address, get_last_address, get_address, remove_address
+from printerush.address.db import get_country, get_city, db_add_address, get_last_address, get_address, remove_address, \
+    get_countries
 from printerush.address.exceptions import ThereIsNotCountry, ThereIsNotDistrict, ThereIsNotAddress
 from printerush.address.forms import AddressModalForm
 from printerush.common.assistant_func import get_translation
 
 address_api_bp = Blueprint('address_api_bp', __name__)
+
+
+@address_api_bp.route('/countries')
+def countries_api():
+    countries = []
+    for c in get_countries():
+        countries.append(c.to_dict())
+    return jsonify(result=True, countries=countries)
 
 
 @address_api_bp.route('/cities')

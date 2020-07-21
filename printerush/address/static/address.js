@@ -20,7 +20,26 @@ let invoice_type_radio = $("#invoice_type")
     set_visibility_invoice_information();
 });
 
-function   set_city_options(country_id){
+function set_country_options(){
+  fetch(Flask.url_for("address_api_bp.countries_api")).then(function (response) {
+    response.json().then(function (data) {
+      if (data.result) {
+        let countries = data.countries;
+        let optionsHTML = "<option value=''>Ülke seçiniz...</option>";
+        let i, country;
+        for (i = 0; i < countries.length; i++) {
+          country = countries[i];
+          optionsHTML += "<option value='" + country.id + "'>" + country.country + "</option>";
+        }
+        country_select.html(optionsHTML);
+      } else {
+        country_select.html("<option value=''>" + data.err_msg + "</option>");
+      }
+    });
+  });
+}
+
+function set_city_options(country_id){
   if(country_id === undefined){
     return;
   }
@@ -110,6 +129,7 @@ function set_visibility_invoice_information(){
 
 $(document)
   .ready(function () {
+    set_country_options();
     set_city_options(country_select.find(":selected").val());
     set_district_options(city_select.find(":selected").val());
     set_visibility_address_detail();

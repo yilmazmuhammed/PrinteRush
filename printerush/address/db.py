@@ -5,6 +5,10 @@ from printerush.common.assistant_func import get_translation
 from printerush.database.models import Country, City, District, Address
 
 
+def get_countries():
+    return Country.select()
+
+
 def get_country(country_id):
     translation = get_translation()['address']['db']['get_country']
     country = Country.get(id=country_id)
