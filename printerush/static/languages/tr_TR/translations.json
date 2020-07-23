@@ -384,6 +384,52 @@
         "submit": {
           "label": "Filtrele"
         }
+      },
+      "new_product": {
+        "form_title": "Ürün Ekle",
+        "submit": {
+          "label": "Ürün ekle"
+        }
+      },
+      "product": {
+        "description_html": {
+          "label": "Açıklama"
+        },
+        "name": {
+          "label": "Ürün İsmi",
+          "length": "Ürün ismi 100 karakterden fazla olamaz.",
+          "required": "Lütfen ürünün ismini giriniz"
+        },
+        "photos": {
+          "file_allowed": "Sadece resim dosyalarına izin verilmektedir. İzin verilen uzantılar:",
+          "label": "Görsel"
+        },
+        "price": {
+          "label": "Fiyatı",
+          "number_range": "Ürün fiyatı 0'dan küçük olamaz.",
+          "placeholder": "10.00",
+          "required": "Ürünün fiyatını giriniz"
+        },
+        "printable_3d_models_set": {
+          "file_allowed": "Sadece model dosyalarına izin verilmektedir. İzin verilen uzantılar:",
+          "label": "3B Model"
+        },
+        "product_category_ref": {
+          "label": "Ürün kategorisi",
+          "please_select": "Ürün kategorisi seçiniz.",
+          "required": "Lütfen ürün kategorisini seçiniz."
+        },
+        "short_description_html": {
+          "label": "Kısa açıklama"
+        },
+        "stock": {
+          "label": "Stok",
+          "number_range": "Ürün stoğu 0'dan küçük olamaz.",
+          "required": "Ürünün stoğunu giriniz"
+        },
+        "submit": {
+          "label": "Gönder"
+        }
       }
     },
     "product": {
@@ -432,6 +478,102 @@
           "wishlist": "Beğendiklerime ekle"
         },
         "title": "Ürünleri Görüntüle"
+      }
+    }
+  },
+  "store": {
+    "db": {
+      "get_store": {
+        "there_is_not_store": "Mağaza bulunamadı"
+      }
+    },
+    "forms": {
+      "new_store_form": {
+        "address_detail": {
+          "label": "Adres detayı",
+          "length": "Adres detayı 1000 karakterden fazla olamaz.",
+          "required": "Lütfen adres detayını giriniz."
+        },
+        "city": {
+          "label": "Şehir",
+          "please_select": "Şehir seçiniz...",
+          "required": "Lütfen şehri seçiniz."
+        },
+        "country": {
+          "label": "Ülke",
+          "please_select": "Ülke seçiniz...",
+          "required": "Lütfen ülkeyi seçiniz."
+        },
+        "district": {
+          "label": "İlçe",
+          "please_select": "İlçe seçiniz...",
+          "required": "Lütfen ilçeyi seçiniz."
+        },
+        "form_title": "Mağaça açma talebi",
+        "submit": {
+          "label": "Mağaza başvurusunda bulun"
+        }
+      },
+      "store_form": {
+        "about_html": {
+          "label": "Hakkımızda"
+        },
+        "email": {
+          "label": "Eposta adresi",
+          "length": "Eposta adresi 254 karakterden fazla olamaz.",
+          "required": "Lütfen e-posta adresinizi giriniz."
+        },
+        "explanation_html": {
+          "label": "Ek Açıklamalar"
+        },
+        "name": {
+          "label": "Mağaza İsmi",
+          "length": "Mağaza ismi 100 karakterden fazla olamaz",
+          "required": "Lütfen mağaza ismini giriniz"
+        },
+        "phone_number": {
+          "label": "Telefon Numarası",
+          "length": "Telefon numarası 20 karakterden fazla olamaz",
+          "required": "Lütfen mağaza telefonunu giriniz"
+        },
+        "short_name": {
+          "label": "Kısa isim",
+          "length": "Kısa isim 20 karakterden fazla olamaz",
+          "required": "Lütfen mağazanıza bir kısa isim giriniz"
+        },
+        "submit": {
+          "label": "Gönder"
+        }
+      }
+    },
+    "layout": {
+      "left_navbar": {
+        "orders": {
+          "orders": "Siparişler"
+        },
+        "products": {
+          "add_product": "Yeni Ürün ekle",
+          "my_products": "Ürünlerim",
+          "products": "Ürünler"
+        }
+      }
+    },
+    "store": {
+      "new_store_request_page": {
+        "title": "Mağaza açma talebi"
+      }
+    },
+    "store_auth": {
+      "login": {
+        "login_successful": "Giriş yapıldı.",
+        "passive_user": "Kullanıcı aktif değil.",
+        "title": "Giriş Yap",
+        "wrong_password": "Parola veya kullanıcı adı yanlış."
+      },
+      "register": {
+        "passwords_do_not_match": "Parolalar eşleşmiyor.",
+        "success_msg": "Kayıt olundu. Lütfen giriş yapınız.",
+        "title": "Kayıt ol"
       }
     }
   }

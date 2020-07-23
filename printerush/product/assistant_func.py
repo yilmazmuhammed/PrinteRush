@@ -1,4 +1,5 @@
 from printerush.common.assistant_func import FormPI
+from printerush.product.db import get_root_category
 
 
 class ProductPI(FormPI):
@@ -12,6 +13,15 @@ class ProductCategoryPI(FormPI):
         super().__init__(*args, **kwargs)
         self.products = products
         self.category = category
+
+
+def product_category_choices(root=None, level=-1):
+    root = root if root is not None else get_root_category()
+
+    ret = [(root.id, '-'*level+root.title_key)]
+    for sub in root.sub_categories_set.order_by(lambda pc: pc.title_key):
+        ret += product_category_choices(root=sub, level=level+1)
+    return ret
 
 
 def detect_sorting_and_filtering(**kwargs):

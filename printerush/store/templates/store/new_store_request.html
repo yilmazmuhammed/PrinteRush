@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+  {% block content %}
+
+  <!-- CONTAIN START -->
+  <section class="checkout-section ptb-70">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8 col-md-8 ">
+              {% include 'parts/flashed_messages.html' %}
+              {% if not g.result == True %}
+              {% with form = g.store_form  %}
+              {% include 'parts/form.html' %}
+              {% endwith %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTAINER END -->
+
+  {% endblock %}
+
+  {% block js_block %}
+    <script src="{{ url_for('address_bp.static', filename='address.js') }}"></script>
+  {% endblock %}

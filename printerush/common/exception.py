@@ -1,0 +1,2 @@
+class NoFilename(Exception):
+    pass

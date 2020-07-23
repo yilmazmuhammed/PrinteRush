@@ -1,9 +1,8 @@
 from flask import Blueprint, redirect, url_for, render_template, g
 
 from printerush.common.assistant_func import LayoutPI, FormPI
-from printerush.database.models import WebUser
 from printerush.general.forms import ContactUserForm
-from printerush.product.db import get_main_category
+from printerush.product.db import get_root_category
 
 general_bp = Blueprint('general_bp', __name__,
                        template_folder='templates',
@@ -12,8 +11,8 @@ general_bp = Blueprint('general_bp', __name__,
 
 @general_bp.route('/')
 def index():
-    g.new_arrivals = get_main_category().products(sort_by="lambda p: p.data_status_ref.confirmation_time")[:20]
-    g.best_seller = get_main_category().products(sort_by="lambda p: desc(p.sold)")[:20]
+    g.new_arrivals = get_root_category().products(sort_by="lambda p: p.data_status_ref.confirmation_time")[:20]
+    g.best_seller = get_root_category().products(sort_by="lambda p: desc(p.sold)")[:20]
     return render_template('general/index.html', page_info=LayoutPI(title="Home page"))
 
 

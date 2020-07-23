@@ -1,0 +1,84 @@
+{% extends "store/layout.html" %}
+
+  {% block js_block %}
+      <script src="{{ url_for('store_sbp.static', filename='js/printerush/dynamic_file_field.js') }}"></script>
+  {% endblock %}
+
+  {% block content %}
+  <div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">Form Elements</h1>
+  </div>
+  <div class="wrapper-md">
+    <div class="row">
+      <div class="col-sm-offset-3 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading font-bold">{{ form.form_title }}</div>
+          <div class="panel-body">
+            {% if form.errors %}
+              <div class="col-12 alert alert-danger" role="alert">
+                <ul>
+                  {% for key in form.errors %}
+                  {% for error in form.errors[key] %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+            {{ form.open|safe }}
+              {% for field in form %}
+                {% if field.id == "csrf_token" or field.type in ["HiddenField"] %}
+                  {{ field }}
+                {% elif field.type in ["StringField", "TextAreaField", "IntegerField", "DecimalField"] %}
+                  <div class="form-group">
+                    <div class="col-lg-3 control-label">
+                      {{ field.label }} {% if field.flags.required %}*{% endif %}
+                    </div>
+                    <div class="col-lg-9">
+                      {{ field(class="form-control") }}
+                    </div>
+                  </div>
+                {% elif field.type in ["FieldList"] %}
+                  {% for sub_field in field %}
+                    <div class="form-group">
+                      <div class="col-lg-3 control-label">
+                        {{ sub_field.label }} {% if field.flags.required or sub_field.flags.required %}*{% endif %}
+                      </div>
+                      <div class="col-lg-9">
+                        <div class="row" style="margin-bottom: 5px;" id="row-{{ sub_field.id }}">
+                          <div class="col-lg-9">
+                            {{ sub_field(class="form-control", style="padding: 0px; border: 0px;") }}
+                          </div>
+                          <div id="add-remove-file-field-div-{{ sub_field.id }}" class="col-lg-3" style="margin-top: 6px;" >
+                            <a class="add-file-field" id="{{ sub_field.id }}"><i class="glyphicon glyphicon-plus"></i></a>
+                            <a class="remove-file-field" id="{{ sub_field.id }}"><i class="glyphicon glyphicon-minus"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                {% elif field.type in ["CustomSelectField"] %}
+                  <div class="form-group">
+                    <div class="col-lg-3 control-label">
+                      {{ field.label }} {% if field.flags.required %}*{% endif %}
+                    </div>
+                    <div class="col-lg-9">
+                      {{ field(class="form-control m-b") }}
+                    </div>
+
+                  </div>
+                {% elif field.type in ["SubmitField"] %}
+                  <div class="form-group">
+                    <div class="col-lg-offset-1 col-lg-11 text-center">
+                      {{ field(class="btn btn-m btn-info") }}
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {{ form.close|safe }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

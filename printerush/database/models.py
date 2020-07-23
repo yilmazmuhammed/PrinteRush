@@ -47,6 +47,12 @@ class WebUser(db.Entity, UserMixin):
     def name_surname(self):
         return self.first_name + " " + self.last_name
 
+    def get_first_store(self):
+        return self.store_authorizations_set.order_by(lambda sa: sa.store_ref.id).first().store_ref
+
+    def authorized_stores(self):
+        return select(sa.store_ref for sa in self.store_authorizations_set)
+
 
 class Product(db.Entity):
     id = PrimaryKey(int, auto=True)
@@ -92,11 +98,11 @@ class Product(db.Entity):
 
     @property
     def main_photo(self):
-        return self.photos_set[0] if self.photos_set else Photo[1]
+        return self.photos_set.select().first() if self.photos_set else Photo[1]
 
     @property
     def main_option(self):
-        return self.product_options_set.order_by(lambda o: o.id)[:][0]
+        return self.product_options_set.order_by(lambda o: o.id).first()
 
 
 class Address(db.Entity):
@@ -415,7 +421,7 @@ if __name__ == '__main__':
                            data_status_ref=DataStatus(creator_ref=webuser,
                                                       confirmer_ref=webuser, confirmation_time=datetime.now())
                            )
-            root = ProductCategory(title_key="Ana Sayfa")
+            root = ProductCategory(title_key="PrinteRush")
             category1 = ProductCategory(title_key="Aydınlatma", parent_category_ref=root)
             category1_1 = ProductCategory(title_key="Masa Lambası", parent_category_ref=category1)
             category1_2 = ProductCategory(title_key="Tavan Lambası", parent_category_ref=category1)

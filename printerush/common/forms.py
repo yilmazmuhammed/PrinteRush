@@ -1,15 +1,17 @@
 from wtforms import SubmitField, SelectField
 
 
-def form_open(form_name, f_id=None, enctype=None, f_action=""):
+def form_open(form_name, f_id=None, enctype=None, f_action="", f_class=None):
     f_open = """<form action="%s" method="post" name="%s" """ % (f_action, form_name,)
 
     if f_id:
         f_open += """ id="%s" """ % (f_id,)
     if enctype:
         f_open += """ enctype="%s" """ % (enctype,)
-
-    f_open += """class="main-form full">"""
+    if f_class:
+        f_open += """ class="%s" >""" % (f_class,)
+    else:
+        f_open += """class="main-form full">"""
 
     return f_open
 
@@ -33,3 +35,7 @@ class SelectField(SelectField):
                 yield (value, label, False)
             else:
                 yield (value, label, self.coerce(value) == self.data)
+
+
+class CustomSelectField(SelectField):
+    pass
