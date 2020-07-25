@@ -404,10 +404,7 @@ db.generate_mapping(create_tables=True)
 
 if __name__ == '__main__':
     with db_session:
-        if WebUser.select(lambda w: w.is_admin == True):
-            print("db pass")
-            pass
-        else:
+        if not Country.get(country='Türkiye'):
             from pyexcel_ods3 import get_data
 
             data = get_data("Ilce_Listesi.ods")
@@ -428,8 +425,11 @@ if __name__ == '__main__':
                         if cell == "":
                             continue
                         District(district=cell, city_ref=city)
-
-            flush()
+    with db_session:
+        if WebUser.select(lambda w: w.is_admin == True):
+            print("db pass")
+            pass
+        else:
             webuser = WebUser(email="admin@printerush.com",
                               password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY",
                               is_admin=True)
@@ -437,8 +437,7 @@ if __name__ == '__main__':
                              password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY",
                              is_admin=True, account_type=1)
             addr = Address(title="store address", first_name="fn", last_name="ln", address_detail="ad",
-                           phone_number="pn", invoice_type=0,
-                           district_ref=District[1])
+                           phone_number="pn", invoice_type=0, district_ref=District[1])
             store1 = Store(name="PrinteRush", short_name="PrinteRush", phone_number="+905392024175",
                            email="store@printerush.com", address_ref=addr,
                            data_status_ref=DataStatus(creator_ref=magaza,
