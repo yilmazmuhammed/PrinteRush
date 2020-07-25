@@ -30,7 +30,7 @@ app = Flask(__name__, instance_relative_config=True)
 
 app.secret_key = os.getenv("SECRET_KEY")
 
-app.config['SERVER_NAME'] = 'printerush.local:5000'
+app.config['SERVER_NAME'] = 'printerush.com'
 # SESSION_COOKIE_DOMAIN
 # app.url_map.default_subdomain = 'www'
 # app.config['WWW'] = True
