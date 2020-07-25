@@ -32,8 +32,7 @@ app.secret_key = os.getenv("SECRET_KEY")
 
 app.config['SERVER_NAME'] = 'printerush.com'
 # SESSION_COOKIE_DOMAIN
-# app.url_map.default_subdomain = 'www'
-# app.config['WWW'] = True
+
 
 jsglue = JSGlue(app)
 Pony(app)
