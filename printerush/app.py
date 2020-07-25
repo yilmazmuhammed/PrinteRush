@@ -27,12 +27,16 @@ from printerush.store.store import store_sbp
 locale.setlocale(locale.LC_ALL, 'tr_TR.utf8')
 
 app = Flask(__name__, instance_relative_config=True)
-jsglue = JSGlue(app)
-Pony(app)
 
 app.secret_key = os.getenv("SECRET_KEY")
 
-app.config['SERVER_NAME'] = 'printerush.com'
+app.config['SERVER_NAME'] = 'printerush.local:5000'
+# SESSION_COOKIE_DOMAIN
+app.url_map.default_subdomain = 'www'
+# app.config['WWW'] = True
+
+jsglue = JSGlue(app)
+Pony(app)
 
 app.register_blueprint(db_bp, url_prefix="/db")
 app.register_blueprint(auth_bp, url_prefix="/")
