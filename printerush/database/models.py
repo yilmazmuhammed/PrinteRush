@@ -429,7 +429,7 @@ if __name__ == '__main__':
                             continue
                         District(district=cell, city_ref=city)
 
-
+            flush()
             webuser = WebUser(email="admin@printerush.com",
                               password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY",
                               is_admin=True)
