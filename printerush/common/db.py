@@ -23,6 +23,8 @@ def db_add_photos(photos, **kwargs):
         leaf = str(kwargs.get('product_ref').id)
 
     for photo in photos:
+        if not photo:
+            continue
         filename = secure_filename(photo.filename)
         task = os.path.join('images', root, leaf)
         directory_path = os.path.join(current_app.config['UPLOADED_FILES'], task)
