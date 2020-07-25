@@ -408,43 +408,64 @@ if __name__ == '__main__':
             print("db pass")
             pass
         else:
+            from pyexcel_ods3 import get_data
+
+            data = get_data("Ilce_Listesi.ods")
+
+            country = Country(country="Türkiye")
+            city = None
+            for line in data['Ilce_Listesi'][:-4]:
+                if len(line) == 0:
+                    continue
+
+                if len(line) == 4 and line[1] == '' and line[2] == '':
+                    city = City(city=line[0], country_ref=country)
+                    continue
+
+                for cell in line:
+                    if cell == "":
+                        continue
+                    District(district=cell, city_ref=city)
+
+
             webuser = WebUser(email="admin@printerush.com",
                               password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY",
                               is_admin=True)
             magaza = WebUser(email="magaza@printerush.com",
-                              password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY",
-                              is_admin=True, account_type=1)
-            turkiye = Country(country="Türkiye")
-            izmir = City(city="İzmir", country_ref=turkiye)
-            torbali = District(district="Torbalı", city_ref=izmir)
+                             password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY",
+                             is_admin=True, account_type=1)
             addr = Address(title="store address", first_name="fn", last_name="ln", address_detail="ad",
-                           phone_number="pn", invoice_type=0, district_ref=torbali)
+                           phone_number="pn", invoice_type=0,
+                           district_ref=District[1])
             store1 = Store(name="PrinteRush", short_name="PrinteRush", phone_number="+905392024175",
                            email="store@printerush.com", address_ref=addr,
                            data_status_ref=DataStatus(creator_ref=magaza,
                                                       confirmer_ref=webuser, confirmation_time=datetime.now())
                            )
-            magaza_admin_yetkisi = StoreAuthorization(authorization="Kurucu", is_admin=True, store_ref=store1, web_users_set=[magaza])
+            magaza_admin_yetkisi = StoreAuthorization(authorization="Kurucu", is_admin=True, store_ref=store1,
+                                                      web_users_set=[magaza])
             root = ProductCategory(title_key="PrinteRush")
-            category1 = ProductCategory(title_key="Aydınlatma", parent_category_ref=root)
-            category1_1 = ProductCategory(title_key="Masa Lambası", parent_category_ref=category1)
-            category1_2 = ProductCategory(title_key="Tavan Lambası", parent_category_ref=category1)
-            photo1 = Photo(file_path="/static/images/1.jpg")
-            product1 = Product(name="Ürün 1", description_html="Product 1 açıklaması",
-                               short_description_html="<b>Product</b> 1 sort",
-                               store_ref=store1, product_category_ref=category1_1,
-                               data_status_ref=DataStatus(creator_ref=magaza))
-            Comment(point=4, title="comment 1 title of product 1", message="comment1 of product 1 comment of product 1",
-                    to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
-            Comment(point=5, title="comment 2 title of product 1", message="comment2 of product 1 comment of product 1",
-                    to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
-            Comment(point=5, title="comment 3 title of product 1", message="comment3 of product 1 comment of product 1",
-                    to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
-            ProductOption(product_ref=product1, price=10.50, stock=15)
+            # category1 = ProductCategory(title_key="Aydınlatma", parent_category_ref=root)
+            # category1_1 = ProductCategory(title_key="Masa Lambası", parent_category_ref=category1)
+            # category1_2 = ProductCategory(title_key="Tavan Lambası", parent_category_ref=category1)
+            photo1 = Photo(file_path="printerush.com/static/images/1.jpg")
+            # product1 = Product(name="Ürün 1", description_html="Product 1 açıklaması",
+            #                    short_description_html="<b>Product</b> 1 sort",
+            #                    store_ref=store1, product_category_ref=category1_1,
+            #                    data_status_ref=DataStatus(creator_ref=magaza))
+            # Comment(point=4, title="comment 1 title of product 1", message="comment1 of product 1 comment of product 1",
+            #         to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
+            # Comment(point=5, title="comment 2 title of product 1", message="comment2 of product 1 comment of product 1",
+            #         to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
+            # Comment(point=5, title="comment 3 title of product 1", message="comment3 of product 1 comment of product 1",
+            #         to_product_ref=product1, data_status_ref=DataStatus(creator_ref=webuser))
+            # ProductOption(product_ref=product1, price=10.50, stock=15)
+            #
+            # ProductOption(product_ref=Product(name="Ürün 2", description_html="Product 2 açıklaması",
+            #                                   short_description_html="<b>Product</b> 2 sort",
+            #                                   store_ref=store1, product_category_ref=category1_2,
+            #                                   data_status_ref=DataStatus(creator_ref=magaza)
+            #                                   ),
+            #               price=100, stock=15)
 
-            ProductOption(product_ref=Product(name="Ürün 2", description_html="Product 2 açıklaması",
-                                              short_description_html="<b>Product</b> 2 sort",
-                                              store_ref=store1, product_category_ref=category1_2,
-                                              data_status_ref=DataStatus(creator_ref=magaza)
-                                              ),
-                          price=100, stock=15)
+
