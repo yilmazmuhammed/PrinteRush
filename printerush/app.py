@@ -32,24 +32,43 @@ app.secret_key = os.getenv("SECRET_KEY")
 
 app.config['SERVER_NAME'] = 'printerush.local:5000'
 # SESSION_COOKIE_DOMAIN
-app.url_map.default_subdomain = 'www'
+# app.url_map.default_subdomain = 'www'
 # app.config['WWW'] = True
 
 jsglue = JSGlue(app)
 Pony(app)
 
-app.register_blueprint(db_bp, url_prefix="/db")
-app.register_blueprint(auth_bp, url_prefix="/")
-app.register_blueprint(general_bp, url_prefix="/")
-app.register_blueprint(order_bp, url_prefix="/order/")
-app.register_blueprint(cart_bp, url_prefix="/cart/")
-app.register_blueprint(products_bp, url_prefix="/products/")
-app.register_blueprint(models_bp, url_prefix="/models/")
-app.register_blueprint(address_bp, url_prefix="/address")
-app.register_blueprint(store_sbp, subdomain="store", url_prefix="/")
-app.register_blueprint(cart_api_bp, url_prefix="/api/cart")
-app.register_blueprint(address_api_bp, url_prefix="/api/address")
-app.register_blueprint(product_api_bp, url_prefix="/api/product")
+
+def configure_blueprints(app, blueprint, **kwargs):
+    app.register_blueprint(blueprint, **kwargs)
+    if not blueprint.subdomain and not kwargs.get('subdomain'):
+        app.register_blueprint(blueprint, subdomain='www', **kwargs)
+
+
+configure_blueprints(app, db_bp, url_prefix="/db")
+configure_blueprints(app, auth_bp, url_prefix="/")
+configure_blueprints(app, general_bp, url_prefix="/")
+configure_blueprints(app, order_bp, url_prefix="/order/")
+configure_blueprints(app, cart_bp, url_prefix="/cart/")
+configure_blueprints(app, products_bp, url_prefix="/products/")
+configure_blueprints(app, models_bp, url_prefix="/models/")
+configure_blueprints(app, address_bp, url_prefix="/address")
+configure_blueprints(app, store_sbp, subdomain="store", url_prefix="/")
+configure_blueprints(app, cart_api_bp, url_prefix="/api/cart")
+configure_blueprints(app, address_api_bp, url_prefix="/api/address")
+configure_blueprints(app, product_api_bp, url_prefix="/api/product")
+# app.register_blueprint(db_bp, url_prefix="/db")
+# app.register_blueprint(auth_bp, url_prefix="/")
+# app.register_blueprint(general_bp, url_prefix="/")
+# app.register_blueprint(order_bp, url_prefix="/order/")
+# app.register_blueprint(cart_bp, url_prefix="/cart/")
+# app.register_blueprint(products_bp, url_prefix="/products/")
+# app.register_blueprint(models_bp, url_prefix="/models/")
+# app.register_blueprint(address_bp, url_prefix="/address")
+# app.register_blueprint(store_sbp, subdomain="store", url_prefix="/")
+# app.register_blueprint(cart_api_bp, url_prefix="/api/cart")
+# app.register_blueprint(address_api_bp, url_prefix="/api/address")
+# app.register_blueprint(product_api_bp, url_prefix="/api/product")
 
 app.config['UPLOADED_FILES'] = 'printerush/database/static/files'
 
