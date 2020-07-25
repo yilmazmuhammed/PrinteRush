@@ -8,7 +8,7 @@
     <div class="banner">
       <div class="main-banner owl-carousel">
         <div class="item">
-          <div class="banner-1"> <img src="/static/images/banner1.jpg" alt="Everypick">
+          <div class="banner-1"> <img src="{{ url_for('static', filename='images/banner1.jpg') }}" alt="Everypick">
             <div class="banner-detail">
               <div class="container">
                 <div class="row">
@@ -428,849 +428,849 @@
 {#  </div>#}
 {#  <!-- SUB-BANNER END -->#}
 
-  <!--  Featured Products Slider Block Start  -->
-  <div class="featured-product ptb-70">
-    <div class="container">
-      <div class="product-listing">
-        <div class="row">
-          <div class="col-12">
-            <div class="heading-part line-bottom mb-30">
-              <div id="tabs" class="category-bar">
-                <ul class="tab-stap">
-                  <li><a class="tab-step1 selected" title="step1">Latest</a></li>
-                  <li><a class="tab-step2" title="step2">Featured</a></li>
-                  <li><a class="tab-step3" title="step3">Most Viewed</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pro_cat tab_content ">
-          <div id="items">
-            <div class="">
-              <ul>
-                <li>
-                  <div id="data-step1" class="items-step1 product-slider-main position-r selected" data-temp="tabdata">
-                    <div class="tab_cat">
-                      <div class="row mlr_-20">
-                        <div class="col-xl-4 col-lg-4 col-12 plr-20">
-                          <div class="row mlr_-20">
-                            <div class="col-6 plr-20">
-                              <div class="product-item mb-20">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/1.jpg" alt="Everypick">
-                                  </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item mb-sm-20">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/2.jpg" alt="Everypick">
-                                  </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6 plr-20">
-                              <div class="product-item sold-out mb-20">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> <a href="product-page.html"> <img src="/static/images/12.jpg" alt="Everypick"> </a>
-                                  <div class="product-detail-inner">
-                                    <div class="detail-inner-left align-center">
-                                      <ul>
-                                        <li class="pro-cart-icon">
-                                          <form>
-                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                          </form>
-                                        </li>
-                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item mb-sm-20">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> <a href="product-page.html"> <img src="/static/images/13.jpg" alt="Everypick"> </a>
-                                  <div class="product-detail-inner">
-                                    <div class="detail-inner-left align-center">
-                                      <ul>
-                                        <li class="pro-cart-icon">
-                                          <form>
-                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                          </form>
-                                        </li>
-                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-12 mb-sm-30 plr-20">
-                          <div class="row mlr_-20">
-                            <div class="col-12  plr-20">
-                              <div class="product-item big-pro align-center">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> <a href="product-page.html"> <img src="/static/images/7.jpg" alt="Everypick"> </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                                <div class="item-offer-clock">
-                                  <ul class="countdown-clock">
-                                    <li>
-                                      <span class="days">00</span>
-                                      <p class="days_ref">days</p>
-                                    </li>
-                                    <li class="seperator">:</li>
-                                    <li>
-                                      <span class="hours">00</span>
-                                      <p class="hours_ref">hrs</p>
-                                    </li>
-                                    <li class="seperator">:</li>
-                                    <li>
-                                      <span class="minutes">00</span>
-                                      <p class="minutes_ref">min</p>
-                                    </li>
-                                    <li class="seperator">:</li>
-                                    <li>
-                                      <span class="seconds">00</span>
-                                      <p class="seconds_ref">sec</p>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-12 plr-20">
-                          <div class="row mlr_-20">
-                            <div class="col-6 plr-20">
-                              <div class="product-item mb-20">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/8.jpg" alt="Everypick">
-                                  </a>
-                                  <div class="product-detail-inner">
-                                    <div class="detail-inner-left align-center">
-                                      <ul>
-                                        <li class="pro-cart-icon">
-                                          <form>
-                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                          </form>
-                                        </li>
-                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/11.jpg" alt="Everypick">
-                                  </a>
-                                  <div class="product-detail-inner">
-                                    <div class="detail-inner-left align-center">
-                                      <ul>
-                                        <li class="pro-cart-icon">
-                                          <form>
-                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                          </form>
-                                        </li>
-                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6 plr-20">
-                              <div class="product-item sold-out mb-20">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> <a href="product-page.html"> <img src="/static/images/17.jpg" alt="Everypick"> </a>
-                                  <div class="product-detail-inner">
-                                    <div class="detail-inner-left align-center">
-                                      <ul>
-                                        <li class="pro-cart-icon">
-                                          <form>
-                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                          </form>
-                                        </li>
-                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> <a href="product-page.html"> <img src="/static/images/18.jpg" alt="Everypick"> </a>
-                                  <div class="product-detail-inner">
-                                    <div class="detail-inner-left align-center">
-                                      <ul>
-                                        <li class="pro-cart-icon">
-                                          <form>
-                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                          </form>
-                                        </li>
-                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div id="data-step2" class="items-step2 product-slider-main position-r" data-temp="tabdata">
-                    <div class="tab_cat">
-                      <div class="row mlr_-20">
-                        <div class="col-xl-4 col-lg-4 col-12 plr-20">
-                          <div class="row mlr_-20">
-                            <div class="col-6 plr-20">
-                              <div class="product-item mb-20">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/2.jpg" alt="Everypick">
-                                  </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item mb-sm-20">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/3.jpg" alt="Everypick">
-                                  </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6 plr-20">
-                              <div class="product-item sold-out mb-20">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> <img src="/static/images/5.jpg" alt="Everypick"> </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item mb-sm-20">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> <img src="/static/images/2.jpg" alt="Everypick"> </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-12 mb-sm-30 plr-20">
-                          <div class="row mlr_-20" >
-                            <div class="col-12 plr-20">
-                              <div class="product-item big-pro align-center">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> <img src="/static/images/6.jpg" alt="Everypick"> </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                                <div class="item-offer-clock">
-                                  <ul class="countdown-clock">
-                                    <li>
-                                      <span class="days">00</span>
-                                      <p class="days_ref">days</p>
-                                    </li>
-                                    <li class="seperator">:</li>
-                                    <li>
-                                      <span class="hours">00</span>
-                                      <p class="hours_ref">hrs</p>
-                                    </li>
-                                    <li class="seperator">:</li>
-                                    <li>
-                                      <span class="minutes">00</span>
-                                      <p class="minutes_ref">min</p>
-                                    </li>
-                                    <li class="seperator">:</li>
-                                    <li>
-                                      <span class="seconds">00</span>
-                                      <p class="seconds_ref">sec</p>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-12 plr-20">
-                          <div class="row mlr_-20">
-                            <div class="col-6 plr-20">
-                              <div class="product-item mb-20">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/7.jpg" alt="Everypick">
-                                  </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/9.jpg" alt="Everypick">
-                                  </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6 plr-20">
-                              <div class="product-item sold-out mb-20">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> <img src="/static/images/11.jpg" alt="Everypick"> </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> <img src="/static/images/12.jpg" alt="Everypick"> </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div id="data-step3" class="items-step3 product-slider-main position-r" data-temp="tabdata">
-                    <div class="tab_cat">
-                      <div class="row mlr_-20">
-                        <div class="col-xl-4 col-lg-4 col-12 plr-20">
-                          <div class="row mlr_-20">
-                            <div class="col-6 plr-20">
-                              <div class="product-item mb-20">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/5.jpg" alt="Everypick">
-                                  </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item mb-sm-20">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/17.jpg" alt="Everypick">
-                                  </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6 plr-20">
-                              <div class="product-item sold-out mb-20">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> <img src="/static/images/18.jpg" alt="Everypick"> </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item mb-sm-20">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> <img src="/static/images/10.jpg" alt="Everypick"> </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-12 mb-sm-30 plr-20">
-                          <div class="row mlr_-20">
-                            <div class="col-12 plr-20">
-                              <div class="product-item big-pro align-center">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> <img src="/static/images/16.jpg" alt="Everypick"> </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                                <div class="item-offer-clock">
-                                  <ul class="countdown-clock">
-                                    <li>
-                                      <span class="days">00</span>
-                                      <p class="days_ref">days</p>
-                                    </li>
-                                    <li class="seperator">:</li>
-                                    <li>
-                                      <span class="hours">00</span>
-                                      <p class="hours_ref">hrs</p>
-                                    </li>
-                                    <li class="seperator">:</li>
-                                    <li>
-                                      <span class="minutes">00</span>
-                                      <p class="minutes_ref">min</p>
-                                    </li>
-                                    <li class="seperator">:</li>
-                                    <li>
-                                      <span class="seconds">00</span>
-                                      <p class="seconds_ref">sec</p>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-12 plr-20">
-                          <div class="row mlr_-20">
-                            <div class="col-6 plr-20">
-                              <div class="product-item mb-20">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/1.jpg" alt="Everypick">
-                                  </a>
-                                </div>
-                                  <div class="product-detail-inner">
-                                    <div class="detail-inner-left align-center">
-                                      <ul>
-                                        <li class="pro-cart-icon">
-                                          <form>
-                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                          </form>
-                                        </li>
-                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item">
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> 
-                                    <img src="/static/images/2.jpg" alt="Everypick">
-                                  </a>
-                                </div>
-                                  <div class="product-detail-inner">
-                                    <div class="detail-inner-left align-center">
-                                      <ul>
-                                        <li class="pro-cart-icon">
-                                          <form>
-                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                          </form>
-                                        </li>
-                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6 plr-20">
-                              <div class="product-item sold-out mb-20">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> <img src="/static/images/3.jpg" alt="Everypick"> </a>
-                                </div>
-                                <div class="product-detail-inner">
-                                  <div class="detail-inner-left align-center">
-                                    <ul>
-                                      <li class="pro-cart-icon">
-                                        <form>
-                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                        </form>
-                                      </li>
-                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                              <div class="product-item">
-                                <div class="main-label sale-label"><span>Sale</span></div>
-                                <div class="product-image"> 
-                                  <a href="product-page.html"> <img src="/static/images/4.jpg" alt="Everypick"> </a>
-                                </div>
-                                  <div class="product-detail-inner">
-                                    <div class="detail-inner-left align-center">
-                                      <ul>
-                                        <li class="pro-cart-icon">
-                                          <form>
-                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                                          </form>
-                                        </li>
-                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>
-                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>
-                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                <div class="product-item-details">
-                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>
-                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--  Featured Products Slider Block End  -->
+{#  <!--  Featured Products Slider Block Start  -->#}
+{#  <div class="featured-product ptb-70">#}
+{#    <div class="container">#}
+{#      <div class="product-listing">#}
+{#        <div class="row">#}
+{#          <div class="col-12">#}
+{#            <div class="heading-part line-bottom mb-30">#}
+{#              <div id="tabs" class="category-bar">#}
+{#                <ul class="tab-stap">#}
+{#                  <li><a class="tab-step1 selected" title="step1">Latest</a></li>#}
+{#                  <li><a class="tab-step2" title="step2">Featured</a></li>#}
+{#                  <li><a class="tab-step3" title="step3">Most Viewed</a></li>#}
+{#                </ul>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="pro_cat tab_content ">#}
+{#          <div id="items">#}
+{#            <div class="">#}
+{#              <ul>#}
+{#                <li>#}
+{#                  <div id="data-step1" class="items-step1 product-slider-main position-r selected" data-temp="tabdata">#}
+{#                    <div class="tab_cat">#}
+{#                      <div class="row mlr_-20">#}
+{#                        <div class="col-xl-4 col-lg-4 col-12 plr-20">#}
+{#                          <div class="row mlr_-20">#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item mb-20">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/1.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item mb-sm-20">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/2.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item sold-out mb-20">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> <a href="product-page.html"> <img src="/static/images/12.jpg" alt="Everypick"> </a>#}
+{#                                  <div class="product-detail-inner">#}
+{#                                    <div class="detail-inner-left align-center">#}
+{#                                      <ul>#}
+{#                                        <li class="pro-cart-icon">#}
+{#                                          <form>#}
+{#                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                          </form>#}
+{#                                        </li>#}
+{#                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                      </ul>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item mb-sm-20">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> <a href="product-page.html"> <img src="/static/images/13.jpg" alt="Everypick"> </a>#}
+{#                                  <div class="product-detail-inner">#}
+{#                                    <div class="detail-inner-left align-center">#}
+{#                                      <ul>#}
+{#                                        <li class="pro-cart-icon">#}
+{#                                          <form>#}
+{#                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                          </form>#}
+{#                                        </li>#}
+{#                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                      </ul>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-xl-4 col-lg-4 col-12 mb-sm-30 plr-20">#}
+{#                          <div class="row mlr_-20">#}
+{#                            <div class="col-12  plr-20">#}
+{#                              <div class="product-item big-pro align-center">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> <a href="product-page.html"> <img src="/static/images/7.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                                <div class="item-offer-clock">#}
+{#                                  <ul class="countdown-clock">#}
+{#                                    <li>#}
+{#                                      <span class="days">00</span>#}
+{#                                      <p class="days_ref">days</p>#}
+{#                                    </li>#}
+{#                                    <li class="seperator">:</li>#}
+{#                                    <li>#}
+{#                                      <span class="hours">00</span>#}
+{#                                      <p class="hours_ref">hrs</p>#}
+{#                                    </li>#}
+{#                                    <li class="seperator">:</li>#}
+{#                                    <li>#}
+{#                                      <span class="minutes">00</span>#}
+{#                                      <p class="minutes_ref">min</p>#}
+{#                                    </li>#}
+{#                                    <li class="seperator">:</li>#}
+{#                                    <li>#}
+{#                                      <span class="seconds">00</span>#}
+{#                                      <p class="seconds_ref">sec</p>#}
+{#                                    </li>#}
+{#                                  </ul>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-xl-4 col-lg-4 col-12 plr-20">#}
+{#                          <div class="row mlr_-20">#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item mb-20">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/8.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                  <div class="product-detail-inner">#}
+{#                                    <div class="detail-inner-left align-center">#}
+{#                                      <ul>#}
+{#                                        <li class="pro-cart-icon">#}
+{#                                          <form>#}
+{#                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                          </form>#}
+{#                                        </li>#}
+{#                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                      </ul>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/11.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                  <div class="product-detail-inner">#}
+{#                                    <div class="detail-inner-left align-center">#}
+{#                                      <ul>#}
+{#                                        <li class="pro-cart-icon">#}
+{#                                          <form>#}
+{#                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                          </form>#}
+{#                                        </li>#}
+{#                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                      </ul>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item sold-out mb-20">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> <a href="product-page.html"> <img src="/static/images/17.jpg" alt="Everypick"> </a>#}
+{#                                  <div class="product-detail-inner">#}
+{#                                    <div class="detail-inner-left align-center">#}
+{#                                      <ul>#}
+{#                                        <li class="pro-cart-icon">#}
+{#                                          <form>#}
+{#                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                          </form>#}
+{#                                        </li>#}
+{#                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                      </ul>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> <a href="product-page.html"> <img src="/static/images/18.jpg" alt="Everypick"> </a>#}
+{#                                  <div class="product-detail-inner">#}
+{#                                    <div class="detail-inner-left align-center">#}
+{#                                      <ul>#}
+{#                                        <li class="pro-cart-icon">#}
+{#                                          <form>#}
+{#                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                          </form>#}
+{#                                        </li>#}
+{#                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                      </ul>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </li>#}
+{#                <li>#}
+{#                  <div id="data-step2" class="items-step2 product-slider-main position-r" data-temp="tabdata">#}
+{#                    <div class="tab_cat">#}
+{#                      <div class="row mlr_-20">#}
+{#                        <div class="col-xl-4 col-lg-4 col-12 plr-20">#}
+{#                          <div class="row mlr_-20">#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item mb-20">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/2.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item mb-sm-20">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/3.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item sold-out mb-20">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> <img src="/static/images/5.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item mb-sm-20">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> <img src="/static/images/2.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-xl-4 col-lg-4 col-12 mb-sm-30 plr-20">#}
+{#                          <div class="row mlr_-20" >#}
+{#                            <div class="col-12 plr-20">#}
+{#                              <div class="product-item big-pro align-center">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> <img src="/static/images/6.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                                <div class="item-offer-clock">#}
+{#                                  <ul class="countdown-clock">#}
+{#                                    <li>#}
+{#                                      <span class="days">00</span>#}
+{#                                      <p class="days_ref">days</p>#}
+{#                                    </li>#}
+{#                                    <li class="seperator">:</li>#}
+{#                                    <li>#}
+{#                                      <span class="hours">00</span>#}
+{#                                      <p class="hours_ref">hrs</p>#}
+{#                                    </li>#}
+{#                                    <li class="seperator">:</li>#}
+{#                                    <li>#}
+{#                                      <span class="minutes">00</span>#}
+{#                                      <p class="minutes_ref">min</p>#}
+{#                                    </li>#}
+{#                                    <li class="seperator">:</li>#}
+{#                                    <li>#}
+{#                                      <span class="seconds">00</span>#}
+{#                                      <p class="seconds_ref">sec</p>#}
+{#                                    </li>#}
+{#                                  </ul>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-xl-4 col-lg-4 col-12 plr-20">#}
+{#                          <div class="row mlr_-20">#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item mb-20">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/7.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/9.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item sold-out mb-20">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> <img src="/static/images/11.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> <img src="/static/images/12.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </li>#}
+{#                <li>#}
+{#                  <div id="data-step3" class="items-step3 product-slider-main position-r" data-temp="tabdata">#}
+{#                    <div class="tab_cat">#}
+{#                      <div class="row mlr_-20">#}
+{#                        <div class="col-xl-4 col-lg-4 col-12 plr-20">#}
+{#                          <div class="row mlr_-20">#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item mb-20">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/5.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item mb-sm-20">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/17.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item sold-out mb-20">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> <img src="/static/images/18.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item mb-sm-20">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> <img src="/static/images/10.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-xl-4 col-lg-4 col-12 mb-sm-30 plr-20">#}
+{#                          <div class="row mlr_-20">#}
+{#                            <div class="col-12 plr-20">#}
+{#                              <div class="product-item big-pro align-center">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> <img src="/static/images/16.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                                <div class="item-offer-clock">#}
+{#                                  <ul class="countdown-clock">#}
+{#                                    <li>#}
+{#                                      <span class="days">00</span>#}
+{#                                      <p class="days_ref">days</p>#}
+{#                                    </li>#}
+{#                                    <li class="seperator">:</li>#}
+{#                                    <li>#}
+{#                                      <span class="hours">00</span>#}
+{#                                      <p class="hours_ref">hrs</p>#}
+{#                                    </li>#}
+{#                                    <li class="seperator">:</li>#}
+{#                                    <li>#}
+{#                                      <span class="minutes">00</span>#}
+{#                                      <p class="minutes_ref">min</p>#}
+{#                                    </li>#}
+{#                                    <li class="seperator">:</li>#}
+{#                                    <li>#}
+{#                                      <span class="seconds">00</span>#}
+{#                                      <p class="seconds_ref">sec</p>#}
+{#                                    </li>#}
+{#                                  </ul>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="col-xl-4 col-lg-4 col-12 plr-20">#}
+{#                          <div class="row mlr_-20">#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item mb-20">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/1.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                </div>#}
+{#                                  <div class="product-detail-inner">#}
+{#                                    <div class="detail-inner-left align-center">#}
+{#                                      <ul>#}
+{#                                        <li class="pro-cart-icon">#}
+{#                                          <form>#}
+{#                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                          </form>#}
+{#                                        </li>#}
+{#                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                      </ul>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item">#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> #}
+{#                                    <img src="/static/images/2.jpg" alt="Everypick">#}
+{#                                  </a>#}
+{#                                </div>#}
+{#                                  <div class="product-detail-inner">#}
+{#                                    <div class="detail-inner-left align-center">#}
+{#                                      <ul>#}
+{#                                        <li class="pro-cart-icon">#}
+{#                                          <form>#}
+{#                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                          </form>#}
+{#                                        </li>#}
+{#                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                      </ul>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <div class="col-6 plr-20">#}
+{#                              <div class="product-item sold-out mb-20">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> <img src="/static/images/3.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                <div class="product-detail-inner">#}
+{#                                  <div class="detail-inner-left align-center">#}
+{#                                    <ul>#}
+{#                                      <li class="pro-cart-icon">#}
+{#                                        <form>#}
+{#                                          <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                        </form>#}
+{#                                      </li>#}
+{#                                      <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                      <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                      <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                    </ul>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="product-item">#}
+{#                                <div class="main-label sale-label"><span>Sale</span></div>#}
+{#                                <div class="product-image"> #}
+{#                                  <a href="product-page.html"> <img src="/static/images/4.jpg" alt="Everypick"> </a>#}
+{#                                </div>#}
+{#                                  <div class="product-detail-inner">#}
+{#                                    <div class="detail-inner-left align-center">#}
+{#                                      <ul>#}
+{#                                        <li class="pro-cart-icon">#}
+{#                                          <form>#}
+{#                                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                                          </form>#}
+{#                                        </li>#}
+{#                                        <li class="pro-wishlist-icon"><a href="wishlist.html" title="Wishlist"><i class="fa fa-heart"></i></a></li>#}
+{#                                        <li class="pro-compare-icon"><a href="compare.html" title="Compare"><i class="fa fa-refresh"></i></a></li>#}
+{#                                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
+{#                                      </ul>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                <div class="product-item-details">#}
+{#                                  <div class="product-item-name"> <a href="product-page.html">Defyant Reversible Dot Shorts</a> </div>#}
+{#                                  <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </li>#}
+{#              </ul>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  <!--  Featured Products Slider Block End  -->#}
 
 {#  <!-- perellex-banner Start -->#}
 {#  <section>#}
