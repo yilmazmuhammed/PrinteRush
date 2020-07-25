@@ -414,18 +414,20 @@ if __name__ == '__main__':
 
             country = Country(country="Türkiye")
             city = None
-            for line in data['Ilce_Listesi'][:-4]:
-                if len(line) == 0:
-                    continue
-
-                if len(line) == 4 and line[1] == '' and line[2] == '':
-                    city = City(city=line[0], country_ref=country)
-                    continue
-
-                for cell in line:
-                    if cell == "":
+            for key in data.keys():
+                print(key)
+                for line in data[key][:-4]:
+                    if len(line) == 0:
                         continue
-                    District(district=cell, city_ref=city)
+
+                    if len(line) == 4 and line[1] == '' and line[2] == '':
+                        city = City(city=line[0], country_ref=country)
+                        continue
+
+                    for cell in line:
+                        if cell == "":
+                            continue
+                        District(district=cell, city_ref=city)
 
 
             webuser = WebUser(email="admin@printerush.com",
