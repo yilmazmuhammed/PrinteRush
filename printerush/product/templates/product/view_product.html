@@ -40,7 +40,9 @@
                       <div class="rating-summary-block">
                         <div title="{{ product.point|round(2) }}" class="rating-result"> <span style="width:{{ product.point * 20 }}%"></span> </div>
                       </div>
-                      <div class="price-box"> <span class="price">{{ product.min_price }}&#8378;</span> <del class="price old-price">{{ product.min_price }}&#8378;</del> </div>
+                      <div class="price-box"> <span class="price">{{ product.min_price }}&#8378;</span>
+{#                          <del class="price old-price">{{ product.min_price }}&#8378;</del> #}
+                      </div>
                       <div class="product-info-stock-sku">
                         <div>
                           <label>{{ translation['stock']['stock'] }}: </label>
@@ -57,101 +59,101 @@
 {#                        <li><i class="fa fa-check"></i> Free shipping on orders over $99</li>#}
 {#                        <li><i class="fa fa-check"></i> 14 day easy Return</li>#}
 {#                      </ul>#}
-                      <div class="select-size">
-                        <span>{{ translation['size'] }} :</span>
-                        <ul>
-                          <li>
-                            <label class="size-option ">
-                              <input class="pro-size" type="radio" value="[object Object]" name="size">
-                              <span>S</span>
-                            </label>
-                          </li>
-                          <li>
-                            <label class="size-option ">
-                              <input class="pro-size" type="radio" value="[object Object]" name="size">
-                              <span>M</span>
-                            </label>
-                          </li>
-                          <li>
-                            <label class="size-option ">
-                              <input class="pro-size" type="radio" value="[object Object]" name="size">
-                              <span>L</span>
-                            </label>
-                          </li>
-                          <li>
-                            <label class="size-option ">
-                              <input class="pro-size" type="radio" value="[object Object]" name="size">
-                              <span>XL</span>
-                            </label>
-                          </li>
-                          <li>
-                            <label class="size-option ">
-                              <input class="pro-size" type="radio" value="[object Object]" name="size">
-                              <span>XXl</span>
-                            </label>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="select-color">
-                        <span>{{ translation['color'] }} :</span>
-                        <ul>
-                          <li>
-                            <div class="check-box"> 
-                              <div class="position-r">
-                                <div class="color-tooltip">
-                                  <span class="color-arrow"></span>red
-                                </div>
-                                <input type="checkbox" class="checkbox" id="red" name="red">
-                                <label for="red" class="red"></label>
-                              </div>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="check-box"> 
-                              <div class="position-r">
-                                <div class="color-tooltip">
-                                  <span class="color-arrow"></span>black
-                                </div>
-                                <input type="checkbox" class="checkbox" id="black" name="black">
-                                <label for="black" class="black"></label>
-                              </div>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="check-box"> 
-                              <div class="position-r">
-                                <div class="color-tooltip">
-                                  <span class="color-arrow"></span>navyblue
-                                </div>
-                                <input type="checkbox" class="checkbox" id="navyblue" name="navyblue">
-                                <label for="navyblue" class="navyblue"></label>
-                              </div>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="check-box"> 
-                              <div class="position-r">
-                                <div class="color-tooltip">
-                                  <span class="color-arrow"></span>green
-                                </div>
-                                <input type="checkbox" class="checkbox" id="green" name="green">
-                                <label for="green" class="green"></label>
-                              </div>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="check-box"> 
-                              <div class="position-r">
-                                <div class="color-tooltip">
-                                  <span class="color-arrow"></span>blue
-                                </div>
-                                <input type="checkbox" class="checkbox" id="blue" name="blue">
-                                <label for="blue" class="blue"></label>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
+{#                      <div class="select-size">#}
+{#                        <span>{{ translation['size'] }} :</span>#}
+{#                        <ul>#}
+{#                          <li>#}
+{#                            <label class="size-option ">#}
+{#                              <input class="pro-size" type="radio" value="[object Object]" name="size">#}
+{#                              <span>S</span>#}
+{#                            </label>#}
+{#                          </li>#}
+{#                          <li>#}
+{#                            <label class="size-option ">#}
+{#                              <input class="pro-size" type="radio" value="[object Object]" name="size">#}
+{#                              <span>M</span>#}
+{#                            </label>#}
+{#                          </li>#}
+{#                          <li>#}
+{#                            <label class="size-option ">#}
+{#                              <input class="pro-size" type="radio" value="[object Object]" name="size">#}
+{#                              <span>L</span>#}
+{#                            </label>#}
+{#                          </li>#}
+{#                          <li>#}
+{#                            <label class="size-option ">#}
+{#                              <input class="pro-size" type="radio" value="[object Object]" name="size">#}
+{#                              <span>XL</span>#}
+{#                            </label>#}
+{#                          </li>#}
+{#                          <li>#}
+{#                            <label class="size-option ">#}
+{#                              <input class="pro-size" type="radio" value="[object Object]" name="size">#}
+{#                              <span>XXl</span>#}
+{#                            </label>#}
+{#                          </li>#}
+{#                        </ul>#}
+{#                      </div>#}
+{#                      <div class="select-color">#}
+{#                        <span>{{ translation['color'] }} :</span>#}
+{#                        <ul>#}
+{#                          <li>#}
+{#                            <div class="check-box"> #}
+{#                              <div class="position-r">#}
+{#                                <div class="color-tooltip">#}
+{#                                  <span class="color-arrow"></span>red#}
+{#                                </div>#}
+{#                                <input type="checkbox" class="checkbox" id="red" name="red">#}
+{#                                <label for="red" class="red"></label>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </li>#}
+{#                          <li>#}
+{#                            <div class="check-box"> #}
+{#                              <div class="position-r">#}
+{#                                <div class="color-tooltip">#}
+{#                                  <span class="color-arrow"></span>black#}
+{#                                </div>#}
+{#                                <input type="checkbox" class="checkbox" id="black" name="black">#}
+{#                                <label for="black" class="black"></label>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </li>#}
+{#                          <li>#}
+{#                            <div class="check-box"> #}
+{#                              <div class="position-r">#}
+{#                                <div class="color-tooltip">#}
+{#                                  <span class="color-arrow"></span>navyblue#}
+{#                                </div>#}
+{#                                <input type="checkbox" class="checkbox" id="navyblue" name="navyblue">#}
+{#                                <label for="navyblue" class="navyblue"></label>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </li>#}
+{#                          <li>#}
+{#                            <div class="check-box"> #}
+{#                              <div class="position-r">#}
+{#                                <div class="color-tooltip">#}
+{#                                  <span class="color-arrow"></span>green#}
+{#                                </div>#}
+{#                                <input type="checkbox" class="checkbox" id="green" name="green">#}
+{#                                <label for="green" class="green"></label>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </li>#}
+{#                          <li>#}
+{#                            <div class="check-box"> #}
+{#                              <div class="position-r">#}
+{#                                <div class="color-tooltip">#}
+{#                                  <span class="color-arrow"></span>blue#}
+{#                                </div>#}
+{#                                <input type="checkbox" class="checkbox" id="blue" name="blue">#}
+{#                                <label for="blue" class="blue"></label>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          </li>#}
+{#                        </ul>#}
+{#                      </div>#}
                       <div class="mb-20">
                         <div class="product-qty">
                           <label for="qty">{{ translation['quantity'] }}:</label>
@@ -171,8 +173,8 @@
                       </div>
                       <div class="bottom-detail">
                         <ul>
-                          <li class="pro-wishlist-icon"><a href="wishlist.html"><span><i class="fa fa-heart"></i></span>{{ translation['wishlist'] }}</a></li>
-                          <li class="pro-compare-icon"><a href="compare.html"><span><i class="fa fa-refresh"></i></span>{{ translation['compare'] }}</a></li>
+{#                          <li class="pro-wishlist-icon"><a href="wishlist.html"><span><i class="fa fa-heart"></i></span>{{ translation['wishlist'] }}</a></li>#}
+{#                          <li class="pro-compare-icon"><a href="compare.html"><span><i class="fa fa-refresh"></i></span>{{ translation['compare'] }}</a></li>#}
 {#                          <li class="pro-email-icon"><a href="#"><span><i class="fa fa-envelope"></i></span>Email to Friends</a></li>#}
                         </ul>
                       </div>
@@ -216,7 +218,7 @@
             <div id="tabs">
               <ul class="nav nav-tabs">
                 <li><a class="tab-Description selected" title="Description">{{ translation['explanation'] }}</a></li>
-                <li><a class="tab-Features" title="Features">{{ translation['features'] }}</a></li>
+{#                <li><a class="tab-Features" title="Features">{{ translation['features'] }}</a></li>#}
 {#                <li><a class="tab-Product-Tags" title="Product-Tags">Product-Tags</a></li>#}
                 <li><a class="tab-Models" title="Models">{{ translation['models'] }}</a></li>
                 <li><a class="tab-Reviews" title="Reviews">{{ translation['comments'] }} ({{ product.comments_set.count() }})</a></li>
@@ -328,29 +330,29 @@
                 <div class="product-item">
 {#                  <div class="main-label new-label"><span>New</span></div>#}
                   <div class="product-image"> 
-                    <a href="view_product.html"> <img src="{{ product.main_photo.file_path }}" alt="PrinteRush"> </a>
+                    <a href="{{ url_for('products_bp.view', product_id=s_product.id) }}"> <img src="{{ s_product.main_photo.file_path }}" alt="PrinteRush"> </a>
                   </div>
                   <div class="product-detail-inner">
                     <div class="detail-inner-left align-center">
                       <ul>
-                        <li class="pro-cart-icon">
-                          <form>
-                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>
-                          </form>
-                        </li>
-                        <li class="pro-wishlist-icon"><button title="{{ translation['wishlist'] }}"  id="wishlist-p{{ product.id }}"><i class="fa fa-heart"></i></button></li>
-                        <li class="pro-compare-icon"><button title="{{ translation['compare'] }}"  id="compare-p{{ product.id }}"><i class="fa fa-refresh"></i></button></li>
-                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>
+{#                        <li class="pro-cart-icon">#}
+{#                          <form>#}
+{#                            <button title="Add to Cart"><i class="fa fa-shopping-basket"></i></button>#}
+{#                          </form>#}
+{#                        </li>#}
+{#                        <li class="pro-wishlist-icon"><button title="{{ translation['wishlist'] }}"  id="wishlist-p{{ product.id }}"><i class="fa fa-heart"></i></button></li>#}
+{#                        <li class="pro-compare-icon"><button title="{{ translation['compare'] }}"  id="compare-p{{ product.id }}"><i class="fa fa-refresh"></i></button></li>#}
+{#                        <li class="pro-quick-view-icon"><a class="popup-with-product" href="#product_popup" title="quick-view"><i class="fa fa-eye"></i></a></li>#}
                       </ul>
                     </div>
                   </div>
                   <div class="product-item-details">
                     <div class="product-item-name">
-                      <a href="{{ url_for('products_bp.view', product_id=product.id) }}">{{ product.name }}</a>
+                      <a href="{{ url_for('products_bp.view', product_id=s_product.id) }}">{{ s_product.name }}</a>
                     </div>
                     <div class="price-box">
-                      <span class="price">{{ product.min_price }}₺</span>
-                      <del class="price old-price">$120.00</del>
+                      <span class="price">{{ s_product.min_price }}₺</span>
+{#                      <del class="price old-price">$120.00</del>#}
                     </div>
                   </div>
                 </div>
@@ -389,7 +391,9 @@
                               <div class="rating-summary-block">
                                 <div title="53%" class="rating-result"> <span style="width:53%"></span> </div>
                               </div>
-                              <div class="price-box"> <span class="price">$80.00</span> <del class="price old-price">$120.00</del> </div>
+                              <div class="price-box"> <span class="price">$80.00</span>
+{#                                  <del class="price old-price">$120.00</del> #}
+                              </div>
                               <div class="product-info-stock-sku">
                                 <div>
                                   <label>Availability: </label>
