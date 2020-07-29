@@ -1,3 +1,4 @@
+{% if form %}
 {{ form.open|safe }}
   <div class="row">
     {% if form.errors %}
@@ -56,3 +57,4 @@
     {% endfor %}
   </div>
 {{ form.close|safe }}
+{% endif %}

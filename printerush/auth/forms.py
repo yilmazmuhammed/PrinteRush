@@ -129,10 +129,6 @@ class UpdateForm(WebUserForm):
     open = form_open(form_name='form-update')
     close = form_close()
     form_title = t['title']
-    #current_user.is_authenticated
-    #first_name = current_user.first_name
-    #last_name = None
-    #phone_number = None
     password_verification = None
     is_admin = None
     is_active = None
@@ -148,7 +144,6 @@ class ChangePassword(WebUserForm):
     open = form_open(form_name='form-update')
     close = form_close()
     form_title = translation['title']
-    #current_user.is_authenticated
     first_name = None
     last_name = None
     phone_number = None
@@ -161,12 +156,44 @@ class ChangePassword(WebUserForm):
     )
     new_password_verification = PasswordField(
         "%s:" % t['new_password_verification']['label'],
-        validators=[InputRequired(t['new_password_verification']['required']), Length(max=30, message=t['new_password_verification']['length'])],
+        validators=[EqualTo("new_password", message=t['new_password_verification']['password_equal_to']),
+                    InputRequired(t['new_password_verification']['required']),
+                    Length(max=30, message=t['new_password_verification']['length'])],
         id='password', render_kw={"placeholder": t['new_password_verification']['label']}
     )
-    #password_verification = None
     is_admin = None
     is_active = None
-    #password_hash = None
 
     submit = SubmitField(label=translation['submit']['label'], render_kw={"class": "btn-color right-side"})
+
+
+class ForgottenPasswordForm(FlaskForm):
+    t = get_translation()['auth']['forms']['forgotten_password']
+
+    open = form_open(form_name='form-forgotten-password')
+    close = form_close()
+    form_title = t['form_title']
+
+    email = EmailField(
+        "%s:" % t['email']['label'],
+        validators=[
+            InputRequired(t['email']['required']),
+            Length(max=254, message=t['email']['length']),
+            Email(t['email']['required'])
+        ],
+        id='email', render_kw={"placeholder": t['email']['label']}
+    )
+
+    submit = SubmitField(label=t['submit']['label'])
+
+
+class RenewPasswordForm(ChangePassword):
+    t = get_translation()['auth']['forms']['renew_password']
+
+    open = form_open(form_name='form-renew-password')
+    close = form_close()
+    form_title = t['form_title']
+
+    password = None
+
+    submit = SubmitField(label=t['submit']['label'])

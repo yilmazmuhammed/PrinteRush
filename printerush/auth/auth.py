@@ -1,11 +1,17 @@
+from datetime import datetime, timedelta
+
+import jwt
 from flask_login import login_user, login_required, logout_user, current_user
 from passlib.hash import pbkdf2_sha256 as hasher
+
+from printerush.bots.mail_bot import send_email
 from printerush.cart.assistanc_fuct import update_cart
 from printerush.common.assistant_func import flask_form_to_dict, FormPI, get_translation, LayoutPI
 from printerush.auth.db import db_add_web_user, get_webuser
 from printerush.auth.exceptions import RegisterException
-from printerush.auth.forms import RegisterForm, LoginForm, UpdateForm, ChangePassword
-from flask import Blueprint, redirect, url_for, flash, render_template, request, g
+from printerush.auth.forms import RegisterForm, LoginForm, UpdateForm, ChangePassword, ForgottenPasswordForm, \
+    RenewPasswordForm
+from flask import Blueprint, redirect, url_for, flash, render_template, request, g, current_app
 from printerush.address.forms import AddressModalForm
 from printerush.address.assistant_func import country_select_choices
 
@@ -106,3 +112,60 @@ def account():
 
     g.orders = current_user.orders_set
     return render_template("auth/account.html", page_info=FormPI(title=translation['title'], form=form_1))
+
+
+@auth_bp.route("/forgotten_password/", methods=['GET', 'POST'])
+def forgotten_password_page():
+    translation = get_translation()["auth"]["auth"]["forgotten_password"]
+    form = ForgottenPasswordForm()
+
+    if form.validate_on_submit():
+        web_user = get_webuser(email=form.email.data, account_type=0)
+        if web_user:
+            expiration_time = datetime.now() + timedelta(hours=5)
+            info = {
+                'email': web_user.email,
+                'account_type': web_user.account_type,
+                'expiration_time': {
+                    "year": expiration_time.year,
+                    "month": expiration_time.month,
+                    "day": expiration_time.day,
+                    "hour": expiration_time.hour,
+                    "minute": expiration_time.minute
+                }
+            }
+            token = jwt.encode(info, current_app.secret_key)
+            # TODO Mail adresine şifre yenileme linki yolla, form=None yaparak bilgi mesajı ver
+
+            html = """<h3>{first_name} {last_name}</h3>
+            <p>PrinteRush hesabının parolasının sıfırlanması için talepte bulunuldu.</p>
+            <a href="{url}" ><button type="button">Şifremi sıfırla</button></a>
+            <p>Eğer üstteki düğme çalışmazsa aşağıdaki bağlantıyı tarayıcınızın adres çubuğuna yapıştırabilirsiniz:<br>
+            <a href="{url}">{url}</a></p>
+            <p>Eğer parola sıfırlama talebinde bulunmadıysanız bu epostayı önemsemeyiniz.</p>
+            """.format(first_name=web_user.first_name, last_name=web_user.last_name, url=current_app.config['SERVER_NAME']+url_for("auth_bp.renew_password_page", token=token))
+            send_email([web_user.email], "Parola sıfırlama", html, message_type="html")
+
+            flash(translation["sent_mail"], "success")
+            form = None
+        else:
+            flash(translation["there_is_not_email"], "danger")
+
+    return render_template("general/general_form.html", page_info=FormPI(title=translation['title'], form=form))
+
+
+@auth_bp.route("/renew_password/<string:token>", methods=['GET', 'POST'])
+def renew_password_page(token):
+    translation = get_translation()["auth"]["auth"]["renew_password"]
+    form = RenewPasswordForm()
+    info = jwt.decode(token, current_app.secret_key)
+
+    if form.validate_on_submit():
+        web_user = get_webuser(email=info["email"], account_type=info["account_type"])
+        web_user.password_hash = hasher.hash(form.new_password_verification.data)
+        return redirect(url_for("auth_bp.login"))
+
+    if datetime.now() > datetime(**info["expiration_time"]):
+        flash(translation["expired_link"], "danger")
+        form = None
+    return render_template("general/general_form.html", page_info=FormPI(title=translation['title'], form=form))

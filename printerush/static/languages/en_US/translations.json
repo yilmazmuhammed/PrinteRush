@@ -6,6 +6,16 @@
       }
     }
   },
+  "auth": {
+    "auth": {
+      "forgotten_password": {
+        "sent_mail": "Password renewal mail has been sent."
+      },
+      "renew_password": {
+        "expired_link": "The link has expired. Please ask for a new connection."
+      }
+    }
+  },
   "cart": {
     "cart": {
       "view_cart": {

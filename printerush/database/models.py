@@ -424,8 +424,8 @@ if __name__ == '__main__':
                     for cell in line:
                         if cell == "":
                             continue
-                        District(district=cell, city_ref=city)
-    with db_session:
+                        d = District(district=cell, city_ref=city)
+
         if WebUser.select(lambda w: w.is_admin == True):
             print("db pass")
             pass
@@ -437,7 +437,7 @@ if __name__ == '__main__':
                              password_hash="$pbkdf2-sha256$29000$zDlHiHEOAQBASMlZK8V4bw$au7qZNqL3z0Q0C9upWm9rzGQ10eW8p/Fc3ahvAvxYKY",
                              is_admin=True, account_type=1)
             addr = Address(title="store address", first_name="fn", last_name="ln", address_detail="ad",
-                           phone_number="pn", invoice_type=0, district_ref=District[1])
+                           phone_number="pn", invoice_type=0, district_ref=d)
             store1 = Store(name="PrinteRush", short_name="PrinteRush", phone_number="+905392024175",
                            email="store@printerush.com", address_ref=addr,
                            data_status_ref=DataStatus(creator_ref=magaza,
@@ -468,5 +468,3 @@ if __name__ == '__main__':
             #                                   data_status_ref=DataStatus(creator_ref=magaza)
             #                                   ),
             #               price=100, stock=15)
-
-
