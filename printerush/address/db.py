@@ -6,7 +6,7 @@ from printerush.database.models import Country, City, District, Address
 
 
 def get_countries():
-    return Country.select()
+    return Country.select().order_by(Country.country)
 
 
 def get_country(country_id):
