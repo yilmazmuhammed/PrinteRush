@@ -105,6 +105,11 @@
         "update_successful": "Bilgiler başarıyla değiştirildi",
         "wrong_password": "Parola yanlış."
       },
+      "forgotten_password": {
+        "sent_mail": "Şifre yenileme maili gönderildi.",
+        "there_is_not_email": "Email'e ait hesap bulunamadı.",
+        "title": "Şifremi unuttum"
+      },
       "login": {
         "login_successful": "Giriş yapıldı.",
         "passive_user": "Kullanıcı aktif değil.",
@@ -118,6 +123,10 @@
         "passwords_do_not_match": "Parolalar eşleşmiyor.",
         "success_msg": "Kayıt olundu. Lütfen giriş yapınız.",
         "title": "Kayıt ol"
+      },
+      "renew_password": {
+        "expired_link": "Bağlantının süresi doldu. Lütfen yeni bir bağlantı isteyin.",
+        "title": "Yeni şifre oluştur"
       }
     },
     "db": {
@@ -158,6 +167,17 @@
           "label": "Gönder"
         }
       },
+      "forgotten_password": {
+        "email": {
+          "label": "Eposta adresi",
+          "length": "Eposta adresi 254 karakterden fazla olamaz.",
+          "required": "Lütfen e-posta adresinizi giriniz."
+        },
+        "form_title": "Şifremi Unuttum",
+        "submit": {
+          "label": "Gönder"
+        }
+      },
       "login": {
         "form_title": "Üye Girişi",
         "remember_me": {
@@ -171,6 +191,12 @@
         "form_title": "Üye Ol",
         "submit": {
           "label": "Kayıt ol"
+        }
+      },
+      "renew_password": {
+        "form_title": "Yeni şifre oluştur",
+        "submit": {
+          "label": "Gönder"
         }
       },
       "web_user": {

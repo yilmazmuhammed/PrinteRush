@@ -26,7 +26,7 @@ def cities_api():
     try:
         country = get_country(country_id)
         cities = []
-        for c in country.cities_set:
+        for c in country.cities_set.order_by(lambda c: c.city):
             cities.append(c.to_dict(exclude='country_ref'))
         return jsonify(result=True, country=country.to_dict(), cities=cities)
     except ThereIsNotCountry as tinc:
@@ -40,7 +40,7 @@ def counties_api():
     try:
         city = get_city(city_id)
         counties = []
-        for c in city.districts_set:
+        for c in city.districts_set.order_by(lambda d: d.district):
             counties.append(c.to_dict(exclude='city_ref'))
         return jsonify(result=True, city=city.to_dict(), counties=counties)
     except ThereIsNotCountry as tinc:

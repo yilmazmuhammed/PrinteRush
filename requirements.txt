@@ -1,7 +1,7 @@
-iyzipay
-passlib
-werkzeug
-pony
+iyzipay>=1.0.32
+passlib>=1.7.2
+werkzeug>=1.0.1
+pony>=0.7.13
 Flask>=1.1.2
 Flask-WTF>=0.14.3
 email-validator
@@ -9,4 +9,4 @@ WTForms>=2.3.1
 Flask-Login>=0.5.0
 Flask-JSGlue
 gunicorn
-
+PyJWT>=1.7.1
