@@ -46,7 +46,7 @@ def view_category(category_id, p):
     g.page = 1 if not request.args.get('page', None) else int(request.args['page'])
     pagesize = 24 if not request.args.get('pagesize', None) else int(request.args['pagesize'])
 
-    sorting, filtering = detect_sorting_and_filtering(**dict(request.args))
+    sorting, filtering = detect_sorting_and_filtering(**request.args.to_dict())
 
     category = ProductCategory.get(id=category_id)
     if not category:
