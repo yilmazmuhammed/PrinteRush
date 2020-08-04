@@ -3189,7 +3189,7 @@ _______________________________________________________*/
 }
 
 .ser-feature-block .feature-icon  {
-	background: url("../images/shipping_icon.png") no-repeat scroll 0 0;
+	/*background: url("../images/shipping_icon.png") no-repeat scroll 0 0;*/
 	color: #737373;
 	height: 50px;
 	width: 50px;
