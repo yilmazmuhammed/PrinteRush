@@ -17,6 +17,7 @@ from printerush.cart.cart import cart_bp
 from printerush.common.assistant_func import LayoutPI
 from printerush.database import db_bp
 from printerush.database.models import WebUser
+from printerush.general.api import general_api_bp
 from printerush.general.general import general_bp
 from printerush.order.order import order_bp
 from printerush.printable_3d_model.printable_3d_model import models_bp
@@ -56,6 +57,7 @@ configure_blueprints(app, store_sbp, subdomain="store", url_prefix="/")
 configure_blueprints(app, cart_api_bp, url_prefix="/api/cart")
 configure_blueprints(app, address_api_bp, url_prefix="/api/address")
 configure_blueprints(app, product_api_bp, url_prefix="/api/product")
+configure_blueprints(app, general_api_bp, url_prefix="/api/general")
 # app.register_blueprint(db_bp, url_prefix="/db")
 # app.register_blueprint(auth_bp, url_prefix="/")
 # app.register_blueprint(general_bp, url_prefix="/")

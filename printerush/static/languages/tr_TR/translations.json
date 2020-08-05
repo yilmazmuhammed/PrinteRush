@@ -293,6 +293,15 @@
       }
     }
   },
+  "general": {
+    "api": {
+      "subscribe_api": {
+        "mail_msg": "Yeni bülten aboneliği\nMail: {email}",
+        "subject": "Yeni bülten aboneliği",
+        "success_msg": "Abone olundu."
+      }
+    }
+  },
   "layout": {
     "home_page": "Ana Sayfa"
   },
