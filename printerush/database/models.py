@@ -34,6 +34,7 @@ class WebUser(db.Entity, UserMixin):
     orders_set = Set('Order')
     addresses_set = Set('Address')
     store_authorizations_set = Set('StoreAuthorization')
+    visitor_logs_set = Set('VisitorLog')
     composite_key(email, account_type)
 
     def get_id(self):
@@ -103,6 +104,10 @@ class Product(db.Entity):
     @property
     def main_option(self):
         return self.product_options_set.order_by(lambda o: o.id).first()
+
+    @property
+    def url_name(self):
+        return self.name.casefold().replace(" ", "-")
 
 
 class Address(db.Entity):
@@ -391,6 +396,20 @@ class StoreAuthorization(db.Entity):
     is_admin = Required(bool, default=False)
     store_ref = Required(Store)
     web_users_set = Set(WebUser)
+
+
+class VisitorLog(db.Entity):
+    id = PrimaryKey(int, auto=True)
+    no_of_visits = Optional(int, unsigned=True)
+    ip_address = Optional(str, 20)
+    requested_url = Optional(str)
+    referer_page = Optional(str)
+    page_name = Optional(str)
+    query_string = Optional(str)
+    user_agent = Optional(str)
+    is_unique = Required(str, default="0")
+    access_date = Required(datetime, default=lambda: datetime.now())
+    web_user_ref = Optional(WebUser)
 
 
 if os.getenv('DEBUG') == "TRUE":

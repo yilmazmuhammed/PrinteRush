@@ -330,7 +330,7 @@
                 <div class="product-item">
 {#                  <div class="main-label new-label"><span>New</span></div>#}
                   <div class="product-image"> 
-                    <a href="{{ url_for('products_bp.view', product_id=s_product.id) }}"> <img src="{{ s_product.main_photo.file_path }}" alt="PrinteRush"> </a>
+                    <a href="{{ url_for('products_bp.view', product_id=s_product.id, p=s_product.url_name) }}"> <img src="{{ s_product.main_photo.file_path }}" alt="PrinteRush"> </a>
                   </div>
                   <div class="product-detail-inner">
                     <div class="detail-inner-left align-center">
@@ -348,7 +348,7 @@
                   </div>
                   <div class="product-item-details">
                     <div class="product-item-name">
-                      <a href="{{ url_for('products_bp.view', product_id=s_product.id) }}">{{ s_product.name }}</a>
+                      <a href="{{ url_for('products_bp.view', product_id=s_product.id, p=s_product.url_name) }}">{{ s_product.name }}</a>
                     </div>
                     <div class="price-box">
                       <span class="price">{{ s_product.min_price }}₺</span>

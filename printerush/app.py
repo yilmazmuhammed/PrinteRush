@@ -3,6 +3,7 @@
 # https://realpython.com/flask-blueprint/#what-a-flask-blueprint-looks-like
 import locale
 import os
+from datetime import timedelta
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_jsglue import JSGlue
@@ -24,6 +25,7 @@ from printerush.printable_3d_model.printable_3d_model import models_bp
 from printerush.product.api import product_api_bp
 from printerush.product.product import products_bp
 from printerush.store.store import store_sbp
+from printerush.visitor.assistant_func import track_visitor
 
 locale.setlocale(locale.LC_ALL, 'tr_TR.utf8')
 
@@ -104,6 +106,14 @@ def unauthorized_access_page(err):
             return redirect(url_for("store_sbp.login_page"))
     else:
         return render_template("error/404.html", page_info=LayoutPI(title="Aradığınız sayfa bulunamadı"))
+
+
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
+
+
+@app.before_request
+def do_something_when_a_request_comes_in():
+    track_visitor()
 
 
 if __name__ == '__main__':
