@@ -17,7 +17,7 @@
           <div class="row">
             <div class="col-lg-5 col-md-5 mb-xs-30">
               <div class="fotorama" data-nav="thumbs" data-allowfullscreen="native">
-                {% for photo in product.photos_set %}
+                {% for photo in product.photos_set.order_by("lambda p: p.id") %}
                 <a href="#"><img src="{{ photo.file_path}}" alt="Everypick"></a>
                 {% endfor %}
 {#                <a href="#"><img src="/static/images/1.jpg" alt="Everypick"></a>#}

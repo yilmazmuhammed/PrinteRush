@@ -33,7 +33,8 @@ app = Flask(__name__, instance_relative_config=True)
 
 app.secret_key = os.getenv("SECRET_KEY")
 
-app.config['SERVER_NAME'] = 'printerush.com'
+app.config['SERVER_NAME'] = 'printerush.local:5000'
+# app.config['DEBUG'] = True
 # SESSION_COOKIE_DOMAIN
 
 
@@ -111,9 +112,9 @@ def unauthorized_access_page(err):
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
 
 
-@app.before_request
-def do_something_when_a_request_comes_in():
-    track_visitor()
+# @app.before_request
+# def do_something_when_a_request_comes_in():
+#     track_visitor()
 
 
 if __name__ == '__main__':

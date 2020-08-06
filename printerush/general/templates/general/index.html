@@ -139,7 +139,7 @@
                     <div class="product-item">
                       <div class="main-label new-label"><span>New</span></div>
                       <div class="product-image"> 
-                        <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.name) }}"> <img src="{{ product.main_photo.file_path }}" alt="{{ product.name }}"> </a>
+                        <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.url_name) }}"> <img src="{{ product.main_photo.file_path }}" alt="{{ product.name }}"> </a>
                       </div>
                       <div class="product-detail-inner">
                         <div class="detail-inner-left align-center">
@@ -154,7 +154,7 @@
                         </div>
                       </div>
                       <div class="product-item-details">
-                        <div class="product-item-name"> <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.name) }}">{{ product.name }}</a> </div>
+                        <div class="product-item-name"> <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.url_name) }}">{{ product.name }}</a> </div>
                         <div class="price-box">
                           <span class="price">{{ product.main_option.price }}₺</span>
 {#                          <del class="price old-price">$120.00</del> #}
@@ -1808,10 +1808,10 @@
                     {% for product in g.best_seller[i:i+2] %}
                     <li>
                       <div class="pro-media"> 
-                        <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.name) }}"><img src="{{ product.main_photo.file_path }}" alt="{{ product.name }}"></a>
+                        <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.url_name) }}"><img src="{{ product.main_photo.file_path }}" alt="{{ product.name }}"></a>
                       </div>
                       <div class="pro-detail-info">
-                        <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.name) }}">{{ product.name }}</a>
+                        <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.url_name) }}">{{ product.name }}</a>
                         <div class="price-box">
                           <span class="price">{{ product.main_option.price }}₺</span>
                         </div>

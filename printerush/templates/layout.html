@@ -23,6 +23,16 @@
 <!-- Mobile Specific Metas
   ================================================== -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174702479-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-174702479-1');
+</script>
+
 <!-- CSS
   ================================================== -->
 {{ JSGlue.include() }}
@@ -811,7 +821,7 @@
                     <h3 class="title">Takipte Kalın<span></span></h3>
                     <div class="newsletter-box">
                       <label for="subscribe_email">Kampanyalarımızdan ilk haberdar olmak için mail adresinizi bırakabilirsiniz.</label>
-                      <input type="email" id="subscribe_email" name="subscribe_email" placeholder="Eposta adresiniz...">
+                      <input type="email" id="subscribe_email" name="subscribe_email" placeholder="E-posta adresiniz...">
                       <button id="subscribe_submit" class="btn-color right-side mt-2">Bültene Kaydol</button>
                     </div>
                   </div>

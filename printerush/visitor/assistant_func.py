@@ -38,14 +38,12 @@ def track_visitor():
         query_string = str(request.query_string)
         user_agent = request.user_agent.string
 
-        print(referer_page == requested_url)
-        print("track_session():", track_session())
         if track_session():
             visitor_log_id = session['visitor_log_id'] if 'visitor_log_id' in session else 0
             no_of_visits = session['visitor_log_no_of_visits']
             current_page = request.url
             previous_page = session['visitor_log_current_page'] if 'visitor_log_current_page' in session else ''
-            print(previous_page, current_page)
+
             if previous_page != current_page:
                 add_visitor_log(
                     ip_address=ip_address,
