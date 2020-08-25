@@ -419,7 +419,7 @@
                                 <div id="popup_product_detail_point_div" class="rating-summary-block">
                                   <div title="53%" class="rating-result"> <span style="width:53%"></span> </div>
                                 </div>
-                                <div id="popup_product_detail_price_div" class="price-box"> <span class="price">$80.00</span>
+                                <div id="popup_product_detail_price_div" class="price-box popup_product_overview_stock"> <span class="price">$80.00</span>
 {#                                    <del class="price old-price">$120.00</del> #}
                                 </div>
                                 <div class="product-info-stock-sku">
@@ -528,7 +528,7 @@
 {#                                    </li>#}
 {#                                  </ul>#}
 {#                                </div>#}
-                                <div class="mb-20">
+                                <div class="mb-20 popup_product_overview_stock">
                                   <div class="product-qty">
                                     <label for="qty">Adet:</label>
                                     <div class="custom-qty">
@@ -544,6 +544,14 @@
                                       </li>
                                     </ul>
                                   </div>
+                                </div>
+                                <div id="popup_product_detail_nostock" class="mb-20 popup_product_detail_nostock">
+                                <div class="form-inline">
+                                  <p><b>Stoğa düşünce herkesten önce haberdar olmak için e-posta adresinizi bırakın</b></p>
+                                  <label class="sr-only" for="stock_email">Email</label>
+                                  <input type="email" class="form-control mb-2 mr-sm-2" id="stock_email" name="stock_email" placeholder="E-posta adresiniz...">
+                                  <button id="subscribe_submit-p" class="btn btn-color mb-2">Haberdar ol</button>
+                                </div>
                                 </div>
                                 <div class="bottom-detail">
                                   <ul>

@@ -40,9 +40,11 @@
                       <div class="rating-summary-block">
                         <div title="{{ product.point|round(2) }}" class="rating-result"> <span style="width:{{ product.point * 20 }}%"></span> </div>
                       </div>
+                      {% if product.min_price %}
                       <div class="price-box"> <span class="price">{{ product.min_price }}&#8378;</span>
 {#                          <del class="price old-price">{{ product.min_price }}&#8378;</del> #}
                       </div>
+                      {% endif %}
                       <div class="product-info-stock-sku">
                         <div>
                           <label>{{ translation['stock']['stock'] }}: </label>
@@ -359,10 +361,12 @@
                     <div class="product-item-name">
                       <a href="{{ url_for('products_bp.view', product_id=s_product.id, p=s_product.url_name) }}">{{ s_product.name }}</a>
                     </div>
+                    {% if s_product.min_price %}
                     <div class="price-box">
                       <span class="price">{{ s_product.min_price }}₺</span>
 {#                      <del class="price old-price">$120.00</del>#}
                     </div>
+                    {% endif %}
                   </div>
                 </div>
               </div>

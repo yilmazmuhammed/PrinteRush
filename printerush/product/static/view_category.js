@@ -57,7 +57,17 @@ function set_product_overview(product_id){
         $("#popup_product_detail_product_code").html(product.product_code);
         $("#popup_product_detail_short_description_div").html(product.short_description_html);
         $("#add-to-cart-btn-li").children().attr("id", "add-to-cart-p"+product_id);
+        $("#popup_product_detail_nostock").children().children(":last-child").attr("id", "subscribe_submit-p" + product_id);
 
+        if(product.main_option.stock>0) {
+          $(".popup_product_detail_nostock").hide();
+          $(".popup_product_overview_stock").show();
+
+        }
+        else {
+          $(".popup_product_detail_nostock").show();
+          $(".popup_product_overview_stock").hide();
+        }
         let stock_msg="";
         if(product.main_option.stock>0) stock_msg="Satışta";
         else stock_msg="Tükendi";
