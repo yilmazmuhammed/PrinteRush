@@ -157,4 +157,36 @@ $(document)
   })
   .on("click", '[id^="compare-p"]', function(){
     alert("Karşılaştır");
+  })
+  .on("click", '[id^="subscribe_submit-p"]', function(){
+    let email = $('#stock_email');
+    let product_id = this.id.substring("subscribe_submit-p".length);
+    if(validateEmail(email.val())) {
+      api_add_stock_subscribe(email.val(), product_id).then(function (msg) {
+        show_message_modal(msg);
+        email.val("");
+      });
+    }
+    else{
+      show_message_modal("Geçersiz mail");
+    }
   });
+
+async function api_add_stock_subscribe(email, product_id){
+  const response = await fetch(Flask.url_for("cart_api_bp.stock_subscribe_api", {"email": email, "product_id":product_id}));
+  const data = await response.json();
+  let msg = "";
+  if(data.result){
+    msg = data.msg;
+  }
+  else{
+    msg = data.err_msg;
+  }
+  return msg;
+}
+
+
+function validateEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}

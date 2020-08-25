@@ -156,7 +156,7 @@
                       <div class="product-item-details">
                         <div class="product-item-name"> <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.url_name) }}">{{ product.name }}</a> </div>
                         <div class="price-box">
-                          <span class="price">{{ product.main_option.price }}₺</span>
+                          <span class="price">{% if product.main_option.price %}{{ product.main_option.price }}₺{% endif %}</span>
 {#                          <del class="price old-price">$120.00</del> #}
                         </div>
                       </div>
@@ -1813,7 +1813,7 @@
                       <div class="pro-detail-info">
                         <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.url_name) }}">{{ product.name }}</a>
                         <div class="price-box">
-                          <span class="price">{{ product.main_option.price }}₺</span>
+                          <span class="price">{% if product.main_option.price %}{{ product.main_option.price }}₺{% endif %}</span>
                         </div>
                         <div class="rating-summary-block">
                           <div title="{{ product.point }}" class="rating-result">

@@ -18,14 +18,14 @@ class ProductCategoryPI(FormPI):
 def product_category_choices(root=None, level=-1):
     root = root if root is not None else get_root_category()
 
-    ret = [(root.id, '-'*level+root.title_key)]
+    ret = [(root.id, '--'*level+" "+root.title_key)]
     for sub in root.sub_categories_set.order_by(lambda pc: pc.title_key):
         ret += product_category_choices(root=sub, level=level+1)
     return ret
 
 
 def detect_sorting_and_filtering(**kwargs):
-    sorting = "lambda p: ("
+    sorting = "lambda p: (desc(int(bool(p.stock))),"
     filtering = "lambda p: True"
 
     if kwargs.get("min_price"):

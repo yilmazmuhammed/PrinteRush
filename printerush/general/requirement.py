@@ -18,9 +18,12 @@ def cart_required(func):
 def url_reformative(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
-        url = request.path
-        if url.count(" ") or not url.islower():
-            return redirect(url.casefold().replace(" ", "-"))
+        path = request.path
+        if path.count(" ") or not path.islower():
+            path = path.casefold().replace(" ", "-")
+            args = "&".join([key+"="+value for key, value in request.args.to_dict().items()])
+            url = path+"?"+args
+            return redirect(url)
         return func(*args, **kwargs)
 
     return decorated_view

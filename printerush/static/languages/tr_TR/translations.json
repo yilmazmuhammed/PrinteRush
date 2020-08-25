@@ -270,6 +270,11 @@
       },
       "remove_from_cart": {
         "success_msg": "Ürün çıkarıldı."
+      },
+      "stock_subscribe_api": {
+        "mail_msg": "Stock takibi\nE-Posta: {email}\nÜrün kodu: {product_id}\nÜrün bağlantısı: {product_url}",
+        "subject": "Ürün stoğu takibi",
+        "success_msg": "Stok geldiğinde haberdar edilmek üzere başvurunuz alındı."
       }
     },
     "cart": {

@@ -1,3 +1,5 @@
+import math
+
 from flask import Blueprint, render_template, abort, request, g, redirect, url_for
 from flask_login import current_user
 from pony.orm import desc
@@ -43,6 +45,8 @@ def view(product_id, p):
 @products_bp.route('/<p>-c<category_id>', methods=['GET', 'POST'])
 @url_reformative
 def view_category(category_id, p):
+    g.request_args = lambda exl: {key: value for key, value in request.args.to_dict().items() if key not in exl}
+
     g.page = 1 if not request.args.get('page', None) else int(request.args['page'])
     pagesize = 24 if not request.args.get('pagesize', None) else int(request.args['pagesize'])
 
@@ -55,11 +59,14 @@ def view_category(category_id, p):
     filter_form = FilterForm()
     # try:
     products = category.products().filter(filtering).sort_by(sorting)
+    g.product_count = products.count()
+    products = products.page(g.page, pagesize)
     # except Exception as e:
     #     return redirect(url_for("products_bp.view_category", category_id=category_id, p=p))
-    g.product_count = products.count()
-    g.number_of_page = int(round(g.product_count / pagesize)) + (g.product_count % pagesize > 0)
+
+    g.number_of_page = math.ceil(g.product_count / pagesize)
     g.best_seller = category.products().sort_by("lambda p: desc(p.sold)")[:3]
     title = get_translation()['product']['product']['view_category']['title']
     return render_template('product/view_category.html',
-                           page_info=ProductCategoryPI(category=category, products=products, title=title, form=filter_form))
+                           page_info=ProductCategoryPI(category=category, products=products, title=title,
+                                                       form=filter_form))

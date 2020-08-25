@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify, request, session
+from flask import Blueprint, jsonify, request, session, url_for, current_app
 from flask_login import current_user
 
+from printerush.bots.mail_bot import send_email
 from printerush.cart.assistanc_fuct import add_to_db_cart, add_to_session_cart, cart_product_json
 from printerush.common.assistant_func import get_translation
 from printerush.database.models import CartProduct
@@ -17,7 +18,8 @@ def cart():
         for cp in current_user.cart_products_set.order_by(lambda cp: cp.product_ref.id):
             cart_.append(cart_product_json(product=cp.product_ref, quantity=cp.quantity))
     else:
-        cart_ = sorted(session["shopping_cart"], key=lambda k: k["product_ref"]["id"]) if "shopping_cart" in session else []
+        cart_ = sorted(session["shopping_cart"],
+                       key=lambda k: k["product_ref"]["id"]) if "shopping_cart" in session else []
     return jsonify(result=True, cart=cart_)
 
 
@@ -90,3 +92,19 @@ def cart_product(product_id):
             return jsonify(result=False, err_msg=translation["there_is_no_cart_product"])
     except ThereIsNotProduct as tinp:
         return jsonify(result=False, err_msg=str(tinp))
+
+
+@cart_api_bp.route('/stock_subscribe')
+def stock_subscribe_api():
+    translation = get_translation()['cart']['api']['stock_subscribe_api']
+
+    email = request.args.get("email", None)
+    product_id = request.args.get("product_id", None)
+    product_url = current_app.config['SERVER_NAME'] + url_for("products_bp.view", product_id=product_id)
+
+    try:
+        msg = translation["mail_msg"].format(email=email, product_id=product_id, product_url=product_url)
+        send_email(["iletisim@printerush.com"], subject=translation["subject"], message=msg)
+        return jsonify(result=True, msg=translation["success_msg"])
+    except Exception as e:
+        return jsonify(result=False, err_msg=str(e))

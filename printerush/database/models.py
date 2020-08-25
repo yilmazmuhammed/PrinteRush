@@ -238,6 +238,10 @@ class ProductCategory(db.Entity):
             ret = ret.sort_by(sort_by)
         return ret
 
+    @property
+    def url_title(self):
+        return self.title_key.casefold().replace(" ", "-")
+
 
 class Store(db.Entity):
     id = PrimaryKey(int, auto=True)

@@ -155,6 +155,7 @@
 {#                        </ul>#}
 {#                      </div>#}
                       <div class="mb-20">
+                        {% if product.stock %}
                         <div class="product-qty">
                           <label for="qty">{{ translation['quantity'] }}:</label>
                           <div class="custom-qty">
@@ -170,6 +171,14 @@
                             </li>
                           </ul>
                         </div>
+                        {% else %}
+                          <div class="form-inline">
+                            <p><b>Stoğa düşünce herkesten önce haberdar olmak için e-posta adresinizi bırakın</b></p>
+                            <label class="sr-only" for="stock_email">Email</label>
+                            <input type="email" class="form-control mb-2 mr-sm-2" id="stock_email" name="stock_email" placeholder="E-posta adresiniz...">
+                            <button id="subscribe_submit-p{{ product.id }}" class="btn btn-color mb-2">Haberdar ol</button>
+                          </div>
+                        {% endif %}
                       </div>
                       <div class="bottom-detail">
                         <ul>

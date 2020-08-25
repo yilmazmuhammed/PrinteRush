@@ -4,7 +4,7 @@ import pathlib
 from flask import render_template, g, request, url_for, current_app
 from flask_login import current_user
 from pony.orm import flush
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename, redirect
 
 from printerush.common.assistant_func import flask_form_to_dict
 from printerush.common.db import db_add_photos
@@ -32,5 +32,6 @@ def new_product_page(store_id):
         #     pathlib.Path(directory_path).mkdir(exist_ok=True)
         #     photo.save(os.path.join(directory_path, filename))
         #     product.photos_set.add(db_add_photo)
+        return redirect(url_for("store_sbp.new_product_page", store_id=store_id))
 
     return render_template("store/products/new_product.html", form=form)
