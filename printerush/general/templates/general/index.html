@@ -1835,6 +1835,8 @@
                         <div class="cart-link">
                           {% if product.stock %}
                           <button id="add-to-cart-p{{ product.id }}" title="Sepete ekle"><span>Sepete ekle</span></button>
+                          {% else %}
+                          <span>Stokta yok</span>
                           {% endif %}
                         </div>
                       </div>
