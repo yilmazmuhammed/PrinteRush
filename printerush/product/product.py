@@ -24,7 +24,7 @@ def view(product_id, p):
     if not product:
         abort(404)
 
-    g.similar_products = product.product_category_ref.products_set.select().order_by(lambda pr: desc(pr.sold))[:10]
+    g.similar_products = product.product_category_ref.products_set.select().order_by(lambda pr: (desc(int(bool(pr.stock))), desc(pr.sold)))[:10]
 
     # TODO eğer bir yorum varsa yorumu düzenle formu oluştur
     comment_form = CommentForm()
@@ -65,7 +65,7 @@ def view_category(category_id, p):
     #     return redirect(url_for("products_bp.view_category", category_id=category_id, p=p))
 
     g.number_of_page = math.ceil(g.product_count / pagesize)
-    g.best_seller = category.products().sort_by("lambda p: desc(p.sold)")[:3]
+    g.best_seller = category.products().sort_by("lambda p: (desc(int(bool(p.stock))), desc(p.sold))")[:3]
     title = get_translation()['product']['product']['view_category']['title']
     return render_template('product/view_category.html',
                            page_info=ProductCategoryPI(category=category, products=products, title=title,

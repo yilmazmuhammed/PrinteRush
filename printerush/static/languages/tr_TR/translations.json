@@ -262,6 +262,7 @@
   "cart": {
     "api": {
       "add_to_cart": {
+        "no_stock": "Ürün stoğu yok.\nÜrün gelince haberdar etmemizi isterseniz ürün sayfasından mail adresinizi bırakınız.",
         "quantity_less_than_zero": "Eklenecek ürün adedi sıfırdan büyük olmalıdır.",
         "success_msg": "Ürün sepete eklendi."
       },

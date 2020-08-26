@@ -36,3 +36,19 @@
 .rating>[id^="star"]:checked~label:hover~label {
     color: #FFED85
 }
+
+.cok-yakinda {
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    right: 5px;
+    width: 60px;
+}
+
+.yeni-urun {
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    right: 5px;
+    width: 50px;
+}

@@ -27,7 +27,7 @@
               </div>
               <div class="sidebar-contant">
                 <ul>
-                  {% for sub_category in page_info.category.sub_categories_set %}
+                  {% for sub_category in page_info.category.sub_categories_set.sort_by("lambda sc: sc.title_key") %}
                   <li>
                     <div class="check-box"> 
                       <span>
@@ -328,7 +328,12 @@
                   <div class="product-item">
                     <div class="row">
                       <div class="img-col col-12">
-                        <div class="product-image"> 
+                        <div class="product-image">
+                          {% if not product.main_option.price %}
+                          <div class="cok-yakinda">
+                            <img src="{{ url_for('products_bp.static', filename='images/cok-yakinda.png') }}" alt="Çok Yakında">
+                          </div>
+                          {% endif %}
                           <a href="{{ url_for('products_bp.view', product_id=product.id, p=product.url_name) }}">
                             <img src="{{ product.main_photo.file_path }}" alt="Everypick">
                           </a>

@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 
+  {% block css_block %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('products_bp.static', filename='view_category.css') }}">
+  {% endblock %}
   {% block content %}
 
   
@@ -137,8 +140,15 @@
                   {% for product in g.new_arrivals %}
                   <div class="item">
                     <div class="product-item">
-                      <div class="main-label new-label"><span>New</span></div>
-                      <div class="product-image"> 
+{#                      <div class="main-label new-label"><span>New</span></div>#}
+                      {% if not product.main_option.price %}
+                      <div class="cok-yakinda"><img src="{{ url_for('products_bp.static', filename='images/cok-yakinda.png') }}" alt="Çok Yakında"></div>
+                      {% else %}
+                      <div class="yeni-urun">
+                        <img src="{{ url_for('products_bp.static', filename='images/yeni_urun.png') }}" alt="Çok Yakında">
+                      </div>
+                      {% endif %}
+                      <div class="product-image">
                         <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.url_name) }}"> <img src="{{ product.main_photo.file_path }}" alt="{{ product.name }}"> </a>
                       </div>
                       <div class="product-detail-inner">
@@ -1812,16 +1822,20 @@
                       </div>
                       <div class="pro-detail-info">
                         <a href="{{ url_for("products_bp.view", product_id=product.id, p=product.url_name) }}">{{ product.name }}</a>
+                        {% if product.main_option.price %}
                         <div class="price-box">
-                          <span class="price">{% if product.main_option.price %}{{ product.main_option.price }}₺{% endif %}</span>
+                          <span class="price">{{ product.main_option.price }}₺</span>
                         </div>
+                        {% endif %}
                         <div class="rating-summary-block">
                           <div title="{{ product.point }}" class="rating-result">
                             <span style="width:{{ product.point*20 }}%"></span>
                           </div>
                         </div>
                         <div class="cart-link">
+                          {% if product.stock %}
                           <button id="add-to-cart-p{{ product.id }}" title="Sepete ekle"><span>Sepete ekle</span></button>
+                          {% endif %}
                         </div>
                       </div>
                     </li>

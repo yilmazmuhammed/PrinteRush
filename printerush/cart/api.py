@@ -3,6 +3,7 @@ from flask_login import current_user
 
 from printerush.bots.mail_bot import send_email
 from printerush.cart.assistanc_fuct import add_to_db_cart, add_to_session_cart, cart_product_json
+from printerush.cart.exception import NoStock
 from printerush.common.assistant_func import get_translation
 from printerush.database.models import CartProduct
 from printerush.product.db import get_product
@@ -37,8 +38,8 @@ def add_to_cart():
         else:
             add_to_session_cart(product=product, quantity=quantity)
         return jsonify(result=True, msg=translation["success_msg"])
-    except ThereIsNotProduct as tinp:
-        return jsonify(result=False, err_msg=str(tinp))
+    except (NoStock, ThereIsNotProduct) as e:
+        return jsonify(result=False, err_msg=str(e))
 
 
 @cart_api_bp.route('/remove_from_cart')

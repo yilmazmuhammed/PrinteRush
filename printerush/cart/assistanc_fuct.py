@@ -1,12 +1,16 @@
 from flask import session
 from flask_login import current_user
 
+from printerush.cart.exception import NoStock
+from printerush.common.assistant_func import get_translation
 from printerush.database.models import CartProduct
 from printerush.product.db import get_product
 
 
 def add_to_db_cart(quantity, product_id=None, product=None):
     product = product if product else get_product(product_id=product_id)
+    if not product.stock:
+        raise NoStock(get_translation()['cart']['api']['add_to_cart']['no_stock'])
 
     cart_product = CartProduct.get(product_ref=product, web_user_ref=current_user)
     if cart_product:
@@ -19,6 +23,8 @@ def add_to_db_cart(quantity, product_id=None, product=None):
 
 def add_to_session_cart(quantity, product_id=None, product=None):
     product = product if product else get_product(product_id=product_id)
+    if not product.stock:
+        raise NoStock(get_translation()['cart']['api']['add_to_cart']['no_stock'])
 
     cart_product = cart_product_json(product, quantity)
     if "shopping_cart" in session:

@@ -12,8 +12,8 @@ general_bp = Blueprint('general_bp', __name__,
 
 @general_bp.route('/')
 def index():
-    g.new_arrivals = get_root_category().products(sort_by="lambda p: p.data_status_ref.confirmation_time")[:20]
-    g.best_seller = get_root_category().products(sort_by="lambda p: desc(p.sold)")[:20]
+    g.new_arrivals = get_root_category().products(sort_by="lambda p: (desc(int(bool(p.stock))), p.data_status_ref.confirmation_time)")[:20]
+    g.best_seller = get_root_category().products(sort_by="lambda p: (desc(int(bool(p.stock))), desc(p.sold))")[:20]
     return render_template('general/index.html', page_info=LayoutPI(title="Ana Sayfa"))
 
 
